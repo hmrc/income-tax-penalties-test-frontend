@@ -35,23 +35,17 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors
 import play.api.Logger
 import play.api.http.Status.{CREATED, TOO_MANY_REQUESTS}
 import play.api.libs.json._
-import uk.gov.hmrc.auth.core.{Nino, PlayAuthConnector}
+import uk.gov.hmrc.auth.core.PlayAuthConnector
 import uk.gov.hmrc.http.client.HttpClientV2
 import uk.gov.hmrc.http.{HeaderCarrier, HttpResponse, StringContextOps, TooManyRequestException}
-import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
-import LoginUtil._
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.LoginUtil._
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
 
 import java.util.UUID
 import javax.inject.{Inject, Singleton}
 import scala.collection.Seq
 import scala.concurrent.{ExecutionContext, Future}
-
-case class EnrolmentData(name: String, state: String, taxIdentifier: scala.Seq[TaxIdentifierData])
-
-case class TaxIdentifierData(key: String, value: String)
-
-case class DelegatedEnrolmentData(key: String, taxIdentifier: Seq[TaxIdentifierData], delegatedAuthRule: String)
 
 case class GovernmentGatewayToken(gatewayToken: String)
 
@@ -64,10 +58,10 @@ object GovernmentGatewayToken {
 case class AuthExchange(bearerToken: String, sessionAuthorityUri: String)
 
 @Singleton
-class CustomAuthConnector @Inject()(servicesConfig: ServicesConfig,
+class CustomAuthConnector @Inject()(appConfig: AppConfig,
                                     val http: HttpClientV2)
                                    (implicit ec: ExecutionContext) extends PlayAuthConnector {
-  override val serviceUrl: String = servicesConfig.baseUrl("auth-login")
+  override val serviceUrl: String = appConfig.authLoginServiceUrl
 
   override def httpClientV2: HttpClientV2 = http
 
