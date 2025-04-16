@@ -18,9 +18,13 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.config
 
 import javax.inject.{Inject, Singleton}
 import play.api.Configuration
+import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
-class AppConfig @Inject()(config: Configuration) {
-  val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
+class AppConfig @Inject()(servicesConfig: ServicesConfig) {
 
+  val incomeTaxSessionDataUrl = servicesConfig.baseUrl("income-tax-session-data")
+  val authLoginServiceUrl = servicesConfig.baseUrl("auth-login")
+
+  val penaltiesHomeUrl = servicesConfig.getString("income-tax-penalties-frontend.home.url")
 }
