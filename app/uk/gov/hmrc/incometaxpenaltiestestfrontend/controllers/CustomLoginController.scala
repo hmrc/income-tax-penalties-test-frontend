@@ -75,7 +75,7 @@
 //                  val origin = if(postedUser.usePTANavBar) "PTA" else "BTA"
 //                  s"report-quarterly/income-and-expenses/view?origin=$origin"
 //                }
-//                val homePage = s"${appConfig.itvcFrontendEnvironment}/$redirectURL"
+//                val homePage = s"${appConfig.penaltiesHomeUrl}/$redirectURL"
 //                Future.successful(successRedirect(bearer, auth, homePage))
 //
 //              case code =>
