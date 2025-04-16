@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.incometaxpenaltiestestfrontend.config
+package uk.gov.hmrc.incometaxpenaltiestestfrontend.models
 
-import com.google.inject.AbstractModule
+import play.api.libs.json.{Json, OFormat}
 
-class Module extends AbstractModule {
+case class SessionDataModel(
+                             mtditid: String,
+                             nino: String,
+                             utr: String,
+                             isSupportingAgent: Boolean = false
+                           )
 
-  override def configure(): Unit = {
-
-    bind(classOf[AppConfig]).asEagerSingleton()
-  }
+object SessionDataModel {
+  implicit val formats: OFormat[SessionDataModel] = Json.format[SessionDataModel]
 }
+

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,18 @@
 
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
 
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.HelloWorldPage
-import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
-import javax.inject.{Inject, Singleton}
-import scala.concurrent.Future
+import play.api.mvc.Session
+import uk.gov.hmrc.http.{SessionId, SessionKeys}
 
-@Singleton
-class HelloWorldController @Inject()(
-  mcc: MessagesControllerComponents,
-  helloWorldPage: HelloWorldPage)
-    extends FrontendController(mcc) {
+import java.util.UUID
 
-  val helloWorld: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(Ok(helloWorldPage()))
-  }
+case class AuthExchange(bearerToken: String, sessionAuthorityUri: String)
 
+object SessionBuilder {
+
+  def buildGGSession(authExchange: AuthExchange): Session = Session(Map(
+    SessionKeys.sessionId -> SessionId(s"session-${UUID.randomUUID}").value,
+    SessionKeys.authToken -> authExchange.bearerToken,
+    SessionKeys.lastRequestTimestamp -> System.currentTimeMillis().toString
+  ))
 }
