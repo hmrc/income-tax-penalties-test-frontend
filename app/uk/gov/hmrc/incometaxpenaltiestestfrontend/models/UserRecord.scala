@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.incometaxpenaltiestestfrontend.config
+package uk.gov.hmrc.incometaxpenaltiestestfrontend.models
 
-import com.google.inject.AbstractModule
+import play.api.libs.json.{Json, OFormat}
 
-class Module extends AbstractModule {
+case class UserRecord(nino: String, mtditid: String, utr: String, description: String)
 
-  override def configure(): Unit = {
-
-    bind(classOf[AppConfig]).asEagerSingleton()
-  }
+object UserRecord {
+  implicit val formats: OFormat[UserRecord] = Json.format[UserRecord]
 }
