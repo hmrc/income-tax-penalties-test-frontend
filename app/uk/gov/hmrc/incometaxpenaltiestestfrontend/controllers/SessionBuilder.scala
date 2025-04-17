@@ -25,9 +25,18 @@ case class AuthExchange(bearerToken: String, sessionAuthorityUri: String)
 
 object SessionBuilder {
 
+  val origin = "Origin"
+
   def buildGGSession(authExchange: AuthExchange): Session = Session(Map(
     SessionKeys.sessionId -> SessionId(s"session-${UUID.randomUUID}").value,
     SessionKeys.authToken -> authExchange.bearerToken,
     SessionKeys.lastRequestTimestamp -> System.currentTimeMillis().toString
   ))
+
+  def addOriginToSession(origin: Option[String], session: Session): Session = {
+    origin match {
+      case Some(o) => session + (SessionBuilder.origin -> o)
+      case None => session
+    }
+  }
 }

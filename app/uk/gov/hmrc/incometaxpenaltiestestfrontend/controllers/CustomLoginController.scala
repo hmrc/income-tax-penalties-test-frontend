@@ -32,19 +32,17 @@
 
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
 
-import play.api.Logger
 import play.api.i18n.I18nSupport
 import play.api.mvc._
-import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.CustomAuthConnector
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.{PostedUser, UserRecord}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.PostedUser
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.LoginPage
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
 import javax.inject.{Inject, Singleton}
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
@@ -61,50 +59,35 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
     Ok(loginPage(routes.CustomLoginController.postLogin, userData))
   }
 
-  val postLogin: Action[AnyContent] = Action { implicit request =>
+  val postLogin: Action[AnyContent] = Action.async { implicit request =>
     PostedUser.form.bindFromRequest().fold(
-            formWithErrors =>
-              BadRequest(s"Invalid form submission: $formWithErrors"),
-            (postedUser: PostedUser) => {
-
-              Ok("Successful " + postedUser.nino)
-         }
+      formWithErrors =>
+        Future(BadRequest(s"Invalid form submission: $formWithErrors")),
+      (postedUser: PostedUser) => {
+        customAuthConnector.login(postedUser.nino, postedUser.isAgent).map {
+          case (authExchange, _) =>
+            val (bearer, auth) = (authExchange.bearerToken, authExchange.sessionAuthorityUri)
+            if (postedUser.isAgent) {
+              val redirectUrl = routes.SetupAgentController.addAgentData(postedUser.nino).url
+              successRedirect(bearer, auth, redirectUrl, None)
+            } else {
+              val origin = if (postedUser.usePTANavBar) "PTA" else "BTA"
+              val redirectUrl = appConfig.penaltiesHomeUrl
+              successRedirect(bearer, auth, redirectUrl, Some(origin))
+            }
+          case code =>
+            InternalServerError("something went wrong.." + code)
+        }
+      }
     )
   }
 
-//  val postLogin: Action[AnyContent] = Action.async { implicit request =>
-//    PostedUser.form.bindFromRequest().fold(
-//      formWithErrors =>
-//        Future.successful(BadRequest(s"Invalid form submission: $formWithErrors")),
-//      (postedUser: PostedUser) => {
-//
-//        userRepository.findUser(postedUser.nino).flatMap(
-//          user =>
-//            customAuthConnector.login(user.nino, postedUser.isAgent, postedUser.isSupporting).flatMap {
-//              case (authExchange, _) =>
-//                val (bearer, auth) = (authExchange.bearerToken, authExchange.sessionAuthorityUri)
-//                val redirectURL = if (postedUser.isAgent)
-//                  s"report-quarterly/income-and-expenses/view/test-only/stub-client/nino/${user.nino}/utr/" + user.utr
-//                else {
-//                  val origin = if(postedUser.usePTANavBar) "PTA" else "BTA"
-//                  s"report-quarterly/income-and-expenses/view?origin=$origin"
-//                }
-//                val homePage = s"${appConfig.penaltiesHomeUrl}/$redirectURL"
-//                Future.successful(successRedirect(bearer, auth, homePage))
-//
-//              case code =>
-//                Future.successful(InternalServerError("something went wrong.." + code))
-//            }
-//        )
-//      }
-//    )
-//  }
-
-  private def successRedirect(bearer: String, auth: String, homePage: String): Result = {
-    Redirect(homePage)
-      .withSession(
-        SessionBuilder.buildGGSession(AuthExchange(bearerToken = bearer,
-          sessionAuthorityUri = auth)))
+  private def successRedirect(bearer: String, auth: String, redirectUrl: String, origin: Option[String]): Result = {
+    val ggSession = SessionBuilder.buildGGSession(AuthExchange(bearerToken = bearer,
+      sessionAuthorityUri = auth))
+    val ggSessionWithOrigin = SessionBuilder.addOriginToSession(origin, ggSession)
+    Redirect(redirectUrl)
+      .withSession(ggSessionWithOrigin)
   }
 
 }
