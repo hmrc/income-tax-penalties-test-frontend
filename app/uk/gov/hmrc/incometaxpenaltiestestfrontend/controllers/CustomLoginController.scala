@@ -52,7 +52,7 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
                                       val customAuthConnector: CustomAuthConnector
                                      ) extends FrontendController(mcc) with I18nSupport {
 
-  lazy val userData = UserData.allUserRecords.values.toSeq
+  lazy val userData = UserData.allUserRecords.values.toSeq.sortBy(_.nino)
 
   // Logging page functionality
   val showLogin: Action[AnyContent] = Action { implicit request =>
