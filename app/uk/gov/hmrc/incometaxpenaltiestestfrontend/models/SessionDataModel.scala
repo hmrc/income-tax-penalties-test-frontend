@@ -21,11 +21,19 @@ import play.api.libs.json.{Json, OFormat}
 case class SessionDataModel(
                              mtditid: String,
                              nino: String,
-                             utr: String,
-                             isSupportingAgent: Boolean = false
-                           )
+                             utr: String
+                           ) {
+
+  def this(userRecord: UserRecord) = this(
+    mtditid = userRecord.mtditid,
+    nino = userRecord.nino,
+    utr = userRecord.utr
+  )
+
+}
 
 object SessionDataModel {
   implicit val formats: OFormat[SessionDataModel] = Json.format[SessionDataModel]
+
 }
 
