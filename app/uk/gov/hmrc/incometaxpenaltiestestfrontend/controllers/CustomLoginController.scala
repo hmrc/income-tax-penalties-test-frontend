@@ -29,35 +29,49 @@
 // * See the License for the specific language governing permissions and
 // * limitations under the License.
 // */
-//
-//package uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
-//
-//import play.api.Logger
-//import play.api.i18n.I18nSupport
-//import play.api.mvc._
-//import uk.gov.hmrc.http.HeaderCarrier
-//import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
-//import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.PostedUser
-//import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.LoginPage
-//
-//import javax.inject.{Inject, Singleton}
-//import scala.concurrent.{ExecutionContext, Future}
-//
-//@Singleton
-//class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
-//                                      implicit val mcc: MessagesControllerComponents,
-//                                      implicit val executionContext: ExecutionContext,
-//                                      loginPage: LoginPage,
-//                                      val customAuthConnector: CustomAuthConnector
-//                                     ) extends BaseController with I18nSupport {
-//
-//  // Logging page functionality
-//  val showLogin: Action[AnyContent] = Action.async { implicit request =>
-//    userRepository.findAll().map(userRecords =>
-//      Ok(loginPage(routes.CustomLoginController.postLogin, userRecords, testOnlyAppConfig.optOutUserPrefixes))
-//    )
-//  }
-//
+
+package uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
+
+import play.api.Logger
+import play.api.i18n.I18nSupport
+import play.api.mvc._
+import uk.gov.hmrc.http.HeaderCarrier
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.CustomAuthConnector
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.{PostedUser, UserRecord}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.LoginPage
+import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+
+import javax.inject.{Inject, Singleton}
+import scala.concurrent.ExecutionContext
+
+@Singleton
+class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
+                                      implicit val mcc: MessagesControllerComponents,
+                                      implicit val executionContext: ExecutionContext,
+                                      loginPage: LoginPage,
+                                      val customAuthConnector: CustomAuthConnector
+                                     ) extends FrontendController(mcc) with I18nSupport {
+
+  lazy val userData = UserData.allUserRecords.values.toSeq
+
+  // Logging page functionality
+  val showLogin: Action[AnyContent] = Action { implicit request =>
+    Ok(loginPage(routes.CustomLoginController.postLogin, userData))
+  }
+
+  val postLogin: Action[AnyContent] = Action { implicit request =>
+    PostedUser.form.bindFromRequest().fold(
+            formWithErrors =>
+              BadRequest(s"Invalid form submission: $formWithErrors"),
+            (postedUser: PostedUser) => {
+
+              Ok("Successful " + postedUser.nino)
+         }
+    )
+  }
+
 //  val postLogin: Action[AnyContent] = Action.async { implicit request =>
 //    PostedUser.form.bindFromRequest().fold(
 //      formWithErrors =>
@@ -85,12 +99,12 @@
 //      }
 //    )
 //  }
-//
-//  private def successRedirect(bearer: String, auth: String, homePage: String): Result = {
-//    Redirect(homePage)
-//      .withSession(
-//        SessionBuilder.buildGGSession(AuthExchange(bearerToken = bearer,
-//          sessionAuthorityUri = auth)))
-//  }
-//
-//}
+
+  private def successRedirect(bearer: String, auth: String, homePage: String): Result = {
+    Redirect(homePage)
+      .withSession(
+        SessionBuilder.buildGGSession(AuthExchange(bearerToken = bearer,
+          sessionAuthorityUri = auth)))
+  }
+
+}
