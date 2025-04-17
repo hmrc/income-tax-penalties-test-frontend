@@ -24,7 +24,9 @@ case class PostedUser(nino: String,
                       usePTANavBar: Boolean = false
                      ) {
 
-  def isAgent: Boolean = userType.contains("Agent")
+  def isAgent: Boolean = {
+    userType.fold(false)(_=="agent")
+  }
 }
 
 object PostedUser {
