@@ -48,7 +48,7 @@ class SetupAgentController @Inject()(
     sessionDataConnector.postSessionData(sessionData).flatMap {
       case Right(value: SessionDataPostSuccess) =>
         val session = req.session + ("pocAchievementDate" -> LocalDate.now().format(ISO_DATE)) + ("ClientMTDID" -> userRecord.mtditid) + ("Nino" -> userRecord.nino)
-        Future(Redirect(appConfig.penaltiesHomeUrl).withSession(session))
+        Future(Redirect(appConfig.penaltiesAgentHomeUrl).withSession(session))
       case _ => errorHandler.showInternalServerError()
     }
   }
