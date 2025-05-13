@@ -27,4 +27,5 @@ class AppConfig @Inject()(servicesConfig: ServicesConfig) {
   val authLoginServiceUrl = servicesConfig.baseUrl("auth-login")
 
   val penaltiesHomeUrl = servicesConfig.getString("income-tax-penalties-frontend.home.url")
+  val penaltiesAgentHomeUrl = servicesConfig.getString("income-tax-penalties-frontend.home.url") + "/agent"
 }
