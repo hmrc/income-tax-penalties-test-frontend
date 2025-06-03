@@ -71,7 +71,7 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
               val redirectUrl = routes.SetupAgentController.addAgentData(postedUser.nino).url
               successRedirect(bearer, auth, redirectUrl, None)
             } else {
-              val origin = if (postedUser.usePTANavBar) "PTA" else "BTA"
+              val origin = if (postedUser.useBTANavBar) "BTA" else "PTA"
               val redirectUrl = appConfig.penaltiesHomeUrl
               successRedirect(bearer, auth, redirectUrl, Some(origin))
             }
