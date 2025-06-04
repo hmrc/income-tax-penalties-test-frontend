@@ -30,16 +30,16 @@
 
 @(postAction: Call, users: Seq[UserRecord])(implicit request: Request[_], messages: Messages)
 
-@displayPTANavBar = @{
+@displayBTANavBar = @{
     govukCheckboxes(
         Checkboxes(
             fieldset = Some(Fieldset(
             legend = None
             )),
-            name = "usePTANavBar",
+            name = "useBTANavBar",
             items = Seq(
                 CheckboxItem(
-                    content = Text("Use PTA Nav bar"),
+                    content = Text("Use BTA Nav bar"),
                     value = "true"
                 )
             ),
@@ -72,7 +72,7 @@
                     content = Text("Individual"),
                     value = Some("individual"),
                     checked = true,
-                    conditionalHtml = Some(displayPTANavBar)
+                    conditionalHtml = Some(displayBTANavBar)
                 ),
                 RadioItem(
                     content = Text("Agent"),
