@@ -1,0 +1,17 @@
+{
+  "userNINO" : "AA200010A",
+  "payload" : {
+    "processingDate" : "2025-04-05",
+    "financialData" : {
+      "totalisation" : {
+        "regimeTotalisation" : {
+          "totalAccountOverdue" : 0
+        },
+        "additionalReceivableTotalisations" : {
+          "totalAccountPostedInterest" : 80,
+          "totalAccountAccruingInterest" : 2.19
+        }
+      }
+    }
+  }
+}

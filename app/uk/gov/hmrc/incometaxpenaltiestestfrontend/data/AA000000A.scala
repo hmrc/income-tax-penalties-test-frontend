@@ -14,18 +14,23 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.incometaxpenaltiestestfrontend.config
+package uk.gov.hmrc.incometaxpenaltiestestfrontend.data
 
-import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary, PenaltyDetails}
 
-import javax.inject.{Inject, Singleton}
+object AA000000A extends UserDetailsData {
 
-@Singleton
-class AppConfig @Inject()(servicesConfig: ServicesConfig) {
+  override val lsp: Option[LSP] = Some(
+    LSP(
+      lspSummary = LSPSummary(),
+      lspDetails = Seq.empty
+    )
+  )
 
-  val incomeTaxSessionDataUrl = servicesConfig.baseUrl("income-tax-session-data")
-  val authLoginServiceUrl = servicesConfig.baseUrl("auth-login")
+  override def penaltyDetails() = PenaltyDetails(
+    processingDate = "2024-04-05",
+    penaltyData = None
+  )
 
-  val penaltiesHomeUrl = servicesConfig.getString("income-tax-penalties-frontend.home.url")
-  val penaltiesAgentHomeUrl = servicesConfig.getString("income-tax-penalties-frontend.home.url") + "/agent"
+  override val nino: String = "AA000000A"
 }
