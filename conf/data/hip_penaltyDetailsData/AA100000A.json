@@ -1,0 +1,38 @@
+{
+  "userNINO" : "AA100000A",
+  "payload" : {
+    "success" : {
+      "processingDate" : "2025-04-05",
+      "penaltyData" : {
+        "totalisations" : {
+          "lspTotalValue" : 0,
+          "penalisedPrincipalTotal" : 0,
+          "lppPostedTotal" : 0,
+          "lppEstimatedTotal" : 40
+        },
+        "lpp" : {
+          "manualLPPIndicator" : false,
+          "lppDetails" : [ {
+            "principalChargeReference" : "XJ002616061046",
+            "penaltyStatus" : "A",
+            "penaltyAmountAccruing" : 40,
+            "penaltyAmountPosted" : 0,
+            "principalChargeBillingFrom" : "2023-04-06",
+            "principalChargeBillingTo" : "2024-04-05",
+            "principalChargeDueDate" : "2024-04-30",
+            "principalChargeDocNumber" : "DOC1",
+            "principalChargeMainTr" : "4720",
+            "principalChargeSubTr" : "SUB1",
+            "penaltyCategory" : "LPP1",
+            "lpp1LRCalculationAmt" : 2000,
+            "lpp1LRDays" : "15",
+            "lpp1LRPercentage" : 2,
+            "penaltyChargeCreationDate" : "2024-05-01",
+            "penaltyChargeReference" : "XJ002616061046",
+            "penaltyChargeDueDate" : "2024-05-31"
+          } ]
+        }
+      }
+    }
+  }
+}
