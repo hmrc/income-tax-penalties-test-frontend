@@ -14,7 +14,6 @@ lazy val microservice = Project("income-tax-penalties-test-frontend", file("."))
     pipelineStages := Seq(gzip),
     PlayKeys.playDefaultPort := 9189,
   )
-  .settings(resolvers += Resolver.jcenterRepo)
   .settings(CodeCoverageSettings.settings *)
 
 lazy val it = project
