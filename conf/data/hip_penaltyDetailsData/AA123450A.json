@@ -1,0 +1,53 @@
+{
+  "userNINO" : "AA123450A",
+  "payload" : {
+    "success" : {
+      "processingDate" : "2025-04-05",
+      "penaltyData" : {
+        "lpp" : {
+          "manualLPPIndicator" : false,
+          "lppDetails" : [ {
+            "principalChargeReference" : "XJ002616061070",
+            "penaltyStatus" : "A",
+            "penaltyAmountAccruing" : 80,
+            "penaltyAmountPosted" : 0,
+            "principalChargeBillingFrom" : "2024-04-06",
+            "principalChargeBillingTo" : "2025-04-05",
+            "principalChargeDueDate" : "2025-04-30",
+            "principalChargeDocNumber" : "DOC1",
+            "principalChargeMainTr" : "4720",
+            "principalChargeSubTr" : "SUB1",
+            "penaltyCategory" : "LPP1",
+            "lpp1LRCalculationAmt" : 2000,
+            "lpp1LRDays" : "15",
+            "lpp1LRPercentage" : 2,
+            "lpp1HRCalculationAmt" : 2000,
+            "lpp1HRDays" : "30",
+            "lpp1HRPercentage" : 2,
+            "penaltyChargeCreationDate" : "2025-05-01",
+            "penaltyChargeReference" : "XJ002616061070",
+            "penaltyChargeDueDate" : "2025-05-31"
+          }, {
+            "principalChargeReference" : "XJ002616061078",
+            "penaltyStatus" : "P",
+            "penaltyAmountAccruing" : 0,
+            "penaltyAmountPosted" : 80,
+            "principalChargeBillingFrom" : "2023-04-06",
+            "principalChargeBillingTo" : "2024-04-05",
+            "principalChargeDueDate" : "2024-04-30",
+            "principalChargeDocNumber" : "DOC1",
+            "principalChargeMainTr" : "4720",
+            "principalChargeSubTr" : "SUB1",
+            "penaltyCategory" : "LPP2",
+            "penaltyAmountPaid" : 80,
+            "penaltyAmountOutstanding" : 0,
+            "lpp2Days" : "31",
+            "lpp2Percentage" : 4,
+            "penaltyChargeCreationDate" : "2024-05-01",
+            "penaltyChargeReference" : "XJ002616061078"
+          } ]
+        }
+      }
+    }
+  }
+}

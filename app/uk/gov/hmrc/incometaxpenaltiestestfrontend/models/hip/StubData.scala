@@ -14,18 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.incometaxpenaltiestestfrontend.config
+package uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip
 
-import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialDetails
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.PenaltyDetails
 
-import javax.inject.{Inject, Singleton}
-
-@Singleton
-class AppConfig @Inject()(servicesConfig: ServicesConfig) {
-
-  val incomeTaxSessionDataUrl = servicesConfig.baseUrl("income-tax-session-data")
-  val authLoginServiceUrl = servicesConfig.baseUrl("auth-login")
-
-  val penaltiesHomeUrl = servicesConfig.getString("income-tax-penalties-frontend.home.url")
-  val penaltiesAgentHomeUrl = servicesConfig.getString("income-tax-penalties-frontend.home.url") + "/agent"
-}
+case class StubData(penaltyDetails: PenaltyDetails,
+                    financialDetails: Option[FinancialDetails],
+                    complianceData: Option[CompliancePayload]
+                   )

@@ -14,18 +14,15 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.incometaxpenaltiestestfrontend.config
+package uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails
 
-import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
+import play.api.libs.json.{Format, Json}
 
-import javax.inject.{Inject, Singleton}
+case class LSP(lspSummary: LSPSummary,
+               lspDetails: Seq[LSPDetails]
 
-@Singleton
-class AppConfig @Inject()(servicesConfig: ServicesConfig) {
+)
 
-  val incomeTaxSessionDataUrl = servicesConfig.baseUrl("income-tax-session-data")
-  val authLoginServiceUrl = servicesConfig.baseUrl("auth-login")
-
-  val penaltiesHomeUrl = servicesConfig.getString("income-tax-penalties-frontend.home.url")
-  val penaltiesAgentHomeUrl = servicesConfig.getString("income-tax-penalties-frontend.home.url") + "/agent"
+object LSP {
+  implicit val format: Format[LSP] = Json.format[LSP]
 }
