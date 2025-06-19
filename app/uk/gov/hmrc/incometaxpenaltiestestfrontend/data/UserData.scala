@@ -38,7 +38,7 @@ object UserData {
   val nino5: String = "AA200010A"
   val userRecord5: UserRecord = UserRecord(nino5, "20001", "1000020001", "2 LPPs - (1 LPP ESTIMATE, 1 LPP DUE, 1 LPP PAID) *Second Stage Appeal*")
 
-  val nino6: String = "AA789120A"
+  val nino6: String = "PE000000A"
   val userRecord6: UserRecord = UserRecord(nino6, "XTIT12345678912", "1000078912", "2 LSPs - (2 LSP ACTIVE)")
 
   val nino7: String = "AA222220A"
@@ -53,7 +53,7 @@ object UserData {
   val nino10: String = "AA300000A"
   val userRecord10: UserRecord = UserRecord(nino10, "30000", "1000030000", "3 LSPs - (3 LSP ACTIVE) *Second Stage Appeal*")
 
-  val nino11: String = "AA789130A"
+  val nino11: String = "PE000001A"
   val userRecord11: UserRecord = UserRecord(nino11, "XTIT12345678913", "1000078913", "4 LSPs - (1 LSP DUE, 3 LSP ACTIVE)")
 
   val nino12: String = "AA500000A"
