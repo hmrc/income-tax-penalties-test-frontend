@@ -20,7 +20,7 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
 
-object AA789120A extends UserDetailsData {
+object PE000000A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
     activePenaltyPoints = 2,
@@ -47,5 +47,5 @@ object AA789120A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2027, Some(2)), false)
       .withObligationDetail(ReportingPeriod(2027, Some(1)), true)
   )
-  override val nino: String = "AA789120A"
+  override val nino: String = "PE000000A"
 }
