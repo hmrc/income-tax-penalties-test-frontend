@@ -40,6 +40,14 @@ class TimeMachineController @Inject()(implicit val appConfig: AppConfig,
     Ok(timeMachinePage(routes.TimeMachineController.submit))
   }
 
+  val reset: Action[AnyContent] = Action.async { implicit request =>
+    for {
+      _ <- timeMachineConnector.resetPenalties()
+    } yield {
+      Redirect(routes.CustomLoginController.showLogin)
+    }
+  }
+
   val submit: Action[AnyContent] = Action.async { implicit request =>
     TimeMachineForm.form.bindFromRequest().fold( formWithErrors => {
         println(s"*** Form errors: ${formWithErrors.errors} ***")

@@ -7,4 +7,5 @@ GET        /add-agent-session-data/:nino        uk.gov.hmrc.incometaxpenaltieste
 GET        /login                               uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.CustomLoginController.showLogin
 POST       /login                               uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.CustomLoginController.postLogin
 GET        /time-machine                        uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.TimeMachineController.onPageLoad
+GET        /time-machine/reset                  uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.TimeMachineController.reset
 POST       /time-machine                        uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.TimeMachineController.submit

@@ -55,6 +55,13 @@ class TimeMachineConnector @Inject()(val appConfig: AppConfig,
 
   }
 
+  def resetPenalties()(implicit hc: HeaderCarrier): Future[HttpResponse] = {
+    lazy val url = s"${appConfig.incomeTaxPenaltiesUrl}/view-penalty/self-assessment/test-only/time-machine-now"
+    http
+      .get(url"$url")
+      .execute[HttpResponse]
+  }
+
 //  def updatePenaltiesAppeals(timeMachineDate: String)(implicit hc: HeaderCarrier): Future[HttpResponse] = {
 //    lazy val url = s"${appConfig.incomeTaxPenaltiesUrl}/view-penalty/self-assessment/test-only/time-machine-now?dateToSet=$timeMachineDate"
 //
@@ -62,5 +69,12 @@ class TimeMachineConnector @Inject()(val appConfig: AppConfig,
 //      .get(url"$url")
 //      .execute[HttpResponse]
 //
+//  }
+
+//  def resetPenaltiesAppeals()(implicit hc: HeaderCarrier): Future[HttpResponse] = {
+//    lazy val url = s"${appConfig.incomeTaxPenaltiesUrl}/view-penalty/self-assessment/test-only/time-machine-now"
+//    http
+//      .get(url"$url")
+//      .execute[HttpResponse]
 //  }
 }

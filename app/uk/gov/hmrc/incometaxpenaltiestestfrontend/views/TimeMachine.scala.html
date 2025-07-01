@@ -16,6 +16,7 @@
 
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 @import uk.gov.hmrc.incometaxpenaltiestestfrontend.models._
+@import uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
 @import play.api.libs.json.Json
 @import views.html.helper.CSPNonce
 
@@ -45,6 +46,9 @@
             )
         ))
 
+    <p class="govuk-body govuk-!-margin-bottom-3">
+        <a href="@controllers.routes.TimeMachineController.reset.url" class="govuk-link">Reset timemachine</a>
+    </p>
 
         @govukButton(Button(content = Text("Submit")))
     }
