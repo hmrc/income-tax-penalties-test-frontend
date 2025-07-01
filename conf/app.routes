@@ -6,3 +6,5 @@ GET        /assets/*file                        controllers.Assets.versioned(pat
 GET        /add-agent-session-data/:nino        uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.SetupAgentController.addAgentData(nino: String)
 GET        /login                               uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.CustomLoginController.showLogin
 POST       /login                               uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.CustomLoginController.postLogin
+GET        /time-machine                        uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.TimeMachineController.onPageLoad
+POST       /time-machine                        uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.TimeMachineController.submit

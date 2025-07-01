@@ -24,6 +24,10 @@ import javax.inject.{Inject, Singleton}
 class AppConfig @Inject()(servicesConfig: ServicesConfig) {
 
   val incomeTaxSessionDataUrl: String = servicesConfig.baseUrl("income-tax-session-data")
+
+  val incomeTaxPenaltiesUrl: String = servicesConfig.baseUrl("income-tax-penalties-frontend")
+  val incomeTaxPenaltiesAppealsUrl: String = servicesConfig.baseUrl("income-tax-penalties-appeals-frontend")
+
   val authLoginServiceUrl: String = servicesConfig.baseUrl("auth-login")
 
   val penaltiesHomeUrl: String = servicesConfig.getString("income-tax-penalties-frontend.home.url")
