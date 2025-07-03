@@ -19,10 +19,9 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
 import play.api.i18n.I18nSupport
 import play.api.mvc._
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.{CustomAuthConnector, TimeMachineConnector}
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.{PostedUser, TimeMachineForm}
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.{LoginPage, TimeMachine}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.TimeMachineConnector
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.TimeMachineForm
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.TimeMachine
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
 import javax.inject.{Inject, Singleton}
@@ -43,6 +42,7 @@ class TimeMachineController @Inject()(implicit val appConfig: AppConfig,
   val reset: Action[AnyContent] = Action.async { implicit request =>
     for {
       _ <- timeMachineConnector.resetPenalties()
+      _ <- timeMachineConnector.resetPenaltiesAppeals()
     } yield {
       Redirect(routes.CustomLoginController.showLogin)
     }
@@ -50,13 +50,13 @@ class TimeMachineController @Inject()(implicit val appConfig: AppConfig,
 
   val submit: Action[AnyContent] = Action.async { implicit request =>
     TimeMachineForm.form.bindFromRequest().fold( formWithErrors => {
-        println(s"*** Form errors: ${formWithErrors.errors} ***")
       Future.successful(Redirect(routes.TimeMachineController.onPageLoad))
 
       },
       timeMachineDate => {
         for{
           _ <- timeMachineConnector.updatePenalties(timeMachineDate)
+          _ <- timeMachineConnector.updatePenaltiesAppeals(timeMachineDate)
         } yield {
           Redirect(routes.CustomLoginController.showLogin)
         }

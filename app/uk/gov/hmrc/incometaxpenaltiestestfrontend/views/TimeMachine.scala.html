@@ -1,5 +1,5 @@
 @*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
  *@
 
 @import uk.gov.hmrc.govukfrontend.views.html.components._
-@import uk.gov.hmrc.incometaxpenaltiestestfrontend.models._
 @import uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
-@import play.api.libs.json.Json
-@import views.html.helper.CSPNonce
 
 @this(
     layout: Layout,
@@ -42,12 +39,15 @@
             label = Label(
                 isPageHeading = true,
                 classes = "govuk-label--l",
-                content = Text("Input TimeMachine date")
-            )
+                content = Text("Input Time Machine date")
+            ),
+            hint = Some(Hint(
+                content = Text("For example, 27/03/2007")
+            ))
         ))
 
     <p class="govuk-body govuk-!-margin-bottom-3">
-        <a href="@controllers.routes.TimeMachineController.reset.url" class="govuk-link">Reset timemachine</a>
+        <a href="@controllers.routes.TimeMachineController.reset.url" class="govuk-link">Reset Time Machine</a>
     </p>
 
         @govukButton(Button(content = Text("Submit")))
