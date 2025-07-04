@@ -16,6 +16,7 @@
 
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 @import uk.gov.hmrc.incometaxpenaltiestestfrontend.models._
+@import uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
 @import play.api.libs.json.Json
 @import views.html.helper.CSPNonce
 
@@ -80,6 +81,10 @@
                 )
             )
         ))
+
+        <p class="govuk-body govuk-!-margin-bottom-3">
+            <a href="@controllers.routes.TimeMachineController.onPageLoad.url" class="govuk-link">Override or reset the system date.</a>
+        </p>
 
         @govukButton(Button(content = Text("Login")))
     }

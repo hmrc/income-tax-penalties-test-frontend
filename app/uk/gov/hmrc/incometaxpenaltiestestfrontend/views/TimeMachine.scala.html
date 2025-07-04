@@ -1,0 +1,55 @@
+@*
+ * Copyright 2025 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+@import uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
+
+@this(
+    layout: Layout,
+    govukButton: GovukButton,
+    govukDateInput : GovukDateInput,
+    govukInput : GovukInput,
+    form: FormWithCSRF
+)
+
+@(postAction: Call)(implicit request: Request[_], messages: Messages)
+
+@layout(pageTitle = "Time machine - Manage your Income Tax updates - GOV.UK") {
+
+    <link href='/report-quarterly/income-and-expenses/view/assets/stylesheets/application.css' media="screen" rel="stylesheet" type="text/css" />
+
+    @form(postAction) {
+
+        @govukInput(Input(
+            id = "date-input",
+            name = "dateInput",
+            label = Label(
+                isPageHeading = true,
+                classes = "govuk-label--l",
+                content = Text("Input Time Machine date")
+            ),
+            hint = Some(Hint(
+                content = Text("For example, 27/03/2007")
+            ))
+        ))
+
+    <p class="govuk-body govuk-!-margin-bottom-3">
+        <a href="@controllers.routes.TimeMachineController.reset.url" class="govuk-link">Reset Time Machine</a>
+    </p>
+
+        @govukButton(Button(content = Text("Submit")))
+    }
+}
