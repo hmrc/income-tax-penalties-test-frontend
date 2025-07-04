@@ -23,11 +23,11 @@ case class ReportingPeriod(startYear: Int, optQuarter: Option[Int]) {
 
   val taxYearStart = optQuarter match {
     case Some(quarter) => LocalDate.of(startYear, quarter * 3 + 1, 6)
-    case _ => LocalDate.of(startYear, 4, 6)
+    case _ => LocalDate.of(startYear, 1, 1)
   }
 
   val taxYearEnd = optQuarter match {
-    case None => LocalDate.of(startYear + 1, 4, 5)
+    case None => LocalDate.of(startYear, 12, 31)
     case Some(quarter) =>
       val (endYear, nextQuarter) = if(quarter == 3) {
         (startYear + 1, 0)
@@ -37,7 +37,11 @@ case class ReportingPeriod(startYear: Int, optQuarter: Option[Int]) {
   val dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE
   val taxPeriodStartDate = taxYearStart.format(dateTimeFormatter)
   val taxPeriodEndDate = taxYearEnd.format(dateTimeFormatter)
-  val taxPeriodDueDate = taxYearEnd.plusMonths(1).minusDays(5).format(dateTimeFormatter)
+  val taxPeriodDueDate = if(optQuarter.isEmpty){
+    LocalDate.of(startYear + 1, 1, 31).format(dateTimeFormatter)
+  } else {
+    taxYearEnd.plusMonths(1).minusDays(5).format(dateTimeFormatter)
+  }
   val penaltyChargeCreationDate = taxYearEnd.plusMonths(1).minusDays(4).format(dateTimeFormatter)
   val penaltyChargeDueDate = taxYearEnd.plusMonths(2).minusDays(5).format(dateTimeFormatter)
   val penaltyExpiryDate = taxYearEnd.plusYears(2).format(dateTimeFormatter)

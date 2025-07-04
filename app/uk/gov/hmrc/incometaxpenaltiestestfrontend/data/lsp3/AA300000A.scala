@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.incometaxpenaltiestestfrontend.data
+package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp3
 
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPSummary}

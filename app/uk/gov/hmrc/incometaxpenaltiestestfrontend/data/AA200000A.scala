@@ -27,7 +27,7 @@ object AA200000A extends UserDetailsData {
     2.19
   )
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1Due(
+  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
     amount = 80.00
   )

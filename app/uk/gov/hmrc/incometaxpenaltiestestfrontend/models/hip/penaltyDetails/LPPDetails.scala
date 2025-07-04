@@ -106,8 +106,8 @@ case class LPPDetails(principalChargeReference: String,
       penaltyAmountPaid = Some(0.00)
     )
 
-  def withAppealInformation(appealInfo: AppealInformation): LPPDetails =
-    copy(appealInformation = Some(Seq(appealInfo)))
+  def withAppealInformation(appealInfo: Seq[AppealInformation]): LPPDetails =
+    copy(appealInformation = Some(appealInfo))
 
 }
 

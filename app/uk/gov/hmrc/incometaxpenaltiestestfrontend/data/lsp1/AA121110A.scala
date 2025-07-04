@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.incometaxpenaltiestestfrontend.data
+package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp1
 
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
 
-object AA111110A extends UserDetailsData {
+object AA121110A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
-    activePenaltyPoints = 1,
-    pocAchievementDate = Some("2027-10-30")
+    activePenaltyPoints = 1
   )
 
   val lssPenalty1 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(1)),
-    returnSubmitted = true,
     addAdditionalIncomeSource = true)
 
   override val lsp: Option[LSP] = Some(LSP(
@@ -37,12 +36,6 @@ object AA111110A extends UserDetailsData {
     lspDetails = Seq(lssPenalty1)
   ))
 
-  override def optComplianceData: Option[CompliancePayload] = Some(
-    CompliancePayload.apply(nino)
-      .withObligationDetail(ReportingPeriod(2027, Some(2)), true)
-      .withObligationDetail(ReportingPeriod(2027, Some(1)), true)
-      .withObligationDetail(ReportingPeriod(2027, Some(0)), true)
-      .withObligationDetail(ReportingPeriod(2026, Some(3)), true)
-  )
-  override val nino: String = "AA111110A"
+  override def optComplianceData: Option[CompliancePayload] = None
+  override val nino: String = "AA121110A"
 }

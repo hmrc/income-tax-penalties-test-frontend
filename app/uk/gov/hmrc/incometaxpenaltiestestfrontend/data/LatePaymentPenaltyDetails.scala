@@ -37,7 +37,9 @@ object LatePaymentPenaltyDetails {
       reportingPeriod,
       "LPP2",
       amount = amount
-    ).withLpp2CalculationFields()
+    )
+      .withLPP1CalculationFields(false)
+      .withLpp2CalculationFields()
   }
 
   def lpp1Paid(reportingPeriod: ReportingPeriod,
@@ -61,13 +63,14 @@ object LatePaymentPenaltyDetails {
         "P",
         amount = amount
       )
+      .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
       .withFullyPaidAmount()
   }
 
-  def lpp1Due(reportingPeriod: ReportingPeriod,
-              amount: BigDecimal,
-              isDay15: Boolean = false): LPPDetails = {
+  def lpp1DueOrOverdue(reportingPeriod: ReportingPeriod,
+                       amount: BigDecimal,
+                       isDay15: Boolean = false): LPPDetails = {
     LPPDetails.create(
         reportingPeriod,
         "LPP1",
@@ -80,14 +83,15 @@ object LatePaymentPenaltyDetails {
 
 
 
-  def lpp2Due(reportingPeriod: ReportingPeriod,
-              amount: BigDecimal): LPPDetails = {
+  def lpp2DueOrOverdue(reportingPeriod: ReportingPeriod,
+                       amount: BigDecimal): LPPDetails = {
     LPPDetails.create(
         reportingPeriod,
         "LPP2",
         "P",
         amount = amount
       )
+      .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
       .withFullyDueAmount()
   }
@@ -115,6 +119,7 @@ object LatePaymentPenaltyDetails {
         "P",
         amount = amount
       )
+      .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
       .withPartiallyPaidAmount(amountPaid)
   }

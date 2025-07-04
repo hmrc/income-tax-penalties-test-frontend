@@ -23,11 +23,20 @@ case class AppealInformation(appealStatus: String,
                              appealDescription: String = "some description")
 
 object AppealInformation {
-  def create(status: String, appealLevel: String): AppealInformation = {
-    AppealInformation(
+  def create(status: String, appealLevel: String, hasSkipped: Boolean = false): Seq[AppealInformation] = {
+    val rejectedFirstStageAppeal = AppealInformation("01", Some("C"))
+    val rejectedSecondStageAppeal = AppealInformation("02", Some("C"))
+
+    val latestAppeal = AppealInformation(
       getAppealStatusCode(status),
-      Some(getAppealLevelCode(appealLevel))
-    )
+      Some(getAppealLevelCode(appealLevel)))
+
+    appealLevel match {
+      case "First" => Seq(latestAppeal)
+      case "Second" => Seq(latestAppeal, rejectedFirstStageAppeal)
+      case _ if hasSkipped => Seq(latestAppeal, rejectedFirstStageAppeal)
+      case _ => Seq(latestAppeal, rejectedSecondStageAppeal, rejectedFirstStageAppeal)
+    }
   }
 
   def getAppealStatusCode(status: String): String = status match {

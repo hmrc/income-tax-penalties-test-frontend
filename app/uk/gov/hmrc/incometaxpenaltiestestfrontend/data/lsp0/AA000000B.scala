@@ -14,23 +14,25 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.incometaxpenaltiestestfrontend.data
+package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp0
 
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary, PenaltyDetails}
 
-object AA000000A extends UserDetailsData {
+object AA000000B extends UserDetailsData {
 
-  override val lsp: Option[LSP] = Some(
-    LSP(
-      lspSummary = LSPSummary(),
-      lspDetails = Seq.empty
-    )
-  )
+  val lssPenalty1 = LateSubmissionPenaltyDetails.adjusted(
+    ReportingPeriod(2027, Some(1)),
+    isRemoved = true)
 
-  override def penaltyDetails() = PenaltyDetails(
-    processingDate = "2024-04-05",
-    penaltyData = None
-  )
+  override val lsp: Option[LSP] = Some(LSP(
+    lspSummary = LSPSummary(),
+    lspDetails = Seq(lssPenalty1)
+  ))
 
-  override val nino: String = "AA000000A"
+  override def optComplianceData: Option[CompliancePayload] = None
+
+  override val nino: String = "AA000000B"
 }

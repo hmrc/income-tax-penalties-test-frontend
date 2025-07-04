@@ -63,7 +63,7 @@ object LateSubmissionPenaltyDetails {
         penaltyOrder = penaltyOrder
       )
       .withLateSubmission(lateSubmissions)
-      .withChargeAmount(chargeAmount)
+      .withCharge(chargeAmount, reportingPeriod.penaltyChargeDueDate)
   }
 
   def due(reportingPeriod: ReportingPeriod,
@@ -79,22 +79,8 @@ object LateSubmissionPenaltyDetails {
         reportingPeriod = reportingPeriod,
         penaltyOrder = penaltyOrder
       ).withLateSubmission(lateSubmissions)
-      .withChargeAmount(chargeAmount)
+      .withCharge(chargeAmount, reportingPeriod.penaltyChargeDueDate)
       .withChargeOutstandingAmount(chargeAmount)
-  }
-
-  def overdue(reportingPeriod: ReportingPeriod,
-              penaltyOrder: String = "1",
-              returnSubmitted: Boolean = false,
-              addAdditionalIncomeSource: Boolean = false): LSPDetails = {
-    val lateSubmissions = LateSubmission.create(reportingPeriod,
-      returnSubmitted,
-      addAdditionalIncomeSource
-    )
-    LSPDetails.create(
-      reportingPeriod = reportingPeriod,
-      penaltyOrder = penaltyOrder
-    ).withLateSubmission(lateSubmissions)
   }
 
   def cancelledLateSubmissionPenalty(reportingPeriod: ReportingPeriod,
