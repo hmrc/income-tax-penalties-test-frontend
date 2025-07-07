@@ -59,6 +59,9 @@ object UserData {
   val nino12: String = "AA500000A"
   val userRecord12: UserRecord = UserRecord(nino12, "50000", "1000050000", "5 LSPs - (2 LSP DUE, 3 LSP ACTIVE)")
 
+  val nino13: String = "PE000002A"
+  val userRecord13: UserRecord = UserRecord(nino13, "XTIT52155169861", "1000050000", "1 LSP, 2 LPPs")
+
   val allUserRecords: Map[String, UserRecord] = Map(
     nino0 -> userRecord0,
     nino1 -> userRecord1,
@@ -72,7 +75,8 @@ object UserData {
     nino9 -> userRecord9,
     nino10 -> userRecord10,
     nino11 -> userRecord11,
-    nino12 -> userRecord12
+    nino12 -> userRecord12,
+    nino13 -> userRecord13
   )
 
 }
