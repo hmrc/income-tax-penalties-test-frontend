@@ -51,7 +51,7 @@ object UserData {
   val userRecord9: UserRecord = UserRecord(nino9, "24444", "1000024444", "All LPPs paid - (3 LPP PAID)")
 
   val nino10: String = "AA300000A"
-  val userRecord10: UserRecord = UserRecord(nino10, "30000", "1000030000", "3 LSPs - (3 LSP ACTIVE) *Second Stage Appeal*")
+  val userRecord10: UserRecord = UserRecord(nino10, "30000", "1000030000", "3 LSPs - (3 LSP ACTIVE, 1 EXPIRED) *Second Stage Appeal*")
 
   val nino11: String = "PE000001A"
   val userRecord11: UserRecord = UserRecord(nino11, "XTIT12345678913", "1000078913", "4 LSPs - (1 LSP DUE, 3 LSP ACTIVE)")
