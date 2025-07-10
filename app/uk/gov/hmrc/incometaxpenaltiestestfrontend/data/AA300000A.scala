@@ -24,6 +24,7 @@ object AA300000A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
     activePenaltyPoints = 3,
+    inactivePenaltyPoints = 1,
     pocAchievementDate = Some("2028-02-01")
   )
 
@@ -44,13 +45,18 @@ object AA300000A extends UserDetailsData {
     AppealInformation.create("Rejected", "Second")
   )
 
+  val lssPenalty4 = LateSubmissionPenaltyDetails.expired(
+    ReportingPeriod(2027, Some(4))
+  )
+
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
-    lspDetails = Seq(lssPenalty3, lssPenalty2, lssPenalty1)
+    lspDetails = Seq(lssPenalty4,lssPenalty3, lssPenalty2, lssPenalty1)
   ))
 
   override def optComplianceData: Option[CompliancePayload] = Some(
     CompliancePayload.apply(nino)
+      .withObligationDetail(ReportingPeriod(2027, Some(4)), false)
       .withObligationDetail(ReportingPeriod(2027, Some(3)), false)
       .withObligationDetail(ReportingPeriod(2027, Some(2)), false)
       .withObligationDetail(ReportingPeriod(2027, Some(1)), true)
