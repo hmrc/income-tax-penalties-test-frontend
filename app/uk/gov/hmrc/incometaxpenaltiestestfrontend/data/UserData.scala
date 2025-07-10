@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.data
 
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.both.PE000002A
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp._
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp0._
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp1._
@@ -115,10 +116,12 @@ object UserData {
     AL300003A
   )
 
+  val both = Seq(PE000002A)
+
   val allLSPUserData: Seq[UserDetailsData] = lsp0UserData ++ lsp1UserData ++ lsp2UserData ++ lsp3UserData ++ lsp4UserData ++ lsp5UserData
 
   val allUserRecords: Map[String, UserRecord] =
-    asUserRecords(allLSPUserData) ++ asUserRecords(lppUserData)
+    asUserRecords(allLSPUserData) ++ asUserRecords(lppUserData) ++ asUserRecords(both)
 
   def asUserRecords(userDetailsData: Seq[UserDetailsData]): Map[String, UserRecord] = userDetailsData
     .foldLeft[Map[String, UserRecord]](Map.empty[String, UserRecord])(_ ++ _.userRecords())

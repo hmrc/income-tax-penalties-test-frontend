@@ -112,6 +112,12 @@ case class LPPDetails(principalChargeReference: String,
 
   def withAppealInformation(appealInfo: Seq[AppealInformation]): LPPDetails =
     copy(appealInformation = Some(appealInfo))
+    
+  def withChargeReference(ref: String): LPPDetails = {
+    copy(principalChargeReference = ref,
+      penaltyChargeReference = Some(ref)
+    )
+  }
 
 }
 
