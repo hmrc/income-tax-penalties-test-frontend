@@ -29,22 +29,26 @@ object AA211120A extends UserDetailsData {
 
   val appealInformation = AppealInformation.create("Rejected", "First")
 
-  val lssPenalty1 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(2)),
+      penaltyOrder = "2",
     addAdditionalIncomeSource = true)
     .withAppealInformation(appealInformation)
 
-  val lssPenalty2 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(1)),
-    penaltyOrder = "2",
     addAdditionalIncomeSource = true)
     .withAppealInformation(appealInformation)
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
-    lspDetails = Seq(lssPenalty1, lssPenalty2)
+    lspDetails = Seq(lspPenalty1, lspPenalty2)
   ))
 
   override def optComplianceData: Option[CompliancePayload] = None
   override val nino: String = "AA211120A"
+  override val mtdItId: String = "211120"
+  override val utr: String = "0000211120"
+  override val description: String = "LSP2 - returns submitted, first stage appeals rejected"
+  override val timemachineDate: String = "01/12/2027"
 }

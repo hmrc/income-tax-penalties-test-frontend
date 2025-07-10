@@ -18,7 +18,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.models
 
 import play.api.libs.json.{Json, OFormat}
 
-case class UserRecord(nino: String, mtditid: String, utr: String, description: String)
+case class UserRecord(nino: String, mtditid: String, utr: String, description: String, timeMachineDate: String)
 
 object UserRecord {
   implicit val formats: OFormat[UserRecord] = Json.format[UserRecord]

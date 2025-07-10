@@ -34,8 +34,9 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
 
 import play.api.i18n.I18nSupport
 import play.api.mvc._
+import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.CustomAuthConnector
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.{CustomAuthConnector, TimeMachineConnector}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.PostedUser
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.LoginPage
@@ -49,7 +50,8 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
                                       implicit val mcc: MessagesControllerComponents,
                                       implicit val executionContext: ExecutionContext,
                                       loginPage: LoginPage,
-                                      val customAuthConnector: CustomAuthConnector
+                                      val customAuthConnector: CustomAuthConnector,
+                                      val timeMachineConnector: TimeMachineConnector
                                      ) extends FrontendController(mcc) with I18nSupport {
 
   lazy val userData = UserData.allUserRecords.values.toSeq.sortBy(_.nino)
@@ -64,7 +66,12 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
       formWithErrors =>
         Future(BadRequest(s"Invalid form submission: $formWithErrors")),
       (postedUser: PostedUser) => {
-        customAuthConnector.login(postedUser.nino, postedUser.isAgent).map {
+        val loggedInUser = for {
+          login <- customAuthConnector.login(postedUser.nino, postedUser.isAgent)
+          _ <- updateTimeMachine(postedUser.nino)
+        } yield login
+
+          loggedInUser.map {
           case (authExchange, _) =>
             val (bearer, auth) = (authExchange.bearerToken, authExchange.sessionAuthorityUri)
             if (postedUser.isAgent) {
@@ -88,6 +95,19 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
     val ggSessionWithOrigin = SessionBuilder.addOriginToSession(origin, ggSession)
     Redirect(redirectUrl)
       .withSession(ggSessionWithOrigin)
+  }
+
+  private def updateTimeMachine(nino: String)(implicit hc: HeaderCarrier): Future[Unit] = {
+    val user = UserData.allUserRecords(nino)
+    val timemachineTime = if(user.timeMachineDate == "now") {
+      None
+    } else {
+      Some(user.timeMachineDate)
+    }
+    for {
+      _ <- timeMachineConnector.updatePenalties(timemachineTime)
+      _ <- timeMachineConnector.updatePenaltiesAppeals(timemachineTime)
+    } yield ((): Unit)
   }
 
 }

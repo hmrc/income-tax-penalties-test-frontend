@@ -24,8 +24,8 @@ case class AppealInformation(appealStatus: String,
 
 object AppealInformation {
   def create(status: String, appealLevel: String, hasSkipped: Boolean = false): Seq[AppealInformation] = {
-    val rejectedFirstStageAppeal = AppealInformation("01", Some("C"))
-    val rejectedSecondStageAppeal = AppealInformation("02", Some("C"))
+    val rejectedFirstStageAppeal = AppealInformation("C", Some("01"))
+    val rejectedSecondStageAppeal = AppealInformation("C", Some("02"))
 
     val latestAppeal = AppealInformation(
       getAppealStatusCode(status),

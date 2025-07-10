@@ -41,8 +41,8 @@ class TimeMachineController @Inject()(implicit val appConfig: AppConfig,
 
   val reset: Action[AnyContent] = Action.async { implicit request =>
     for {
-      _ <- timeMachineConnector.resetPenalties()
-      _ <- timeMachineConnector.resetPenaltiesAppeals()
+      _ <- timeMachineConnector.updatePenalties(None)
+      _ <- timeMachineConnector.updatePenaltiesAppeals(None)
     } yield {
       Redirect(routes.CustomLoginController.showLogin)
     }
@@ -55,12 +55,11 @@ class TimeMachineController @Inject()(implicit val appConfig: AppConfig,
       },
       timeMachineDate => {
         for{
-          _ <- timeMachineConnector.updatePenalties(timeMachineDate)
-          _ <- timeMachineConnector.updatePenaltiesAppeals(timeMachineDate)
+          _ <- timeMachineConnector.updatePenalties(Some(timeMachineDate))
+          _ <- timeMachineConnector.updatePenaltiesAppeals(Some(timeMachineDate))
         } yield {
           Redirect(routes.CustomLoginController.showLogin)
         }
-
       })
   }
 }

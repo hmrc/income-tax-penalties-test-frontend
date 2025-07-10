@@ -24,45 +24,36 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{App
 object AA300000A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
-    activePenaltyPoints = 3,
-    inactivePenaltyPoints = 1,
-    pocAchievementDate = Some("2028-02-01")
+    activePenaltyPoints = 3
   )
 
-  val lssPenalty1 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(1)),
+    penaltyOrder = "3",
     returnSubmitted = true
   ).withAppealInformation(
     AppealInformation.create("Rejected", "First")
   )
-  val lssPenalty2 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(2)),
     penaltyOrder = "2"
   )
-  val lssPenalty3 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(3)),
-    penaltyOrder = "3"
+  val lspPenalty3 = LateSubmissionPenaltyDetails.active(
+    ReportingPeriod(2027, Some(3))
   ).withAppealInformation(
     AppealInformation.create("Rejected", "Second")
   )
 
-  val lssPenalty4 = LateSubmissionPenaltyDetails.expired(
-    ReportingPeriod(2027, Some(4))
-  )
-
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
-    lspDetails = Seq(lssPenalty4,lssPenalty3, lssPenalty2, lssPenalty1)
+    lspDetails = Seq(lspPenalty3, lspPenalty2, lspPenalty1)
   ))
 
-  override def optComplianceData: Option[CompliancePayload] = Some(
-    CompliancePayload.apply(nino)
-      .withObligationDetail(ReportingPeriod(2027, Some(4)), false)
-      .withObligationDetail(ReportingPeriod(2027, Some(3)), false)
-      .withObligationDetail(ReportingPeriod(2027, Some(2)), false)
-      .withObligationDetail(ReportingPeriod(2027, Some(1)), true)
-      .withObligationDetail(ReportingPeriod(2027, Some(0)), true)
-  )
+  override def optComplianceData: Option[CompliancePayload] = None
 
   override val nino: String = "AA300000A"
+  override val mtdItId: String = "30000"
+  override val utr: String = "1000030000"
+  override val description: String = "3 LSPs - (3 LSP ACTIVE) *Second Stage Appeal*"
+  override val timemachineDate: String = "10/02/2028"
 }

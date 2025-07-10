@@ -27,27 +27,31 @@ object AB311110A extends UserDetailsData {
     activePenaltyPoints = 3
   )
 
-  val lssPenalty1 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(1)),
+    penaltyOrder = "3",
     addAdditionalIncomeSource = true)
 
-  val lssPenalty2 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(0)),
     penaltyOrder = "2",
     returnSubmitted = true,
     addAdditionalIncomeSource = true)
 
-  val lssPenalty3 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty3 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2026, None),
-    penaltyOrder = "3",
     returnSubmitted = true,
     addAdditionalIncomeSource = true)
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
-    lspDetails = Seq(lssPenalty1, lssPenalty2, lssPenalty3)
+    lspDetails = Seq(lspPenalty1, lspPenalty2, lspPenalty3)
   ))
 
   override def optComplianceData: Option[CompliancePayload] = None
   override val nino: String = "AB311110A"
+  override val mtdItId: String = "311110"
+  override val utr: String = "10000311110"
+  override val description: String = "3 LSPs - (3 LSP ACTIVE, one of which a return)"
+  override val timemachineDate: String = "10/02/2028"
 }

@@ -16,23 +16,25 @@
 
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.data
 
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp.AL100001B.reportingPeriod1
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LPPDetails}
 
 object LatePaymentPenaltyDetails {
 
-  def lpp1Estimate(reportingPeriod: ReportingPeriod,
-                   amount: BigDecimal,
-                   isDay15: Boolean = false): LPPDetails = {
+  def lpp1Penalty(reportingPeriod: ReportingPeriod,
+                  amount: BigDecimal,
+                  isDay15: Boolean = false): LPPDetails = {
     LPPDetails.create(
       reportingPeriod,
       "LPP1",
+      status = if(isDay15) "A" else "P",
       amount = amount
     ).withLPP1CalculationFields(isDay15)
   }
 
-  def lpp2Estimate(reportingPeriod: ReportingPeriod,
-                   amount: BigDecimal): LPPDetails = {
+  def lpp2Penalty(reportingPeriod: ReportingPeriod,
+                  amount: BigDecimal): LPPDetails = {
     LPPDetails.create(
       reportingPeriod,
       "LPP2",
@@ -51,8 +53,9 @@ object LatePaymentPenaltyDetails {
       "P",
       amount = amount
     )
+     .withIncomeTaxPaid(reportingPeriod.getIncomeTaxPaidDate(if(isDay15) 20 else 35))
     .withLPP1CalculationFields(isDay15)
-    .withFullyPaidAmount()
+    .withFullyPaidAmount(reportingPeriod.defaultPenaltyPaidDate(isDay15))
   }
 
   def lpp2Paid(reportingPeriod: ReportingPeriod,
@@ -63,9 +66,10 @@ object LatePaymentPenaltyDetails {
         "P",
         amount = amount
       )
+      .withIncomeTaxPaid(reportingPeriod.getIncomeTaxPaidDate(35))
       .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
-      .withFullyPaidAmount()
+      .withFullyPaidAmount(reportingPeriod.defaultPenaltyPaidDate(false))
   }
 
   def lpp1DueOrOverdue(reportingPeriod: ReportingPeriod,
@@ -106,6 +110,7 @@ object LatePaymentPenaltyDetails {
         "P",
         amount = amount
       )
+      .withIncomeTaxPaid(reportingPeriod.getIncomeTaxPaidDate(if(isDay15) 20 else 35))
       .withLPP1CalculationFields(isDay15)
       .withPartiallyPaidAmount(amountPaid)
   }
@@ -119,6 +124,7 @@ object LatePaymentPenaltyDetails {
         "P",
         amount = amount
       )
+      .withIncomeTaxPaid(reportingPeriod.getIncomeTaxPaidDate(35))
       .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
       .withPartiallyPaidAmount(amountPaid)
@@ -131,7 +137,7 @@ object LatePaymentPenaltyDetails {
 
     val appealInformation = AppealInformation.create("Upheld", appealLevel)
 
-    lpp1Estimate(reportingPeriod, amount, isDay15)
+    lpp1Penalty(reportingPeriod, amount, isDay15)
       .withAppealInformation(appealInformation)
   }
 
@@ -143,7 +149,7 @@ object LatePaymentPenaltyDetails {
 
     val appealInformation = AppealInformation.create("Upheld", appealLevel)
 
-    lpp2Estimate(reportingPeriod, amount)
+    lpp2Penalty(reportingPeriod, amount)
       .withAppealInformation(appealInformation)
   }
 

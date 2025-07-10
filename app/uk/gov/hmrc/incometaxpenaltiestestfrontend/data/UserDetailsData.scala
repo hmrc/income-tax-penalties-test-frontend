@@ -17,6 +17,7 @@
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.data
 
 import play.api.libs.json.{JsString, Json, Writes}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.UserRecord
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip._
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.{FinancialData, FinancialDetails}
@@ -25,24 +26,43 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails._
 trait UserDetailsData {
 
   val nino: String
+  val mtdItId: String
+  val utr: String
   val processingDateYear: String = "2025"
+  val description: String
+  val timemachineDate: String
+
+  val descriptionOverdue: Option[String] = None
+  val timeMachineDateOverdue: Option[String] = None
   
   val lsp: Option[LSP] = None
   val lpp: Option[LPP] = None
   val totalisations: Option[Totalisations] = None
   val breathingSpace: Option[Seq[BreathingSpace]] = None
 
-  lazy val penaltyData: PenaltyData = PenaltyData(
+  def penaltyData(): PenaltyData = PenaltyData(
     totalisations, lsp, lpp, breathingSpace 
   )
 
-  lazy val optFinancialData: Option[FinancialData] = None
+  def optFinancialData(): Option[FinancialData] = None
 
   def optComplianceData: Option[CompliancePayload] = None
+
+  lazy val userRecord: UserRecord = UserRecord(nino, mtdItId, utr, description, timemachineDate)
+
+  def userRecords(): Map[String, UserRecord] = {
+    (descriptionOverdue, timeMachineDateOverdue) match {
+      case (Some(overdueDescript), Some(overdueDate)) => Map(
+        nino -> userRecord,
+        s"$nino-overdue" -> UserRecord(nino, mtdItId, utr, overdueDescript, overdueDate)
+      )
+      case _ => Map(nino -> userRecord)
+    }
+  }
   
   def penaltyDetails() = PenaltyDetails(
     processingDate = s"$processingDateYear-04-05",
-    penaltyData = Some(penaltyData)
+    penaltyData = Some(penaltyData())
   )
 
   def optFinancialDetails: Option[FinancialDetails] = optFinancialData.map{financialData =>
@@ -54,14 +74,19 @@ trait UserDetailsData {
 
   def stubData() = StubData(penaltyDetails(), optFinancialDetails, optComplianceData)
   
-  def getJson[T](data: T, hasSuccessWrapper: Boolean = true)(implicit writes: Writes[T]): String = {
-    val payload = if(hasSuccessWrapper) {
+  def getJson[T](data: T, isCompliance: Boolean = false)(implicit writes: Writes[T]): String = {
+    val payload = if(isCompliance){
+      Json.obj(
+        ("obligations" -> Json.arr(Json.toJson(data)))
+      )
+    } else {
       Json.obj(
         ("success" -> Json.toJson(data))
       )
-    } else Json.toJson(data)
+    }
     val successJson = Json.obj(
-      ("userNINO" -> JsString(nino)),
+      ("idType" -> "NINO"),
+      ("idNumber" -> JsString(nino)),
       ("payload" -> payload)
     )
     Json.prettyPrint(

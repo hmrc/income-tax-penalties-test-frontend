@@ -24,24 +24,29 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP
 object AB211110A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
-    activePenaltyPoints = 2
+    activePenaltyPoints = 2,
+    regimeThreshold = 2
   )
 
-  val lssPenalty1 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(0)),
-    returnSubmitted = true,
+  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
+    ReportingPeriod(2027, None),
+    penaltyOrder = "2",
     addAdditionalIncomeSource = true)
 
-  val lssPenalty2 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2026, None),
-    penaltyOrder = "2",
+    returnSubmitted = true,
     addAdditionalIncomeSource = true)
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
-    lspDetails = Seq(lssPenalty1, lssPenalty2)
+    lspDetails = Seq(lspPenalty1, lspPenalty2)
   ))
 
   override def optComplianceData: Option[CompliancePayload] = None
   override val nino: String = "AB211110A"
+  override val description: String = "LSP2 Return - threshold reached"
+  override val timemachineDate: String = "01/02/2028"
+  override val mtdItId: String = "211110"
+  override val utr: String = "0000211110"
 }

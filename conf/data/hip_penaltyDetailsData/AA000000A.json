@@ -1,8 +1,9 @@
 {
-  "userNINO" : "AA000000A",
+  "idType" : "NINO",
+  "idNumber" : "AA000000A",
   "payload" : {
     "success" : {
-      "processingDate" : "2024-04-05"
+      "processingDate" : "2024-04-05T10:15:10Z"
     }
   }
 }

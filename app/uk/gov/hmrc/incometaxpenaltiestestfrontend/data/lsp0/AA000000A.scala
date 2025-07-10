@@ -29,4 +29,8 @@ object AA000000A extends UserDetailsData {
   )
 
   override val nino: String = "AA000000A"
+  override val mtdItId: String = "00000"
+  override val utr: String = "1000000000"
+  override val description: String = "No penalties"
+  override val timemachineDate: String = "now"
 }

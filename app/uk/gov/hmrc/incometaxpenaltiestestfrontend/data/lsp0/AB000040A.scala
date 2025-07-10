@@ -25,15 +25,19 @@ object AB000040A extends UserDetailsData {
 
   val lspSummary = LSPSummary()
 
-  val lssPenalty1 = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
+  val lspPenalty1 = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
     ReportingPeriod(2027, None),
     addAdditionalIncomeSource = true)
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
-    lspDetails = Seq(lssPenalty1)
+    lspDetails = Seq(lspPenalty1)
   ))
 
   override def optComplianceData: Option[CompliancePayload] = None
   override val nino: String = "AB000040A"
+  override val mtdItId: String = "000040"
+  override val utr: String = "1234000040"
+  override val description: String = "0 LSP Return - Success first stage appeal"
+  override val timemachineDate: String = "01/08/2027"
 }

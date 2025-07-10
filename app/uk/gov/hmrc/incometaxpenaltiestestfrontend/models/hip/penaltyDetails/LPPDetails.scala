@@ -53,6 +53,10 @@ case class LPPDetails(principalChargeReference: String,
 
   lazy val penaltyAmount = if(penaltyStatus == "A") penaltyAmountAccruing else penaltyAmountPosted
 
+  def withIncomeTaxPaid(datePaid: String): LPPDetails = {
+    copy(principalChargeLatestClearing = Some(datePaid))
+  }
+
   def withLPP1CalculationFields(isDay15: Boolean): LPPDetails = {
     if(isDay15) {
       val calculationAmount = penaltyAmount * 50
@@ -83,14 +87,14 @@ case class LPPDetails(principalChargeReference: String,
   def withLpp2CalculationFields(): LPPDetails =
     copy(
       lpp2Days = Some("31"),
-      lpp2Percentage = Some(4.00)
+      lpp2Percentage = Some(10.00)
     )
 
-  def withFullyPaidAmount(): LPPDetails =
+  def withFullyPaidAmount(datePaid: String): LPPDetails =
     copy(
       penaltyAmountOutstanding = Some(0.00),
       penaltyAmountPaid = Some(penaltyAmount),
-      penaltyChargeDueDate = None
+      communicationsDate = Some(datePaid)
     )
 
   def withPartiallyPaidAmount(amountPaid: BigDecimal): LPPDetails = {
