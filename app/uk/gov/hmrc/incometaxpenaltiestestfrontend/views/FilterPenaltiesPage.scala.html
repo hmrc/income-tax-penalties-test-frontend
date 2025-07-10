@@ -1,0 +1,55 @@
+@*
+ * Copyright 2023 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+@import uk.gov.hmrc.incometaxpenaltiestestfrontend.models._
+@import uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
+@import play.api.libs.json.Json
+@import views.html.helper.CSPNonce
+
+@this(
+    layout: Layout,
+    govukButton: GovukButton,
+    govukSelect: GovukSelect,
+    govukCheckboxes: GovukCheckboxes,
+    govukRadios: GovukRadios,
+    formWithCSRF: FormWithCSRF
+)
+
+@(form: Form[String], postAction: Call, radioItems: Seq[RadioItem], title: String)(implicit request: Request[_], messages: Messages)
+
+@layout(pageTitle = s"$title - Manage your Income Tax updates - GOV.UK") {
+
+    @formWithCSRF(postAction) {
+        @govukRadios(Radios(
+            name = "value",
+            fieldset = Some(Fieldset(
+                legend = Some(Legend(
+                    content = Text(messages(title)),
+                    classes = "govuk-fieldset__legend--l",
+                    isPageHeading = true
+                ))
+            )),
+            items = radioItems
+        ))
+
+        <p class="govuk-body govuk-!-margin-bottom-3">
+            <a href="@controllers.routes.CustomLoginController.showLogin.url" class="govuk-link">Return to Custom Login</a>
+        </p>
+
+        @govukButton(Button(content = Text("Submit")))
+    }
+}

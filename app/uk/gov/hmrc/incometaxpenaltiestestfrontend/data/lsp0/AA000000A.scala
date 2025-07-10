@@ -17,7 +17,7 @@
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp0
 
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserDetailsData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary, PenaltyDetails}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, PenaltyDetails}
 
 object AA000000A extends UserDetailsData {
 

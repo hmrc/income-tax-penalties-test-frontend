@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp4
 
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp4.AA400000A.nino
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload

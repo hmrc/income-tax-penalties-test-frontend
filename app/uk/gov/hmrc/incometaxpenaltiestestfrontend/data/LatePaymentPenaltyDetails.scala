@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.data
 
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp.AL100001B.reportingPeriod1
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LPPDetails}
 

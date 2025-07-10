@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp.AA100000B.reportingPeriod1
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData

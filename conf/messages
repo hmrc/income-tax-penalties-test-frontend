@@ -1,2 +1,4 @@
 service.name = income-tax-penalties-test-frontend
 service.text = This is your new service
+
+filterPage.title = Filter by {0}

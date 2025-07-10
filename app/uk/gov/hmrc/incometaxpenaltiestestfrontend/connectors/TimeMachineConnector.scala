@@ -31,7 +31,7 @@ class TimeMachineConnector @Inject()(val appConfig: AppConfig,
 
   def updatePenalties(optTimeMachineDate: Option[String], numCalls: Int = 0)(implicit hc: HeaderCarrier): Future[HttpResponse] = {
     lazy val url = s"${appConfig.incomeTaxPenaltiesUrl}/view-penalty/self-assessment/test-only/time-machine-now"
-    val urlWithOptQuery = optTimeMachineDate.fold(url)(timeMachineDate => s"?dateToSet=$timeMachineDate")
+    val urlWithOptQuery = optTimeMachineDate.fold(url)(timeMachineDate => s"$url?dateToSet=$timeMachineDate")
 
     http
       .get(url"$urlWithOptQuery")
@@ -48,7 +48,7 @@ class TimeMachineConnector @Inject()(val appConfig: AppConfig,
 
   def updatePenaltiesAppeals(optTimeMachineDate: Option[String], numCalls: Int = 0)(implicit hc: HeaderCarrier): Future[HttpResponse] = {
     lazy val url = s"${appConfig.incomeTaxPenaltiesAppealsUrl}/view-penalty/self-assessment/test-only/time-machine-now"
-    val urlWithOptQuery = optTimeMachineDate.fold(url)(timeMachineDate => s"?dateToSet=$timeMachineDate")
+    val urlWithOptQuery = optTimeMachineDate.fold(url)(timeMachineDate => s"$url?dateToSet=$timeMachineDate")
 
     http
       .get(url"$urlWithOptQuery")

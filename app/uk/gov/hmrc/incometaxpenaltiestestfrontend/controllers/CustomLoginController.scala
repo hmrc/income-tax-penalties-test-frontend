@@ -38,7 +38,7 @@ import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.{CustomAuthConnector, TimeMachineConnector}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.PostedUser
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.{PostedUser, UserRecord}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.LoginPage
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
@@ -54,11 +54,14 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
                                       val timeMachineConnector: TimeMachineConnector
                                      ) extends FrontendController(mcc) with I18nSupport {
 
-  lazy val userData = UserData.allUserRecords.values.toSeq.sortBy(_.nino)
-
   // Logging page functionality
   val showLogin: Action[AnyContent] = Action { implicit request =>
-    Ok(loginPage(routes.CustomLoginController.postLogin, userData))
+    Ok(loginPage(routes.CustomLoginController.postLogin, UserData.allUserRecords))
+  }
+
+  def showFilteredLogin(penaltyType: String, optLspNum: Option[String]) = Action { implicit request =>
+    val filteredUserData = UserData.getUserRecordsForPenaltyType(penaltyType, optLspNum)
+    Ok(loginPage(routes.CustomLoginController.postLogin, filteredUserData, true))
   }
 
   val postLogin: Action[AnyContent] = Action.async { implicit request =>
@@ -66,9 +69,10 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
       formWithErrors =>
         Future(BadRequest(s"Invalid form submission: $formWithErrors")),
       (postedUser: PostedUser) => {
+        val user = UserData.allUserRecords(postedUser.nino)
         val loggedInUser = for {
-          login <- customAuthConnector.login(postedUser.nino, postedUser.isAgent)
-          _ <- updateTimeMachine(postedUser.nino)
+          login <- customAuthConnector.login(user.nino, postedUser.isAgent)
+          _ <- updateTimeMachine(user)
         } yield login
 
           loggedInUser.map {
@@ -97,8 +101,7 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
       .withSession(ggSessionWithOrigin)
   }
 
-  private def updateTimeMachine(nino: String)(implicit hc: HeaderCarrier): Future[Unit] = {
-    val user = UserData.allUserRecords(nino)
+  private def updateTimeMachine(user: UserRecord)(implicit hc: HeaderCarrier): Future[Unit] = {
     val timemachineTime = if(user.timeMachineDate == "now") {
       None
     } else {

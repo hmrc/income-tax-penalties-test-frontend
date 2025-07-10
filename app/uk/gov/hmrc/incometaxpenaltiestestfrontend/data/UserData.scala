@@ -28,8 +28,8 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.UserRecord
 
 object UserData {
 
+  val noPenaltiesData: Seq[UserDetailsData] = List(AA000000A)
   val lsp0UserData: Seq[UserDetailsData] = List(
-    AA000000A,
     AA000000B,
     AA000000C,
     AA000040A,
@@ -118,13 +118,35 @@ object UserData {
 
   val both = Seq(PE000002A)
 
+
+
   val allLSPUserData: Seq[UserDetailsData] = lsp0UserData ++ lsp1UserData ++ lsp2UserData ++ lsp3UserData ++ lsp4UserData ++ lsp5UserData
 
   val allUserRecords: Map[String, UserRecord] =
-    asUserRecords(allLSPUserData) ++ asUserRecords(lppUserData) ++ asUserRecords(both)
+    asUserRecords(noPenaltiesData) ++ asUserRecords(allLSPUserData) ++ asUserRecords(lppUserData) ++ asUserRecords(both)
 
   def asUserRecords(userDetailsData: Seq[UserDetailsData]): Map[String, UserRecord] = userDetailsData
     .foldLeft[Map[String, UserRecord]](Map.empty[String, UserRecord])(_ ++ _.userRecords())
 
+  val penaltyTypesToDataMap: Map[String, Seq[UserDetailsData]] = Map(
+    "LSP" -> allLSPUserData,
+    "LPP" -> lppUserData,
+    "Both" -> both,
+    "No Penalties" -> noPenaltiesData)
 
+  val lspNumsToDataMap: Map[String, Seq[UserDetailsData]] = Map(
+    "LSP0" -> lsp0UserData,
+    "LSP1" -> lsp1UserData,
+    "LSP2" -> lsp2UserData,
+    "LSP3" -> lsp3UserData,
+    "LSP4" -> lsp4UserData,
+    "LSP5" -> lsp5UserData,
+    "All" -> allLSPUserData)
+
+  def getUserRecordsForPenaltyType(penType: String, optLspNumber: Option[String]): Map[String, UserRecord] = {
+    (penType, optLspNumber) match {
+      case ("LSP", Some(lspNum)) => lspNumsToDataMap.get(lspNum).fold(allUserRecords)(asUserRecords(_))
+      case _ => penaltyTypesToDataMap.get(penType).fold(allUserRecords)(asUserRecords(_))
+    }
+  }
 }
