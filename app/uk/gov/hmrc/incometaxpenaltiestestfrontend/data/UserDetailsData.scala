@@ -61,7 +61,7 @@ trait UserDetailsData {
   }
   
   def penaltyDetails() = PenaltyDetails(
-    processingDate = s"$processingDateYear-04-05",
+    processingDate = s"$processingDateYear-04-05T10:15:10Z",
     penaltyData = Some(penaltyData())
   )
 

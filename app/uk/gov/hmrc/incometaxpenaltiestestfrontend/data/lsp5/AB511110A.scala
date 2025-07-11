@@ -64,7 +64,7 @@ object AB511110A extends UserDetailsData {
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
-    lspDetails = Seq(lspPenalty1, lspPenalty2, lspPenalty3)
+    lspDetails = Seq(lspPenalty1, lspPenalty2, lspPenalty3, lspPenalty4, lspPenalty5)
   ))
 
   override def optComplianceData: Option[CompliancePayload] = Some(

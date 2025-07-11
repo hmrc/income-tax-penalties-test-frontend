@@ -20,6 +20,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp5.AA511110A
 
 class LSPandLPPStubData extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
@@ -27,13 +28,13 @@ class LSPandLPPStubData extends AnyWordSpec with Matchers with GuiceOneAppPerSui
   val lspUsers = UserData.allLSPUserData
   val allUsers = (lppUsers ++ lspUsers ++ UserData.both)
 
-  UserData.both.foreach {user =>
+  UserData.lsp5UserData.foreach {user =>
     s"${user.nino} user" should {
-//      "have correct penalty details json HIP json models" in {
-//        val details = user.penaltyDetails()
-//        val detailsJson = user.getJson(details)
-//        println(detailsJson)
-//      }
+      "have correct penalty details json HIP json models" in {
+        val details = user.penaltyDetails()
+        val detailsJson = user.getJson(details)
+        println(detailsJson)
+      }
 
       if(user.optFinancialData().isDefined) {
         "have correct financial details json HIP json models" in {

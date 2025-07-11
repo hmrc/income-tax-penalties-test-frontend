@@ -21,8 +21,8 @@
         "periodKey" : "#001"
       }, {
         "status" : "O",
-        "inboundCorrespondenceFromDate" : "2027-01-01",
-        "inboundCorrespondenceToDate" : "2027-12-31",
+        "inboundCorrespondenceFromDate" : "2026-04-06",
+        "inboundCorrespondenceToDate" : "2027-04-05",
         "inboundCorrespondenceDueDate" : "2028-01-31",
         "periodKey" : "#001"
       }, {
@@ -54,8 +54,8 @@
         "periodKey" : "#001"
       }, {
         "status" : "F",
-        "inboundCorrespondenceFromDate" : "2026-01-01",
-        "inboundCorrespondenceToDate" : "2026-12-31",
+        "inboundCorrespondenceFromDate" : "2025-04-06",
+        "inboundCorrespondenceToDate" : "2026-04-05",
         "inboundCorrespondenceDateReceived" : "2027-01-25",
         "inboundCorrespondenceDueDate" : "2027-01-31",
         "periodKey" : "#001"
