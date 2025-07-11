@@ -19,26 +19,26 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.models
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-case class ReportingPeriod(startYear: Int, optQuarter: Option[Int]) {
+case class ReportingPeriod(year: Int, optQuarter: Option[Int]) {
 
   val taxYearStart = optQuarter match {
-    case Some(quarter) => LocalDate.of(startYear, quarter * 3 + 1, 6)
-    case _ => LocalDate.of(startYear, 1, 1)
+    case Some(quarter) => LocalDate.of(year, quarter * 3 + 1, 6)
+    case _ => LocalDate.of(year - 1, 4, 6)
   }
 
   val taxYearEnd = optQuarter match {
-    case None => LocalDate.of(startYear, 12, 31)
+    case None => LocalDate.of(year, 4, 5)
     case Some(quarter) =>
       val (endYear, nextQuarter) = if(quarter == 3) {
-        (startYear + 1, 0)
-      } else (startYear, quarter + 1)
+        (year + 1, 0)
+      } else (year, quarter + 1)
       LocalDate.of(endYear, nextQuarter * 3 + 1, 5)
   }
   val dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE
   val taxPeriodStartDate = taxYearStart.format(dateTimeFormatter)
   val taxPeriodEndDate = taxYearEnd.format(dateTimeFormatter)
   val taxDueDate = if(optQuarter.isEmpty){
-    LocalDate.of(startYear + 1, 1, 31)
+    LocalDate.of(year + 1, 1, 31)
   } else {
     taxYearEnd.plusMonths(1).minusDays(5)
   }
