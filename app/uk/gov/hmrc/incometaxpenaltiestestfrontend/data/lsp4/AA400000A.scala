@@ -24,7 +24,8 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{App
 object AA400000A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
-    activePenaltyPoints = 4
+    activePenaltyPoints = 4,
+    pocAchievementDate = Some("2029-02-28")
   )
 
   val lspPenalty1 = LateSubmissionPenaltyDetails.dueOrOverdue(
@@ -58,7 +59,7 @@ object AA400000A extends UserDetailsData {
   override def optComplianceData: Option[CompliancePayload] = Some(
     CompliancePayload.apply(nino)
       .withObligationDetail(ReportingPeriod(2029, None), false)
-      .withObligationDetail(ReportingPeriod(2029, Some(3)), false)
+      .withObligationDetail(ReportingPeriod(2028, Some(3)), false)
       .withObligationDetail(ReportingPeriod(2028, None), false)
       .withObligationDetail(ReportingPeriod(2028, Some(2)), false)
       .withObligationDetail(ReportingPeriod(2028, Some(1)), false)

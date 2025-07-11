@@ -24,7 +24,8 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{App
 object AB511110A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
-    activePenaltyPoints = 4
+    activePenaltyPoints = 4,
+    pocAchievementDate = Some("2028-11-30")
   )
 
   val lspPenalty1 = LateSubmissionPenaltyDetails.paid(

@@ -10,7 +10,8 @@
             "activePenaltyPoints" : 5,
             "inactivePenaltyPoints" : 0,
             "regimeThreshold" : 4,
-            "penaltyChargeAmount" : 0
+            "penaltyChargeAmount" : 0,
+            "pocAchievementDate" : "2028-07-30"
           },
           "lspDetails" : [ {
             "penaltyNumber" : "005000000321",

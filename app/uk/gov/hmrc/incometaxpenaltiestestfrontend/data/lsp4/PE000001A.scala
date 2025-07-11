@@ -25,7 +25,7 @@ object PE000001A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
     activePenaltyPoints = 4,
-    pocAchievementDate = Some("2028-02-30")
+    pocAchievementDate = Some("2028-02-28")
   )
 
   val lspPenalty1 = LateSubmissionPenaltyDetails.active(

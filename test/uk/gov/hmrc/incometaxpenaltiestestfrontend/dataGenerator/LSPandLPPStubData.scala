@@ -28,7 +28,7 @@ class LSPandLPPStubData extends AnyWordSpec with Matchers with GuiceOneAppPerSui
   val lspUsers = UserData.allLSPUserData
   val allUsers = (lppUsers ++ lspUsers ++ UserData.both)
 
-  UserData.lsp5UserData.foreach {user =>
+  (UserData.lsp5UserData ++ UserData.lsp4UserData).foreach {user =>
     s"${user.nino} user" should {
       "have correct penalty details json HIP json models" in {
         val details = user.penaltyDetails()
@@ -36,21 +36,21 @@ class LSPandLPPStubData extends AnyWordSpec with Matchers with GuiceOneAppPerSui
         println(detailsJson)
       }
 
-      if(user.optFinancialData().isDefined) {
-        "have correct financial details json HIP json models" in {
-          val details = user.optFinancialDetails
-          val detailsJson = details.map(user.getJson(_))
-          println(detailsJson.getOrElse("NO DATA"))
-        }
-      }
-
-      if(user.optComplianceData.isDefined) {
-        "have correct compliance json HIP json models" in {
-          val details = user.optComplianceData
-          val detailsJson = details.map(user.getJson(_))
-          println(detailsJson.getOrElse("NO DATA"))
-        }
-      }
+//      if(user.optFinancialData().isDefined) {
+//        "have correct financial details json HIP json models" in {
+//          val details = user.optFinancialDetails
+//          val detailsJson = details.map(user.getJson(_))
+//          println(detailsJson.getOrElse("NO DATA"))
+//        }
+//      }
+//
+//      if(user.optComplianceData.isDefined) {
+//        "have correct compliance json HIP json models" in {
+//          val details = user.optComplianceData
+//          val detailsJson = details.map(user.getJson(_))
+//          println(detailsJson.getOrElse("NO DATA"))
+//        }
+//      }
     }
   }
 
