@@ -19,27 +19,41 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.models
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-case class ReportingPeriod(startYear: Int, optQuarter: Option[Int]) {
+case class ReportingPeriod(year: Int, optQuarter: Option[Int]) {
 
   val taxYearStart = optQuarter match {
-    case Some(quarter) => LocalDate.of(startYear, quarter * 3 + 1, 6)
-    case _ => LocalDate.of(startYear, 4, 6)
+    case Some(quarter) => LocalDate.of(year, quarter * 3 + 1, 6)
+    case _ => LocalDate.of(year - 1, 4, 6)
   }
 
   val taxYearEnd = optQuarter match {
-    case None => LocalDate.of(startYear + 1, 4, 5)
+    case None => LocalDate.of(year, 4, 5)
     case Some(quarter) =>
       val (endYear, nextQuarter) = if(quarter == 3) {
-        (startYear + 1, 0)
-      } else (startYear, quarter + 1)
+        (year + 1, 0)
+      } else (year, quarter + 1)
       LocalDate.of(endYear, nextQuarter * 3 + 1, 5)
   }
   val dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE
   val taxPeriodStartDate = taxYearStart.format(dateTimeFormatter)
   val taxPeriodEndDate = taxYearEnd.format(dateTimeFormatter)
-  val taxPeriodDueDate = taxYearEnd.plusMonths(1).minusDays(5).format(dateTimeFormatter)
-  val penaltyChargeCreationDate = taxYearEnd.plusMonths(1).minusDays(4).format(dateTimeFormatter)
-  val penaltyChargeDueDate = taxYearEnd.plusMonths(2).minusDays(5).format(dateTimeFormatter)
+  val taxDueDate = if(optQuarter.isEmpty){
+    LocalDate.of(year + 1, 1, 31)
+  } else {
+    taxYearEnd.plusMonths(1).minusDays(5)
+  }
+  val taxPeriodDueDate = taxDueDate.format(dateTimeFormatter)
+  val penaltyChargeCreationDate = taxDueDate.plusDays(15).format(dateTimeFormatter)
+  val penaltyChargeDueDate = taxDueDate.plusDays(45).format(dateTimeFormatter)
   val penaltyExpiryDate = taxYearEnd.plusYears(2).format(dateTimeFormatter)
   val defaultRecievedDate = taxYearEnd.plusMonths(1).minusDays(6).format(dateTimeFormatter)
+  val defaultPenaltyPaidDate: Boolean => String = isDay15to30 => if(isDay15to30) {
+    taxDueDate.plusDays(40).format(dateTimeFormatter)
+  } else {
+    taxDueDate.plusDays(50).format(dateTimeFormatter)
+  }
+
+  def getIncomeTaxPaidDate(numberOfDaysLate: Int): String = {
+    taxYearEnd.plusMonths(2).minusDays(5).plusDays(numberOfDaysLate).format(dateTimeFormatter)
+  }
 }

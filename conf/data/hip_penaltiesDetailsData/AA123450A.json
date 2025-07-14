@@ -1,0 +1,63 @@
+{
+  "idType" : "NINO",
+  "idNumber" : "AA123450A",
+  "payload" : {
+    "success" : {
+      "processingDate" : "2025-04-05T10:15:10Z",
+      "penaltyData" : {
+        "lpp" : {
+          "manualLPPIndicator" : false,
+          "lppDetails" : [ {
+            "principalChargeReference" : "XJ002616061006",
+            "penaltyStatus" : "P",
+            "penaltyAmountAccruing" : 0,
+            "penaltyAmountPosted" : 80,
+            "principalChargeBillingFrom" : "2023-04-05",
+            "principalChargeBillingTo" : "2024-04-06",
+            "principalChargeDueDate" : "2025-01-31",
+            "principalChargeDocNumber" : "DOC1",
+            "principalChargeMainTr" : "4720",
+            "principalChargeSubTr" : "SUB1",
+            "penaltyCategory" : "LPP1",
+            "lpp1LRCalculationAmt" : 2000,
+            "lpp1LRDays" : "15",
+            "lpp1LRPercentage" : 2,
+            "lpp1HRCalculationAmt" : 2000,
+            "lpp1HRDays" : "30",
+            "lpp1HRPercentage" : 2,
+            "penaltyChargeCreationDate" : "2025-02-15",
+            "penaltyChargeReference" : "XJ002616061006",
+            "penaltyChargeDueDate" : "2025-03-17"
+          }, {
+            "principalChargeReference" : "XJ002616061030",
+            "penaltyStatus" : "P",
+            "penaltyAmountAccruing" : 0,
+            "penaltyAmountPosted" : 80,
+            "principalChargeBillingFrom" : "2022-04-05",
+            "principalChargeBillingTo" : "2023-04-06",
+            "principalChargeDueDate" : "2024-01-31",
+            "principalChargeDocNumber" : "DOC1",
+            "principalChargeMainTr" : "4720",
+            "principalChargeSubTr" : "SUB1",
+            "penaltyCategory" : "LPP2",
+            "penaltyAmountPaid" : 80,
+            "penaltyAmountOutstanding" : 0,
+            "lpp1LRCalculationAmt" : 2000,
+            "lpp1LRDays" : "15",
+            "lpp1LRPercentage" : 2,
+            "lpp1HRCalculationAmt" : 2000,
+            "lpp1HRDays" : "30",
+            "lpp1HRPercentage" : 2,
+            "lpp2Days" : "31",
+            "lpp2Percentage" : 10,
+            "penaltyChargeCreationDate" : "2024-02-15",
+            "communicationsDate" : "2024-03-21",
+            "penaltyChargeReference" : "XJ002616061030",
+            "penaltyChargeDueDate" : "2024-03-16",
+            "principalChargeLatestClearing" : "2024-03-30"
+          } ]
+        }
+      }
+    }
+  }
+}

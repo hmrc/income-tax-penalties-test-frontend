@@ -1,8 +1,9 @@
 {
-  "userNINO" : "AA233330A",
+  "idType" : "NINO",
+  "idNumber" : "AA233330A",
   "payload" : {
     "success" : {
-      "processingDate" : "2025-04-05",
+      "processingDate" : "2025-04-05T10:15:10Z",
       "financialData" : {
         "totalisation" : {
           "regimeTotalisation" : {

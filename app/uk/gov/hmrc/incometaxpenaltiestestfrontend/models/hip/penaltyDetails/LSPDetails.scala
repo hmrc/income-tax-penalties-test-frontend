@@ -39,14 +39,14 @@ case class LSPDetails(penaltyNumber: String,
   def withLateSubmission(submissions: Seq[LateSubmission]): LSPDetails =
     copy(lateSubmissions = Some(submissions))
 
-  def withChargeAmount(amount: BigDecimal): LSPDetails =
-    copy(chargeAmount = Some(amount))
+  def withCharge(amount: BigDecimal, dueDate: String): LSPDetails =
+    copy(chargeAmount = Some(amount), chargeDueDate = Some(dueDate))
 
   def withChargeOutstandingAmount(amount: BigDecimal): LSPDetails =
     copy(chargeOutstandingAmount = Some(amount))
 
-  def withAppealInformation(appealInfo: AppealInformation): LSPDetails =
-    copy(appealInformation = Some(Seq(appealInfo)))
+  def withAppealInformation(appealInfo: Seq[AppealInformation]): LSPDetails =
+    copy(appealInformation = Some(appealInfo))
 
   def withPenaltyCategory(category: String): LSPDetails =
     copy(penaltyCategory = Some(category))

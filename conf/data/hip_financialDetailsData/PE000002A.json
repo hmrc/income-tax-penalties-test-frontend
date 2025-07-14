@@ -1,0 +1,21 @@
+{
+  "idType" : "NINO",
+  "idNumber" : "PE000002A",
+  "payload" : {
+    "success" : {
+      "processingDate" : "2025-04-05T10:15:10Z",
+      "financialData" : {
+        "totalisation" : {
+          "regimeTotalisation" : {
+            "totalAccountOverdue" : 0
+          },
+          "additionalReceivableTotalisations" : {
+            "totalAccountPostedInterest" : 0,
+            "totalAccountAccruingInterest" : 92.04
+          }
+        }
+      }
+    }
+  }
+}
+

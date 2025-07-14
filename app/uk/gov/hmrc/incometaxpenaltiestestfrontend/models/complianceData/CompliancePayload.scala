@@ -21,11 +21,11 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 
 case class CompliancePayload(
                               identification: Option[ObligationIdentification],
-                              obligations: Seq[ObligationDetail] = Seq.empty
+                              obligationDetails: Seq[ObligationDetail] = Seq.empty
                             ) {
 
   def withObligationDetail(reportingPeriod: ReportingPeriod, isFullfilled: Boolean): CompliancePayload =
-    copy(obligations = obligations.appended(ObligationDetail.apply(reportingPeriod, isFullfilled)))
+    copy(obligationDetails = obligationDetails.appended(ObligationDetail.apply(reportingPeriod, isFullfilled)))
 }
 
 object CompliancePayload {
