@@ -39,9 +39,12 @@ class SetupAgentController @Inject()(
                                       implicit val ec: ExecutionContext
                                     ) extends FrontendController(mcc) {
 
+  lazy val displayQAUsers = appConfig.displayQAUserRecords
+  lazy val allUserRecords = UserData.allUserRecords(displayQAUsers)
+
   def addAgentData(nino: String): Action[AnyContent] = Action.async { implicit req =>
 
-    val userRecord = UserData.allUserRecords(nino)
+    val userRecord = allUserRecords(nino)
     val sessionData = new SessionDataModel(userRecord)
 
 

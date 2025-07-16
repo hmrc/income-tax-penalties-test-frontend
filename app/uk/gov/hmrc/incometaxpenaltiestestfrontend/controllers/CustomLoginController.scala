@@ -38,8 +38,9 @@ import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.{CustomAuthConnector, TimeMachineConnector}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.EnteredUser
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.{PostedUser, UserRecord}
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.LoginPage
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html._
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
 import javax.inject.{Inject, Singleton}
@@ -50,18 +51,25 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
                                       implicit val mcc: MessagesControllerComponents,
                                       implicit val executionContext: ExecutionContext,
                                       loginPage: LoginPage,
+                                      enterUserPage: EnterUserPage,
                                       val customAuthConnector: CustomAuthConnector,
                                       val timeMachineConnector: TimeMachineConnector
                                      ) extends FrontendController(mcc) with I18nSupport {
 
+  lazy val displayQAUsers = appConfig.displayQAUserRecords
+  lazy val allUserRecords = UserData.allUserRecords(displayQAUsers)
   // Logging page functionality
   val showLogin: Action[AnyContent] = Action { implicit request =>
-    Ok(loginPage(routes.CustomLoginController.postLogin, UserData.allUserRecords))
+    Ok(loginPage(routes.CustomLoginController.postLogin, allUserRecords, false, displayQAUsers))
   }
 
   def showFilteredLogin(penaltyType: String, optLspNum: Option[String]) = Action { implicit request =>
     val filteredUserData = UserData.getUserRecordsForPenaltyType(penaltyType, optLspNum)
-    Ok(loginPage(routes.CustomLoginController.postLogin, filteredUserData, true))
+    Ok(loginPage(routes.CustomLoginController.postLogin, filteredUserData, true, false))
+  }
+
+  val showEnterUser: Action[AnyContent] = Action { implicit request =>
+    Ok(enterUserPage(routes.CustomLoginController.postEnteredUser))
   }
 
   val postLogin: Action[AnyContent] = Action.async { implicit request =>
@@ -69,28 +77,44 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
       formWithErrors =>
         Future(BadRequest(s"Invalid form submission: $formWithErrors")),
       (postedUser: PostedUser) => {
-        val user = UserData.allUserRecords(postedUser.nino)
-        val loggedInUser = for {
-          login <- customAuthConnector.login(user.nino, postedUser.isAgent)
-          _ <- updateTimeMachine(user)
-        } yield login
-
-          loggedInUser.map {
-          case (authExchange, _) =>
-            val (bearer, auth) = (authExchange.bearerToken, authExchange.sessionAuthorityUri)
-            if (postedUser.isAgent) {
-              val redirectUrl = routes.SetupAgentController.addAgentData(postedUser.nino).url
-              successRedirect(bearer, auth, redirectUrl, None)
-            } else {
-              val origin = if (postedUser.useBTANavBar) "BTA" else "PTA"
-              val redirectUrl = appConfig.penaltiesHomeUrl
-              successRedirect(bearer, auth, redirectUrl, Some(origin))
-            }
-          case code =>
-            InternalServerError("something went wrong.." + code)
-        }
+        val user = allUserRecords(postedUser.nino)
+        loginInUser(user, postedUser.isAgent, postedUser.useBTANavBar)
       }
     )
+  }
+
+  val postEnteredUser: Action[AnyContent] = Action.async { implicit request =>
+    EnteredUser.form.bindFromRequest().fold(
+      formWithErrors =>
+        Future(BadRequest(s"Invalid form submission: $formWithErrors")),
+      (enteredUser: EnteredUser) => {
+        val user = UserRecord(enteredUser.nino, "10000", enteredUser.utr, "entered user", "now")
+        loginInUser(user, enteredUser.isAgent, false)
+      }
+    )
+  }
+
+  private def loginInUser(user: UserRecord, isAgent: Boolean, useBTANavBar: Boolean)
+                         (implicit hc: HeaderCarrier): Future[Result] = {
+    val loggedInUser = for {
+      login <- customAuthConnector.login(user, isAgent)
+      _ <- updateTimeMachine(user)
+    } yield login
+
+    loggedInUser.map {
+      case (authExchange, _) =>
+        val (bearer, auth) = (authExchange.bearerToken, authExchange.sessionAuthorityUri)
+        if (isAgent) {
+          val redirectUrl = routes.SetupAgentController.addAgentData(user.nino).url
+          successRedirect(bearer, auth, redirectUrl, None)
+        } else {
+          val origin = if (useBTANavBar) "BTA" else "PTA"
+          val redirectUrl = appConfig.penaltiesHomeUrl
+          successRedirect(bearer, auth, redirectUrl, Some(origin))
+        }
+      case code =>
+        InternalServerError("something went wrong.." + code)
+    }
   }
 
   private def successRedirect(bearer: String, auth: String, redirectUrl: String, origin: Option[String]): Result = {

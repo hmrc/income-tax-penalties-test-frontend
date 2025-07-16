@@ -1,0 +1,88 @@
+@*
+ * Copyright 2025 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+@import uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
+
+@this(
+    layout: Layout,
+    govukButton: GovukButton,
+    govukDateInput : GovukDateInput,
+    govukInput : GovukInput,
+    form: FormWithCSRF,
+    govukRadios: GovukRadios
+)
+
+@(postAction: Call)(implicit request: Request[_], messages: Messages)
+
+@layout(pageTitle = "Enter User Data - Manage your Income Tax updates - GOV.UK") {
+
+    <link href='/report-quarterly/income-and-expenses/view/assets/stylesheets/application.css' media="screen" rel="stylesheet" type="text/css" />
+
+    @form(postAction) {
+
+        <h1 class="govuk-heading-l">Enter User Data</h1>
+
+        @govukInput(Input(
+            id = "nino",
+            name = "nino",
+            label = Label(
+                isPageHeading = false,
+                classes = "govuk-label--m",
+                content = Text("Input valid Nino")
+            )
+        ))
+
+        @govukInput(Input(
+            id = "utr",
+            name = "utr",
+            label = Label(
+                isPageHeading = false,
+                classes = "govuk-label--m",
+                content = Text("Input valid UTR")
+            )
+        ))
+
+        @govukRadios(Radios(
+            name = "userType",
+            fieldset = Some(Fieldset(
+                legend = Some(Legend(
+                content = Text("Select if user is Individual or Agent"),
+                classes = "govuk-fieldset__legend--m",
+                isPageHeading = false
+                ))
+            )),
+            items = Seq(
+                RadioItem(
+                    content = Text("Individual"),
+                    value = Some("individual"),
+                    checked = true,
+                ),
+                RadioItem(
+                    content = Text("Agent"),
+                    value = Some("agent")
+                )
+            )
+        ))
+
+
+        <p class="govuk-body govuk-!-margin-bottom-3">
+            <a href="@controllers.routes.CustomLoginController.showLogin.url" class="govuk-link">Select User from list</a>
+        </p>
+
+        @govukButton(Button(content = Text("Submit")))
+    }
+}

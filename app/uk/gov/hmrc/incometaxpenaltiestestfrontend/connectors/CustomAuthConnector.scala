@@ -41,6 +41,7 @@ import uk.gov.hmrc.http.{HeaderCarrier, HttpResponse, StringContextOps, TooManyR
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.LoginUtil._
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.UserRecord
 
 import java.util.UUID
 import javax.inject.{Inject, Singleton}
@@ -65,11 +66,11 @@ class CustomAuthConnector @Inject()(appConfig: AppConfig,
 
   override def httpClientV2: HttpClientV2 = http
 
-  def login(nino: String, isAgent: Boolean)(implicit hc: HeaderCarrier): Future[(AuthExchange, GovernmentGatewayToken)] = {
-    val createdPayload = if (nino.contains("No Nino")) {
-      createPayloadNoNino(nino)
+  def login(userRecord: UserRecord, isAgent: Boolean)(implicit hc: HeaderCarrier): Future[(AuthExchange, GovernmentGatewayToken)] = {
+    val createdPayload = if (userRecord.nino.contains("No Nino")) {
+      createPayloadNoNino(userRecord)
     } else {
-      createPayload(nino, isAgent)
+      createPayload(userRecord, isAgent)
     }
     loginRequest(createdPayload)
   }
@@ -109,8 +110,7 @@ class CustomAuthConnector @Inject()(appConfig: AppConfig,
   }
 
 
-  private def createPayloadNoNino(nino: String): JsValue = {
-    val userRecord = UserData.allUserRecords(nino)
+  private def createPayloadNoNino(userRecord: UserRecord): JsValue = {
     Json.obj(
       "credId" -> UUID.randomUUID().toString,
       "affinityGroup" -> {
@@ -133,8 +133,7 @@ class CustomAuthConnector @Inject()(appConfig: AppConfig,
     }
   }
 
-  private def createPayload(nino: String, isAgent: Boolean): JsValue = {
-    val userRecord = UserData.allUserRecords(nino)
+  private def createPayload(userRecord: UserRecord, isAgent: Boolean): JsValue = {
     val delegateEnrolments = getDelegatedEnrolmentData(isAgent = isAgent, userRecord)
     Json.obj(
       "credId" -> UUID.randomUUID(),
@@ -155,7 +154,7 @@ class CustomAuthConnector @Inject()(appConfig: AppConfig,
 
       } else {
         removeEmptyValues(
-          "nino" -> Some(nino),
+          "nino" -> Some(userRecord.nino),
           "groupIdentifier" -> Some("groupIdentifier"),
           "gatewayToken" -> Some("gatewayToken"),
           "agentId" -> Some("agentId"),

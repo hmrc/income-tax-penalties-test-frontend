@@ -118,13 +118,17 @@ object UserData {
 
   val both = Seq(PE000002A)
 
-
+  val qaUserRecord1 = UserRecord("GS013133A", "7183013133", "7183013133", "Individual User", "now")
+  val qaUserRecord2 = UserRecord("GS013233A", "7183013233", "7183013233", "Agent User", "now")
+  val qaUsersRecords: Map[String, UserRecord] = List(qaUserRecord1, qaUserRecord2).map(ur => ur.nino -> ur).toMap
 
   val allLSPUserData: Seq[UserDetailsData] = lsp0UserData ++ lsp1UserData ++ lsp2UserData ++ lsp3UserData ++ lsp4UserData ++ lsp5UserData
-
-  val allUserRecords: Map[String, UserRecord] =
+  val allLocalUserRecords: Map[String, UserRecord] =
     asUserRecords(noPenaltiesData) ++ asUserRecords(allLSPUserData) ++ asUserRecords(lppUserData) ++ asUserRecords(both)
 
+  val allUserRecords: Boolean => Map[String, UserRecord] = displayQAUsers => {
+    if(displayQAUsers) qaUsersRecords else allLocalUserRecords
+  }
   def asUserRecords(userDetailsData: Seq[UserDetailsData]): Map[String, UserRecord] = userDetailsData
     .foldLeft[Map[String, UserRecord]](Map.empty[String, UserRecord])(_ ++ _.userRecords())
 
@@ -145,8 +149,8 @@ object UserData {
 
   def getUserRecordsForPenaltyType(penType: String, optLspNumber: Option[String]): Map[String, UserRecord] = {
     (penType, optLspNumber) match {
-      case ("LSP", Some(lspNum)) => lspNumsToDataMap.get(lspNum).fold(allUserRecords)(asUserRecords(_))
-      case _ => penaltyTypesToDataMap.get(penType).fold(allUserRecords)(asUserRecords(_))
+      case ("LSP", Some(lspNum)) => lspNumsToDataMap.get(lspNum).fold(allUserRecords(false))(asUserRecords(_))
+      case _ => penaltyTypesToDataMap.get(penType).fold(allUserRecords(false))(asUserRecords(_))
     }
   }
 }

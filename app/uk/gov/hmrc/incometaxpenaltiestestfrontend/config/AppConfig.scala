@@ -23,6 +23,8 @@ import javax.inject.{Inject, Singleton}
 @Singleton
 class AppConfig @Inject()(servicesConfig: ServicesConfig) {
 
+  val displayQAUserRecords: Boolean = servicesConfig.getBoolean("features.useQACredentials")
+
   val incomeTaxSessionDataUrl: String = servicesConfig.baseUrl("income-tax-session-data")
 
   val incomeTaxPenaltiesUrl: String = servicesConfig.baseUrl("income-tax-penalties-frontend")
