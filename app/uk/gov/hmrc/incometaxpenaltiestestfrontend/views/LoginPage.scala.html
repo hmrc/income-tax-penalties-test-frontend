@@ -29,7 +29,7 @@
     form: FormWithCSRF
 )
 
-@(postAction: Call, users: Map[String, UserRecord], isFiltered: Boolean = false)(implicit request: Request[_], messages: Messages)
+@(postAction: Call, users: Map[String, UserRecord], isFiltered: Boolean = false, isQA: Boolean = false)(implicit request: Request[_], messages: Messages)
 
 @displayBTANavBar = @{
     govukCheckboxes(
@@ -82,14 +82,21 @@
             )
         ))
 
+        @if(!isQA) {
+            <p class="govuk-body govuk-!-margin-bottom-3">
+                @if(isFiltered) {
+                    <a href="@controllers.routes.CustomLoginController.showLogin.url" class="govuk-link">Remove Filter</a>
+                } else {
+                    <a href="@controllers.routes.FilterPenaltiesController.filterPenaltiesType.url" class="govuk-link">Filter by type of penalty</a>
+                }
+            </p>
+        }
+
 
         <p class="govuk-body govuk-!-margin-bottom-3">
-            @if(isFiltered) {
-                <a href="@controllers.routes.CustomLoginController.showLogin.url" class="govuk-link">Remove Filter</a>
-            } else {
-                <a href="@controllers.routes.FilterPenaltiesController.filterPenaltiesType.url" class="govuk-link">Filter by type of penalty</a>
-            }
+            <a href="@controllers.routes.CustomLoginController.showEnterUser.url" class="govuk-link">Manually Enter User</a>
         </p>
+
         <p class="govuk-body govuk-!-margin-bottom-3">
             <a href="@controllers.routes.TimeMachineController.onPageLoad.url" class="govuk-link">Override or reset the system date.</a>
         </p>
