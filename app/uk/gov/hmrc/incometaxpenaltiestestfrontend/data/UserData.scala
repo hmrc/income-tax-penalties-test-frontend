@@ -118,8 +118,8 @@ object UserData {
 
   val both = Seq(PE000002A)
 
-  val qaUserRecord1 = UserRecord("GS013133A", "7183013133", "7183013133", "Individual User", "now")
-  val qaUserRecord2 = UserRecord("GS013233A", "7183013233", "7183013233", "Agent User", "now")
+  val qaUserRecord1 = UserRecord("GS013133A", "7183013133", "7183013133", "Individual User", "ignore")
+  val qaUserRecord2 = UserRecord("GS013233A", "7183013233", "7183013233", "Agent User", "ignore")
   val qaUsersRecords: Map[String, UserRecord] = List(qaUserRecord1, qaUserRecord2).map(ur => ur.nino -> ur).toMap
 
   val allLSPUserData: Seq[UserDetailsData] = lsp0UserData ++ lsp1UserData ++ lsp2UserData ++ lsp3UserData ++ lsp4UserData ++ lsp5UserData
