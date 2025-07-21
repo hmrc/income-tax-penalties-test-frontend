@@ -88,7 +88,7 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
       formWithErrors =>
         Future(BadRequest(s"Invalid form submission: $formWithErrors")),
       (enteredUser: EnteredUser) => {
-        val user = UserRecord(enteredUser.nino, "10000", enteredUser.utr, "entered user", "now")
+        val user = UserRecord(enteredUser.nino, "10000", enteredUser.utr, "entered user", "ignore")
         loginInUser(user, enteredUser.isAgent, false)
       }
     )
@@ -126,15 +126,19 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
   }
 
   private def updateTimeMachine(user: UserRecord)(implicit hc: HeaderCarrier): Future[Unit] = {
-    val timemachineTime = if(user.timeMachineDate == "now") {
-      None
+    if (user.timeMachineDate == "ignore") {
+      Future.successful((): Unit)
     } else {
-      Some(user.timeMachineDate)
+      val timemachineTime = if (user.timeMachineDate == "now") {
+        None
+      } else {
+        Some(user.timeMachineDate)
+      }
+      for {
+        _ <- timeMachineConnector.updatePenalties(timemachineTime)
+        _ <- timeMachineConnector.updatePenaltiesAppeals(timemachineTime)
+      } yield ((): Unit)
     }
-    for {
-      _ <- timeMachineConnector.updatePenalties(timemachineTime)
-      _ <- timeMachineConnector.updatePenaltiesAppeals(timemachineTime)
-    } yield ((): Unit)
   }
 
 }
