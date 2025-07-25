@@ -6,7 +6,7 @@ POST       /login/filter/penaltyType            uk.gov.hmrc.incometaxpenaltieste
 GET        /login/filter/lsp                    uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.FilterPenaltiesController.filterByLSP
 POST       /login/filter/lsp                    uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.FilterPenaltiesController.submitFilterByLSP
 GET        /assets/*file                        controllers.Assets.versioned(path = "/public", file: Asset)
-GET        /add-agent-session-data/:nino        uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.SetupAgentController.addAgentData(nino: String)
+GET        /add-agent-session-data/:nino/:utr   uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.SetupAgentController.addAgentData(nino: String, utr: String)
 GET        /login                               uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.CustomLoginController.showLogin
 GET        /login/filtered                      uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.CustomLoginController.showFilteredLogin(penaltyType: String, optLspNum: Option[String] ?=None)
 GET        /login/enterUser                     uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.CustomLoginController.showEnterUser

@@ -105,7 +105,7 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
       case (authExchange, _) =>
         val (bearer, auth) = (authExchange.bearerToken, authExchange.sessionAuthorityUri)
         if (isAgent) {
-          val redirectUrl = routes.SetupAgentController.addAgentData(user.nino).url
+          val redirectUrl = routes.SetupAgentController.addAgentData(user.nino, user.utr).url
           successRedirect(bearer, auth, redirectUrl, None)
         } else {
           val origin = if (useBTANavBar) "BTA" else "PTA"

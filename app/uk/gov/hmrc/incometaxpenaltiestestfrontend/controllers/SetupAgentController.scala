@@ -21,7 +21,7 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.SessionDataConnecto
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.SessionDataModel
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.{SessionDataModel, UserRecord}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.ErrorHandler
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.SessionDataPostResponse.SessionDataPostSuccess
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
@@ -42,9 +42,9 @@ class SetupAgentController @Inject()(
   lazy val displayQAUsers = appConfig.displayQAUserRecords
   lazy val allUserRecords = UserData.allUserRecords(displayQAUsers)
 
-  def addAgentData(nino: String): Action[AnyContent] = Action.async { implicit req =>
+  def addAgentData(nino: String, utr: String): Action[AnyContent] = Action.async { implicit req =>
 
-    val userRecord = allUserRecords(nino)
+    val userRecord = allUserRecords.getOrElse(nino, UserRecord(nino, "10000", utr, "entered user", "ignore"))
     val sessionData = new SessionDataModel(userRecord)
 
 
