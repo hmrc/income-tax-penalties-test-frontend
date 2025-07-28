@@ -88,7 +88,8 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
       formWithErrors =>
         Future(BadRequest(s"Invalid form submission: $formWithErrors")),
       (enteredUser: EnteredUser) => {
-        val user = UserRecord(enteredUser.nino, "10000", enteredUser.utr, "entered user", "ignore")
+        val user = allUserRecords.get(enteredUser.nino).collect{case(x) if x.utr == enteredUser.utr => x}
+          .getOrElse(UserRecord(enteredUser.nino, "10000", enteredUser.utr, "entered user", "ignore"))
         loginInUser(user, enteredUser.isAgent, false)
       }
     )
