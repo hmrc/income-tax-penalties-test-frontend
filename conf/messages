@@ -1,4 +1,8 @@
 service.name = income-tax-penalties-test-frontend
 service.text = This is your new service
 
+
+
 filterPage.title = Filter by {0}
+nino.error.required = Nino is required
+utr.error.required = UTR is required

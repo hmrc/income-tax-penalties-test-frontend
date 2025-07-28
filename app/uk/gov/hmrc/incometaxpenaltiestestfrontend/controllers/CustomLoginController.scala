@@ -69,7 +69,7 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
   }
 
   val showEnterUser: Action[AnyContent] = Action { implicit request =>
-    Ok(enterUserPage(routes.CustomLoginController.postEnteredUser))
+    Ok(enterUserPage(EnteredUser.form, routes.CustomLoginController.postEnteredUser))
   }
 
   val postLogin: Action[AnyContent] = Action.async { implicit request =>
@@ -85,8 +85,8 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
 
   val postEnteredUser: Action[AnyContent] = Action.async { implicit request =>
     EnteredUser.form.bindFromRequest().fold(
-      formWithErrors =>
-        Future(BadRequest(s"Invalid form submission: $formWithErrors")),
+      formWithErrors => {
+        Future(BadRequest(enterUserPage(formWithErrors, routes.CustomLoginController.postEnteredUser)))},
       (enteredUser: EnteredUser) => {
         val user = allUserRecords.get(enteredUser.nino).collect{case(x) if x.utr == enteredUser.utr => x}
           .getOrElse(UserRecord(enteredUser.nino, "10000", enteredUser.utr, "entered user", "ignore"))

@@ -16,23 +16,28 @@
 
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 @import uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
+@import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.ErrorSummaryViewModel
 
 @this(
     layout: Layout,
     govukButton: GovukButton,
     govukDateInput : GovukDateInput,
     govukInput : GovukInput,
-    form: FormWithCSRF,
+    govukErrorSummary: GovukErrorSummary,
+    formHelper: FormWithCSRF,
     govukRadios: GovukRadios
 )
 
-@(postAction: Call)(implicit request: Request[_], messages: Messages)
+@(form: Form[_], postAction: Call)(implicit request: Request[_], messages: Messages)
 
 @layout(pageTitle = "Enter User Data - Manage your Income Tax updates - GOV.UK") {
 
     <link href='/report-quarterly/income-and-expenses/view/assets/stylesheets/application.css' media="screen" rel="stylesheet" type="text/css" />
 
-    @form(postAction) {
+    @if(form.errors.nonEmpty) {
+        @govukErrorSummary(ErrorSummaryViewModel(form))
+    }
+    @formHelper(postAction) {
 
         <h1 class="govuk-heading-l">Enter User Data</h1>
 
@@ -43,7 +48,11 @@
                 isPageHeading = false,
                 classes = "govuk-label--m",
                 content = Text("Input valid Nino")
-            )
+            ),
+            errorMessage = form.errors("nino") match {
+                case Nil => None
+                case errors => Some(ErrorMessage(content = HtmlContent(errors.map(err => messages(err.message)).mkString("<br>"))))
+            }
         ))
 
         @govukInput(Input(
@@ -53,7 +62,11 @@
                 isPageHeading = false,
                 classes = "govuk-label--m",
                 content = Text("Input valid UTR")
-            )
+            ),
+            errorMessage = form.errors("utr") match {
+                case Nil => None
+                case errors => Some(ErrorMessage(content = HtmlContent(errors.map(err => messages(err.message)).mkString("<br>"))))
+            }
         ))
 
         @govukRadios(Radios(
