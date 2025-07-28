@@ -16,18 +16,17 @@
 
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
 
-import javax.inject.{Inject, Singleton}
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.SessionDataConnector
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.{AppConfig, ErrorHandler}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.SessionDataConnector
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.{SessionDataModel, UserRecord}
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.ErrorHandler
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.SessionDataPostResponse.SessionDataPostSuccess
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.{SessionDataModel, UserRecord}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
-import java.time.format.DateTimeFormatter._
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter._
+import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
@@ -44,7 +43,8 @@ class SetupAgentController @Inject()(
 
   def addAgentData(nino: String, utr: String): Action[AnyContent] = Action.async { implicit req =>
 
-    val userRecord = allUserRecords.getOrElse(nino, UserRecord(nino, "10000", utr, "entered user", "ignore"))
+    val optFixedUserRecord: Option[UserRecord] = allUserRecords.get(nino).collect{case(x) if x.utr == utr => x}
+    val userRecord = optFixedUserRecord.getOrElse(UserRecord(nino, "10000", utr, "entered user", "ignore"))
     val sessionData = new SessionDataModel(userRecord)
 
 

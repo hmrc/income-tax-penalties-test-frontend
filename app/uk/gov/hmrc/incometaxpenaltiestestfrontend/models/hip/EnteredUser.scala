@@ -17,7 +17,7 @@
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip
 
 import play.api.data.Form
-import play.api.data.Forms.{boolean, mapping, optional, text}
+import play.api.data.Forms.{boolean, mapping, nonEmptyText, optional, text}
 
 case class EnteredUser(nino: String,
                        utr: String,
@@ -33,8 +33,8 @@ object EnteredUser {
     val form: Form[EnteredUser] =
       Form(
         mapping(
-          "nino" -> text,
-          "utr" -> text,
+          "nino" -> nonEmptyText,
+          "utr" -> nonEmptyText,
           "userType" -> optional(text)
         )(EnteredUser.apply)(EnteredUser.unapply)
       )
