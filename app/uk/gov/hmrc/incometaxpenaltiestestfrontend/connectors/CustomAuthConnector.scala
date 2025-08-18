@@ -66,11 +66,11 @@ class CustomAuthConnector @Inject()(appConfig: AppConfig,
 
   override def httpClientV2: HttpClientV2 = http
 
-  def login(userRecord: UserRecord, isAgent: Boolean)(implicit hc: HeaderCarrier): Future[(AuthExchange, GovernmentGatewayToken)] = {
+  def login(userRecord: UserRecord, isAgent: Boolean, arn: Option[String])(implicit hc: HeaderCarrier): Future[(AuthExchange, GovernmentGatewayToken)] = {
     val createdPayload = if (userRecord.nino.contains("No Nino")) {
       createPayloadNoNino(userRecord)
     } else {
-      createPayload(userRecord, isAgent)
+      createPayload(userRecord, isAgent, arn)
     }
     loginRequest(createdPayload)
   }
@@ -120,7 +120,7 @@ class CustomAuthConnector @Inject()(appConfig: AppConfig,
       "credentialStrength" -> "strong",
       "credentialRole" -> "User",
       "usersName" -> "usersName",
-      "enrolments" -> getEnrolmentData(isAgent = false, userRecord)
+      "enrolments" -> getEnrolmentData(isAgent = false, userRecord, None)
     ) ++ {
       removeEmptyValues(
         "groupIdentifier" -> Some("groupIdentifier"),
@@ -133,7 +133,7 @@ class CustomAuthConnector @Inject()(appConfig: AppConfig,
     }
   }
 
-  private def createPayload(userRecord: UserRecord, isAgent: Boolean): JsValue = {
+  private def createPayload(userRecord: UserRecord, isAgent: Boolean, arn: Option[String]): JsValue = {
     val delegateEnrolments = getDelegatedEnrolmentData(isAgent = isAgent, userRecord)
     Json.obj(
       "credId" -> UUID.randomUUID(),
@@ -142,7 +142,7 @@ class CustomAuthConnector @Inject()(appConfig: AppConfig,
       "credentialStrength" -> "strong",
       "credentialRole" -> "User",
       "usersName" -> "usersName",
-      "enrolments" -> getEnrolmentData(isAgent = isAgent, userRecord),
+      "enrolments" -> getEnrolmentData(isAgent = isAgent, userRecord, arn),
       "delegatedEnrolments" -> delegateEnrolments
     ) ++ {
       if (isAgent) {

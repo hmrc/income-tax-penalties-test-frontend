@@ -78,7 +78,7 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
         Future(BadRequest(s"Invalid form submission: $formWithErrors")),
       (postedUser: PostedUser) => {
         val user = allUserRecords(postedUser.nino)
-        loginInUser(user, postedUser.isAgent, postedUser.useBTANavBar)
+        loginInUser(user, postedUser.isAgent, postedUser.useBTANavBar, postedUser.arn)
       }
     )
   }
@@ -90,15 +90,15 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
       (enteredUser: EnteredUser) => {
         val user = allUserRecords.get(enteredUser.nino).collect{case(x) if x.utr == enteredUser.utr => x}
           .getOrElse(UserRecord(enteredUser.nino, "10000", enteredUser.utr, "entered user", "ignore"))
-        loginInUser(user, enteredUser.isAgent, false)
+        loginInUser(user, enteredUser.isAgent, false, None)
       }
     )
   }
 
-  private def loginInUser(user: UserRecord, isAgent: Boolean, useBTANavBar: Boolean)
+  private def loginInUser(user: UserRecord, isAgent: Boolean, useBTANavBar: Boolean, arn: Option[String])
                          (implicit hc: HeaderCarrier): Future[Result] = {
     val loggedInUser = for {
-      login <- customAuthConnector.login(user, isAgent)
+      login <- customAuthConnector.login(user, isAgent, arn)
       _ <- updateTimeMachine(user)
     } yield login
 

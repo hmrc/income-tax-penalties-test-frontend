@@ -45,12 +45,12 @@ object LoginUtil {
       (JsPath \ "delegatedAuthRule").write[String]
     ) (unlift(DelegatedEnrolment.unapply))
 
-  def getEnrolmentData(isAgent: Boolean, userRecord: UserRecord): JsValue = {
+  def getEnrolmentData(isAgent: Boolean, userRecord: UserRecord, arn: Option[String]): JsValue = {
     val es = if (isAgent) {
       val enrolmentKey = "HMRC-AS-AGENT"
       Seq(
         Enrolment(key = enrolmentKey, identifiers =
-          Seq(KVPair(key = "AgentReferenceNumber", value = "1")), state = "Activated")
+          Seq(KVPair(key = "AgentReferenceNumber", value = arn.getOrElse("1"))), state = "Activated")
       )
     } else {
       val enrolmentKey = "HMRC-MTD-IT"

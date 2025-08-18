@@ -21,7 +21,8 @@ import play.api.data.Forms.{boolean, mapping, optional, text}
 
 case class PostedUser(nino: String,
                       userType: Option[String],
-                      useBTANavBar: Boolean = false
+                      useBTANavBar: Boolean = false,
+                      arn: Option[String] = None
                      ) {
 
   def isAgent: Boolean = {
@@ -35,7 +36,8 @@ object PostedUser {
         mapping(
           "nino" -> text,
           "userType" -> optional(text),
-          "useBTANavBar" -> boolean
+          "useBTANavBar" -> boolean,
+          "arn" -> optional(text),
         )(PostedUser.apply)(PostedUser.unapply)
       )
 }
