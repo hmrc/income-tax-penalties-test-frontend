@@ -71,7 +71,7 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
       (postedUser: PostedUser) => {
         val user = UserData.allUserRecords(postedUser.nino)
         val loggedInUser = for {
-          login <- customAuthConnector.login(user.nino, postedUser.isAgent)
+          login <- customAuthConnector.login(user.nino, postedUser.isAgent, postedUser.arn)
           _ <- updateTimeMachine(user)
         } yield login
 
