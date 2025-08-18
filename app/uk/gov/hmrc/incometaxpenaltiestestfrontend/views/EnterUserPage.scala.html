@@ -30,6 +30,23 @@
 
 @(form: Form[_], postAction: Call)(implicit request: Request[_], messages: Messages)
 
+@displayARNField = @{
+    govukInput(
+        Input(
+            id = "arn",
+            name = "arn",
+            label = Label(isPageHeading = false,
+                classes = "govuk-label--s",
+                content = Text("Agent Reference Number (ARN)")),
+            classes = "govuk-input--width-10",
+            hint = Some(Hint(
+                content = Text("Enter ARN (optional)")
+            ))
+        )
+    )
+}
+
+
 @layout(pageTitle = "Enter User Data - Manage your Income Tax updates - GOV.UK") {
 
     <link href='/report-quarterly/income-and-expenses/view/assets/stylesheets/application.css' media="screen" rel="stylesheet" type="text/css" />
@@ -86,7 +103,8 @@
                 ),
                 RadioItem(
                     content = Text("Agent"),
-                    value = Some("agent")
+                    value = Some("agent"),
+                    conditionalHtml = Some(displayARNField)
                 )
             )
         ))
