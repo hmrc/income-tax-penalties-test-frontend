@@ -21,7 +21,8 @@ import play.api.data.Forms.{boolean, mapping, nonEmptyText, optional, text}
 
 case class EnteredUser(nino: String,
                        utr: String,
-                       userType: Option[String]
+                       userType: Option[String],
+                       arn: Option[String] = None
                      ) {
 
   def isAgent: Boolean = {
@@ -35,7 +36,8 @@ object EnteredUser {
         mapping(
           "nino" -> nonEmptyText,
           "utr" -> nonEmptyText,
-          "userType" -> optional(text)
+          "userType" -> optional(text),
+          "arn" -> optional(text)
         )(EnteredUser.apply)(EnteredUser.unapply)
       )
 }
