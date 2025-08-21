@@ -41,10 +41,10 @@ class SetupAgentController @Inject()(
   lazy val displayQAUsers = appConfig.displayQAUserRecords
   lazy val allUserRecords = UserData.allUserRecords(displayQAUsers)
 
-  def addAgentData(nino: String, utr: String): Action[AnyContent] = Action.async { implicit req =>
+  def addAgentData(nino: String, utr: String, mtditid: Option[String]): Action[AnyContent] = Action.async { implicit req =>
 
-    val optFixedUserRecord: Option[UserRecord] = allUserRecords.get(nino).collect{case(x) if x.utr == utr => x}
-    val userRecord = optFixedUserRecord.getOrElse(UserRecord(nino, "10000", utr, "entered user", "ignore"))
+    val optFixedUserRecord: Option[UserRecord] = allUserRecords.get(nino).collect{case(x) if x.utr == utr => mtditid.map(id => x.copy(mtditid = id)).getOrElse(x)}
+    val userRecord = optFixedUserRecord.getOrElse(UserRecord(nino,mtditid.getOrElse("10000"), utr, "entered user", "ignore"))
     val sessionData = new SessionDataModel(userRecord)
 
 
