@@ -23,9 +23,10 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPP
 
 object AA233330A extends UserDetailsData {
 
-  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
+  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     ReportingPeriod(2027, None),
-    46.02
+    46.02,
+    latePaymentPenaltyDetails2.principalChargeReference
   )
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1Paid(

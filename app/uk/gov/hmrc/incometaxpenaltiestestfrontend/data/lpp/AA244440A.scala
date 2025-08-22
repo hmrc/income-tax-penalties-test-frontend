@@ -23,9 +23,11 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPP
 
 object AA244440A extends UserDetailsData {
 
-  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Paid(
+  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
     ReportingPeriod(2027, None),
-    46.02
+    46.02,
+    22.02,
+    latePaymentPenaltyDetails2.principalChargeReference
   )
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1Paid(
@@ -50,6 +52,6 @@ object AA244440A extends UserDetailsData {
   override val nino: String = "AA244440A"
   override val mtdItId: String = "24444"
   override val utr: String = "1000024444"
-  override val description: String = "All LPPs paid - (3 LPP PAID)"
+  override val description: String = "Latest LPP partially paid and other two paid"
   override val timemachineDate: String = "02/02/2028"
 }

@@ -47,8 +47,9 @@ object AL300002A extends UserDetailsData {
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
       reportingPeriod3,
-      amount = 40.00)
-    .withIncomeTaxPaid(reportingPeriod1.getIncomeTaxPaidDate(35))
+      amount = 40.00,
+      latePaymentPenaltyDetails1.principalChargeReference)
+    .withIncomeTaxPaid(reportingPeriod3, false)
     .withAppealInformation(AppealInformation.create("Rejected", "First"))
 
   val latePaymentPenaltyDetails3 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
@@ -58,8 +59,9 @@ object AL300002A extends UserDetailsData {
 
   val latePaymentPenaltyDetails4 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
       reportingPeriod2,
-      amount = 40.00)
-    .withIncomeTaxPaid(reportingPeriod1.getIncomeTaxPaidDate(35))
+      amount = 40.00,
+      latePaymentPenaltyDetails3.principalChargeReference)
+    .withIncomeTaxPaid(reportingPeriod2, false)
     .withAppealInformation(AppealInformation.create("Rejected", "Second"))
 
   val latePaymentPenaltyDetails5 = LatePaymentPenaltyDetails.lpp1Paid(
@@ -69,8 +71,9 @@ object AL300002A extends UserDetailsData {
 
   val latePaymentPenaltyDetails6 = LatePaymentPenaltyDetails.lpp2Paid(
       reportingPeriod1,
-      amount = 40.00)
-    .withIncomeTaxPaid(reportingPeriod1.getIncomeTaxPaidDate(35))
+      amount = 40.00,
+      latePaymentPenaltyDetails5.principalChargeReference)
+    .withIncomeTaxPaid(reportingPeriod1, false)
     .withAppealInformation(AppealInformation.create("Rejected", "Tribunal"))
 
 

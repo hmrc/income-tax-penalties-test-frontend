@@ -25,34 +25,33 @@ object AB411110A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
     activePenaltyPoints = 4,
-    pocAchievementDate = Some("2028-02-28")
+    pocAchievementDate = Some("2028-11-07")
   )
 
   val lspPenalty1 = LateSubmissionPenaltyDetails.paid(
-    ReportingPeriod(2027, Some(3)),
-    addAdditionalIncomeSource = true)
+      ReportingPeriod(2027, Some(2)),
+      penaltyOrder = "4",
+      addAdditionalIncomeSource = true)
     .withPenaltyCategory("T")
 
   val lspPenalty2 = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
-    ReportingPeriod(2027, Some(2)),
-    penaltyOrder = "2",
+    ReportingPeriod(2027, Some(1)),
     appealLevel = "Second",
     addAdditionalIncomeSource = true)
 
   val lspPenalty3 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(1)),
+    ReportingPeriod(2027, Some(0)),
     penaltyOrder = "3",
     addAdditionalIncomeSource = true)
 
   val lspPenalty4 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(0)),
-    penaltyOrder = "4",
+    ReportingPeriod(2026, Some(3)),
+    penaltyOrder = "2",
     returnSubmitted = true,
     addAdditionalIncomeSource = true)
 
   val lspPenalty5 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2026, None),
-    penaltyOrder = "5",
     returnSubmitted = true,
     addAdditionalIncomeSource = true)
 
@@ -63,18 +62,21 @@ object AB411110A extends UserDetailsData {
 
   override def optComplianceData: Option[CompliancePayload] = Some(
     CompliancePayload.apply(nino)
+      .withObligationDetail(ReportingPeriod(2028, Some(2)), false)
+      .withObligationDetail(ReportingPeriod(2028, Some(1)), false)
       .withObligationDetail(ReportingPeriod(2028, Some(0)), false)
       .withObligationDetail(ReportingPeriod(2027, Some(3)), false)
       .withObligationDetail(ReportingPeriod(2027, None), false)
       .withObligationDetail(ReportingPeriod(2027, Some(2)), false)
-      .withObligationDetail(ReportingPeriod(2027, Some(1)), true)
-      .withObligationDetail(ReportingPeriod(2027, Some(0)), true)
+      .withObligationDetail(ReportingPeriod(2027, Some(1)), false)
+      .withObligationDetail(ReportingPeriod(2027, Some(0)), false)
       .withObligationDetail(ReportingPeriod(2026, Some(3)), true)
       .withObligationDetail(ReportingPeriod(2026, None), true)
   )
+
   override val nino: String = "AB411110A"
-  override val mtdItId: String = "400010"
-  override val utr: String = "0000400010"
-  override val description: String = "LSP4 - paid and success appeal penalty (second stage)"
-  override val timemachineDate: String = "01/02/2028"
+  override val mtdItId: String = "411110"
+  override val utr: String = "0000411110"
+  override val description: String = "LSP4 - paid and success appeal penalty (second stage) for LSP 4"
+  override val timemachineDate: String = "30/11/2027"
 }

@@ -74,11 +74,14 @@ trait UserDetailsData {
 
   def stubData() = StubData(penaltyDetails(), optFinancialDetails, optComplianceData)
   
-  def getJson[T](data: T, isCompliance: Boolean = false)(implicit writes: Writes[T]): String = {
-    val payload = if(isCompliance){
+  def getJson[T](data: T, isComplianceForPenalties: Boolean = false,
+                 isComplianceForLocalStub: Boolean = false)(implicit writes: Writes[T]): String = {
+    val payload = if(isComplianceForPenalties){
       Json.obj(
         ("obligations" -> Json.arr(Json.toJson(data)))
       )
+    } else if(isComplianceForLocalStub) {
+      Json.toJson(data)
     } else {
       Json.obj(
         ("success" -> Json.toJson(data))

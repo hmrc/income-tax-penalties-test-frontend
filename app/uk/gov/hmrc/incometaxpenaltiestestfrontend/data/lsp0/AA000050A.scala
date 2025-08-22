@@ -24,31 +24,27 @@ object AA000050A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
     inactivePenaltyPoints = 5,
-    pocAchievementDate = Some("2027-01-31")
+    pocAchievementDate = Some("2027-11-07")
   )
 
   val lspPenalty1 = LateSubmissionPenaltyDetails.expired(
-    ReportingPeriod(2026, Some(0)),
+    ReportingPeriod(2026, Some(2)),
     addAdditionalIncomeSource = true)
 
   val lspPenalty2 = LateSubmissionPenaltyDetails.expired(
     ReportingPeriod(2026, Some(1)),
-    penaltyOrder = "2",
     addAdditionalIncomeSource = true)
 
   val lspPenalty3 = LateSubmissionPenaltyDetails.expired(
-    ReportingPeriod(2026, Some(2)),
-    penaltyOrder = "3",
+    ReportingPeriod(2026, Some(0)),
     addAdditionalIncomeSource = true)
 
   val lspPenalty4 = LateSubmissionPenaltyDetails.expired(
-    ReportingPeriod(2026, None),
-    penaltyOrder = "4",
+    ReportingPeriod(2025, Some(3)),
     addAdditionalIncomeSource = true)
 
   val lspPenalty5 = LateSubmissionPenaltyDetails.expired(
-    ReportingPeriod(2026, Some(3)),
-    penaltyOrder = "5",
+    ReportingPeriod(2025, None),
     addAdditionalIncomeSource = true)
 
   override val lsp: Option[LSP] = Some(LSP(
@@ -58,15 +54,20 @@ object AA000050A extends UserDetailsData {
 
   override def optComplianceData: Option[CompliancePayload] = Some(
     CompliancePayload.apply(nino)
-      .withObligationDetail(ReportingPeriod(2026, None), true)
+      .withObligationDetail(ReportingPeriod(2027, Some(2)), true)
+      .withObligationDetail(ReportingPeriod(2027, Some(1)), true)
+      .withObligationDetail(ReportingPeriod(2027, Some(0)), true)
       .withObligationDetail(ReportingPeriod(2026, Some(3)), true)
+      .withObligationDetail(ReportingPeriod(2026, None), true)
       .withObligationDetail(ReportingPeriod(2026, Some(2)), true)
       .withObligationDetail(ReportingPeriod(2026, Some(1)), true)
       .withObligationDetail(ReportingPeriod(2026, Some(0)), true)
+      .withObligationDetail(ReportingPeriod(2025, Some(3)), true)
+      .withObligationDetail(ReportingPeriod(2025, None), true)
   )
   override val nino: String = "AA000050A"
   override val mtdItId: String = "000050"
   override val utr: String = "1234000050"
   override val description: String = "0 LSP Update- Compliance period ended and points expired"
-  override val timemachineDate: String = "01/08/2027"
+  override val timemachineDate: String = "01/12/2027"
 }

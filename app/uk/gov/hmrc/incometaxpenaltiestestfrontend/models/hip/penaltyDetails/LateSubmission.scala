@@ -40,7 +40,8 @@ object LateSubmission {
       taxReturnStatus = if(returnReceived) Some("Fulfilled") else Some("Open"),
       taxPeriodStartDate = Some(reportingPeriod.taxPeriodStartDate),
       taxPeriodEndDate = Some(reportingPeriod.taxPeriodEndDate),
-      taxPeriodDueDate = Some(reportingPeriod.taxPeriodDueDate)
+      taxPeriodDueDate = Some(reportingPeriod.taxPeriodDueDate),
+      returnReceiptDate = if(returnReceived) Some(reportingPeriod.defaultRecievedDate) else None
     )
     if(addAdditionalIncomeSource) {
       Seq(lateSubmission1, lateSubmission1.copy(lateSubmissionID = "002",

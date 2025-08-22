@@ -40,13 +40,17 @@ case class ReportingPeriod(year: Int, optQuarter: Option[Int]) {
   val taxDueDate = if(optQuarter.isEmpty){
     LocalDate.of(year + 1, 1, 31)
   } else {
-    taxYearEnd.plusMonths(1).minusDays(5)
+    taxYearEnd.plusMonths(1).plusDays(2)
   }
   val taxPeriodDueDate = taxDueDate.format(dateTimeFormatter)
-  val penaltyChargeCreationDate = taxDueDate.plusDays(15).format(dateTimeFormatter)
+  val penaltyChargeCreationDate: Boolean => String = isDay15to30 => if(isDay15to30) {
+    taxDueDate.plusDays(15).format(dateTimeFormatter)
+  } else {
+    taxDueDate.plusDays(31).format(dateTimeFormatter)
+  }
   val penaltyChargeDueDate = taxDueDate.plusDays(45).format(dateTimeFormatter)
   val penaltyExpiryDate = taxYearEnd.plusYears(2).format(dateTimeFormatter)
-  val defaultRecievedDate = taxYearEnd.plusMonths(1).minusDays(6).format(dateTimeFormatter)
+  val defaultRecievedDate = taxDueDate.plusMonths(1).minusDays(6).format(dateTimeFormatter)
   val defaultPenaltyPaidDate: Boolean => String = isDay15to30 => if(isDay15to30) {
     taxDueDate.plusDays(40).format(dateTimeFormatter)
   } else {
@@ -54,6 +58,10 @@ case class ReportingPeriod(year: Int, optQuarter: Option[Int]) {
   }
 
   def getIncomeTaxPaidDate(numberOfDaysLate: Int): String = {
-    taxYearEnd.plusMonths(2).minusDays(5).plusDays(numberOfDaysLate).format(dateTimeFormatter)
+    taxDueDate.plusDays(numberOfDaysLate).format(dateTimeFormatter)
+  }
+
+  def getPenaltyChargeDueDate(numberOfDaysLate: Int): String = {
+    taxDueDate.plusDays(numberOfDaysLate).plusDays(32).format(dateTimeFormatter)
   }
 }

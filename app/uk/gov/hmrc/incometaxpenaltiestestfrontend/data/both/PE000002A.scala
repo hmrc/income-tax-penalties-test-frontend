@@ -50,12 +50,14 @@ object PE000002A extends UserDetailsData {
     reportingPeriod1,
     amount = 46.02
   ).withChargeReference("PE888881102202")
+    .withIncomeTaxPaid(reportingPeriod1, false)
 
   val lppPenalty2 = LatePaymentPenaltyDetails.lpp2Penalty(
     reportingPeriod1,
-    amount = 46.02)
+    amount = 46.02,
+      lppPenalty1.principalChargeReference)
     .withChargeReference("PE888881102201")
-    .withIncomeTaxPaid(reportingPeriod1.getIncomeTaxPaidDate(35))
+    .withIncomeTaxPaid(reportingPeriod1, false)
 
 
   override val lsp: Option[LSP] = Some(LSP(

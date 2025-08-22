@@ -23,9 +23,8 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP
 
 object AB000000B extends UserDetailsData {
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.adjusted(
-    ReportingPeriod(2027, None),
-    isRemoved = true)
+  val lspPenalty1 = LateSubmissionPenaltyDetails.removedFollowingAdjusted(
+    ReportingPeriod(2027, None))
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = LSPSummary(),
@@ -38,5 +37,5 @@ object AB000000B extends UserDetailsData {
   override val mtdItId: String = "000000"
   override val utr: String = "1234000000"
   override val description: String = "0 LSP Return - Adjusted (removed)"
-  override val timemachineDate: String = "01/08/2027"
+  override val timemachineDate: String = "28/02/2028"
 }

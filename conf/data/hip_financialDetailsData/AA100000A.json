@@ -3,7 +3,7 @@
   "idNumber" : "AA100000A",
   "payload" : {
     "success" : {
-      "processingDate" : "2025-04-05T10:15:10Z",
+      "processingDate" : "2025-04-05",
       "financialData" : {
         "totalisation" : {
           "regimeTotalisation" : {

@@ -28,16 +28,19 @@ object LatePaymentPenaltyDetails {
       reportingPeriod,
       "LPP1",
       status = if(isDay15) "A" else "P",
-      amount = amount
+      amount = amount,
+      isDay15To30 = isDay15
     ).withLPP1CalculationFields(isDay15)
   }
 
   def lpp2Penalty(reportingPeriod: ReportingPeriod,
-                  amount: BigDecimal): LPPDetails = {
+                  amount: BigDecimal,
+                  principalChargeRef: String): LPPDetails = {
     LPPDetails.create(
       reportingPeriod,
       "LPP2",
-      amount = amount
+      amount = amount,
+      chargeRef = Some(principalChargeRef)
     )
       .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
@@ -50,22 +53,25 @@ object LatePaymentPenaltyDetails {
       reportingPeriod,
       "LPP1",
       "P",
-      amount = amount
+      amount = amount,
+      isDay15To30 = isDay15
     )
-     .withIncomeTaxPaid(reportingPeriod.getIncomeTaxPaidDate(if(isDay15) 20 else 35))
+     .withIncomeTaxPaid(reportingPeriod, isDay15)
     .withLPP1CalculationFields(isDay15)
     .withFullyPaidAmount(reportingPeriod.defaultPenaltyPaidDate(isDay15))
   }
 
   def lpp2Paid(reportingPeriod: ReportingPeriod,
-               amount: BigDecimal): LPPDetails = {
+               amount: BigDecimal,
+               principalChargeRef: String): LPPDetails = {
     LPPDetails.create(
         reportingPeriod,
         "LPP2",
         "P",
-        amount = amount
+        amount = amount,
+        chargeRef =Some(principalChargeRef)
       )
-      .withIncomeTaxPaid(reportingPeriod.getIncomeTaxPaidDate(35))
+      .withIncomeTaxPaid(reportingPeriod, false)
       .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
       .withFullyPaidAmount(reportingPeriod.defaultPenaltyPaidDate(false))
@@ -78,7 +84,8 @@ object LatePaymentPenaltyDetails {
         reportingPeriod,
         "LPP1",
         "P",
-        amount = amount
+        amount = amount,
+        isDay15
       )
       .withLPP1CalculationFields(isDay15)
       .withFullyDueAmount()
@@ -87,12 +94,14 @@ object LatePaymentPenaltyDetails {
 
 
   def lpp2DueOrOverdue(reportingPeriod: ReportingPeriod,
-                       amount: BigDecimal): LPPDetails = {
+                       amount: BigDecimal,
+                       principalChargeRef: String): LPPDetails = {
     LPPDetails.create(
         reportingPeriod,
         "LPP2",
         "P",
-        amount = amount
+        amount = amount,
+        chargeRef = Some(principalChargeRef)
       )
       .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
@@ -107,64 +116,28 @@ object LatePaymentPenaltyDetails {
         reportingPeriod,
         "LPP1",
         "P",
-        amount = amount
+        amount = amount,
+        isDay15
       )
-      .withIncomeTaxPaid(reportingPeriod.getIncomeTaxPaidDate(if(isDay15) 20 else 35))
+      .withIncomeTaxPaid(reportingPeriod, isDay15)
       .withLPP1CalculationFields(isDay15)
       .withPartiallyPaidAmount(amountPaid)
   }
 
   def lpp2PartiallyPaid(reportingPeriod: ReportingPeriod,
                         amount: BigDecimal,
-                        amountPaid: BigDecimal): LPPDetails = {
+                        amountPaid: BigDecimal,
+                        principalChargeRef: String): LPPDetails = {
     LPPDetails.create(
         reportingPeriod,
         "LPP2",
         "P",
-        amount = amount
+        amount = amount,
+        chargeRef = Some(principalChargeRef)
       )
-      .withIncomeTaxPaid(reportingPeriod.getIncomeTaxPaidDate(35))
+      .withIncomeTaxPaid(reportingPeriod, false)
       .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
       .withPartiallyPaidAmount(amountPaid)
   }
-
-  def lpp1Cancelled(reportingPeriod: ReportingPeriod,
-                    amount: BigDecimal,
-                    isDay15: Boolean = false,
-                    appealLevel: String = "First"): LPPDetails = {
-
-    val appealInformation = AppealInformation.create("Upheld", appealLevel)
-
-    lpp1Penalty(reportingPeriod, amount, isDay15)
-      .withAppealInformation(appealInformation)
-  }
-
-
-
-  def lpp2Cancelled(reportingPeriod: ReportingPeriod,
-                    amount: BigDecimal,
-                    appealLevel: String = "First"): LPPDetails = {
-
-    val appealInformation = AppealInformation.create("Upheld", appealLevel)
-
-    lpp2Penalty(reportingPeriod, amount)
-      .withAppealInformation(appealInformation)
-  }
-
-
-
-//  def overdue(reportingPeriod: ReportingPeriod,
-//              penaltyOrder: String = "1",
-//              returnSubmitted: Boolean = false,
-//              addAdditionalIncomeSource: Boolean = false): LSPDetails = {
-//    val lateSubmissions = LateSubmission.create(reportingPeriod,
-//      returnSubmitted,
-//      addAdditionalIncomeSource
-//    )
-//    LSPDetails.create(
-//      reportingPeriod = reportingPeriod,
-//      penaltyOrder = penaltyOrder
-//    ).withLateSubmission(lateSubmissions)
-//  }
 }

@@ -13,22 +13,22 @@
             "penaltyChargeAmount" : 0
           },
           "lspDetails" : [ {
-            "penaltyNumber" : "005000000321",
-            "penaltyCreationDate" : "2025-07-31",
+            "penaltyNumber" : "005000001099",
+            "penaltyCreationDate" : "2025-08-07",
             "penaltyExpiryDate" : "2027-07-05",
             "triggeringProcess" : "ICRU",
-            "penaltyOrder" : "1",
             "penaltyCategory" : "P",
             "penaltyStatus" : "Inactive",
             "expiryReason" : "NAT",
-            "communicationsDate" : "2025-07-31",
+            "communicationsDate" : "2025-08-07",
             "lateSubmissions" : [ {
               "lateSubmissionID" : "001",
               "incomeSource" : "JB Painting and Decorating",
               "taxReturnStatus" : "Fulfilled",
               "taxPeriodStartDate" : "2025-04-06",
               "taxPeriodEndDate" : "2025-07-05",
-              "taxPeriodDueDate" : "2025-07-31"
+              "taxPeriodDueDate" : "2025-08-07",
+              "returnReceiptDate" : "2025-09-01"
             } ]
           } ]
         }

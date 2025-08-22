@@ -14,7 +14,7 @@
             "pocAchievementDate" : "2029-02-28"
           },
           "lspDetails" : [ {
-            "penaltyNumber" : "005000000324",
+            "penaltyNumber" : "005000001034",
             "penaltyCreationDate" : "2028-01-31",
             "penaltyExpiryDate" : "2029-04-05",
             "triggeringProcess" : "ICRU",
@@ -28,7 +28,8 @@
               "taxReturnStatus" : "Fulfilled",
               "taxPeriodStartDate" : "2026-04-06",
               "taxPeriodEndDate" : "2027-04-05",
-              "taxPeriodDueDate" : "2028-01-31"
+              "taxPeriodDueDate" : "2028-01-31",
+              "returnReceiptDate" : "2028-02-23"
             } ],
             "appealInformation" : [ {
               "appealStatus" : "A",
@@ -39,55 +40,56 @@
             "chargeOutstandingAmount" : 200,
             "chargeDueDate" : "2028-03-16"
           }, {
-            "penaltyNumber" : "005000000323",
-            "penaltyCreationDate" : "2028-01-31",
-            "penaltyExpiryDate" : "2030-01-05",
+            "penaltyNumber" : "005000001053",
+            "penaltyCreationDate" : "2027-11-07",
+            "penaltyExpiryDate" : "2029-10-05",
             "triggeringProcess" : "ICRU",
             "penaltyOrder" : "3",
             "penaltyCategory" : "P",
             "penaltyStatus" : "Active",
-            "communicationsDate" : "2028-01-31",
+            "communicationsDate" : "2027-11-07",
             "lateSubmissions" : [ {
               "lateSubmissionID" : "001",
               "incomeSource" : "JB Painting and Decorating",
               "taxReturnStatus" : "Fulfilled",
-              "taxPeriodStartDate" : "2027-10-06",
-              "taxPeriodEndDate" : "2028-01-05",
-              "taxPeriodDueDate" : "2028-01-31"
+              "taxPeriodStartDate" : "2027-07-06",
+              "taxPeriodEndDate" : "2027-10-05",
+              "taxPeriodDueDate" : "2027-11-07",
+              "returnReceiptDate" : "2027-12-01"
             } ]
           }, {
-            "penaltyNumber" : "005000000322",
-            "penaltyCreationDate" : "2027-10-31",
-            "penaltyExpiryDate" : "2029-10-05",
+            "penaltyNumber" : "005000001018",
+            "penaltyCreationDate" : "2027-08-07",
+            "penaltyExpiryDate" : "2029-07-05",
             "triggeringProcess" : "ICRU",
             "penaltyOrder" : "2",
             "penaltyCategory" : "P",
             "penaltyStatus" : "Active",
-            "communicationsDate" : "2027-10-31",
-            "lateSubmissions" : [ {
-              "lateSubmissionID" : "001",
-              "incomeSource" : "JB Painting and Decorating",
-              "taxReturnStatus" : "Open",
-              "taxPeriodStartDate" : "2027-07-06",
-              "taxPeriodEndDate" : "2027-10-05",
-              "taxPeriodDueDate" : "2027-10-31"
-            } ]
-          }, {
-            "penaltyNumber" : "005000000321",
-            "penaltyCreationDate" : "2027-07-31",
-            "penaltyExpiryDate" : "2029-07-05",
-            "triggeringProcess" : "ICRU",
-            "penaltyOrder" : "1",
-            "penaltyCategory" : "P",
-            "penaltyStatus" : "Active",
-            "communicationsDate" : "2027-07-31",
+            "communicationsDate" : "2027-08-07",
             "lateSubmissions" : [ {
               "lateSubmissionID" : "001",
               "incomeSource" : "JB Painting and Decorating",
               "taxReturnStatus" : "Open",
               "taxPeriodStartDate" : "2027-04-06",
               "taxPeriodEndDate" : "2027-07-05",
-              "taxPeriodDueDate" : "2027-07-31"
+              "taxPeriodDueDate" : "2027-08-07"
+            } ]
+          }, {
+            "penaltyNumber" : "005000001079",
+            "penaltyCreationDate" : "2027-05-07",
+            "penaltyExpiryDate" : "2029-04-05",
+            "triggeringProcess" : "ICRU",
+            "penaltyOrder" : "1",
+            "penaltyCategory" : "P",
+            "penaltyStatus" : "Active",
+            "communicationsDate" : "2027-05-07",
+            "lateSubmissions" : [ {
+              "lateSubmissionID" : "001",
+              "incomeSource" : "JB Painting and Decorating",
+              "taxReturnStatus" : "Open",
+              "taxPeriodStartDate" : "2027-01-06",
+              "taxPeriodEndDate" : "2027-04-05",
+              "taxPeriodDueDate" : "2027-05-07"
             } ]
           } ]
         }

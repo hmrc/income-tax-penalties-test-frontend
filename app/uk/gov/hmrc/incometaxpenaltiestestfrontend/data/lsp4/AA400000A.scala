@@ -38,17 +38,17 @@ object AA400000A extends UserDetailsData {
     )
 
   val lspPenalty2 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(3)),
+    ReportingPeriod(2027, Some(2)),
     penaltyOrder = "3",
     returnSubmitted = true
   )
 
   val lspPenalty3 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(2)),
+    ReportingPeriod(2027, Some(1)),
     penaltyOrder = "2"
   )
   val lspPenalty4 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(1))
+    ReportingPeriod(2027, Some(0))
   )
 
   override val lsp: Option[LSP] = Some(LSP(
@@ -58,23 +58,22 @@ object AA400000A extends UserDetailsData {
 
   override def optComplianceData: Option[CompliancePayload] = Some(
     CompliancePayload.apply(nino)
-      .withObligationDetail(ReportingPeriod(2029, None), false)
-      .withObligationDetail(ReportingPeriod(2028, Some(3)), false)
       .withObligationDetail(ReportingPeriod(2028, None), false)
-      .withObligationDetail(ReportingPeriod(2028, Some(2)), false)
+      .withObligationDetail(ReportingPeriod(2028, Some(3)), false)
       .withObligationDetail(ReportingPeriod(2028, Some(1)), false)
       .withObligationDetail(ReportingPeriod(2028, Some(0)), false)
+      .withObligationDetail(ReportingPeriod(2027, Some(3)), false)
       .withObligationDetail(ReportingPeriod(2027, None), false)
-      .withObligationDetail(ReportingPeriod(2027, Some(3)), true)
       .withObligationDetail(ReportingPeriod(2027, Some(2)), true)
       .withObligationDetail(ReportingPeriod(2027, Some(1)), true)
+      .withObligationDetail(ReportingPeriod(2027, Some(0)), true)
   )
 
   override val nino: String = "AA400000A"
   override val description: String = "LSP4 - penalty due, and under first stage appeal"
   override val descriptionOverdue: Option[String] = Some("LSP4 - penalty overdue, and under first stage appeal")
-  override val timemachineDate: String = "01/02/2028"
-  override val timeMachineDateOverdue: Option[String] = Some("01/05/2028")
+  override val timemachineDate: String = "28/02/2028"
+  override val timeMachineDateOverdue: Option[String] = Some("30/03/2028")
   override val mtdItId: String = "400000"
   override val utr: String = "0000400000"
 }

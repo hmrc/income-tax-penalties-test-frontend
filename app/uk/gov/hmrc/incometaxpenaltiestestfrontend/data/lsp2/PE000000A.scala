@@ -18,7 +18,6 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp2
 
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
 
 object PE000000A extends UserDetailsData {
@@ -40,16 +39,9 @@ object PE000000A extends UserDetailsData {
     lspDetails = Seq(lspPenalty2, lspPenalty1)
   ))
 
-  override def optComplianceData: Option[CompliancePayload] = Some(
-    CompliancePayload.apply(nino)
-      .withObligationDetail(ReportingPeriod(2028, Some(0)), false)
-      .withObligationDetail(ReportingPeriod(2027, Some(3)), false)
-      .withObligationDetail(ReportingPeriod(2027, Some(2)), false)
-      .withObligationDetail(ReportingPeriod(2027, Some(1)), true)
-  )
   override val nino: String = "PE000000A"
   override val mtdItId: String = "XTIT12345678912"
   override val utr: String = "1000078912"
   override val description: String = "2 LSPs - (2 LSP ACTIVE)"
-  override val timemachineDate: String = "01/01/2028"
+  override val timemachineDate: String = "30/11/2027"
 }

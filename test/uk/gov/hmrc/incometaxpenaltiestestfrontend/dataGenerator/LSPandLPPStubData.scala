@@ -20,7 +20,8 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp5.AA511110A
+
+import java.io.{File, FileWriter}
 
 class LSPandLPPStubData extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
@@ -28,29 +29,47 @@ class LSPandLPPStubData extends AnyWordSpec with Matchers with GuiceOneAppPerSui
   val lspUsers = UserData.allLSPUserData
   val allUsers = (lppUsers ++ lspUsers ++ UserData.both)
 
-  (UserData.lsp5UserData ++ UserData.lsp4UserData).foreach {user =>
-    s"${user.nino} user" should {
-      "have correct penalty details json HIP json models" in {
-        val details = user.penaltyDetails()
-        val detailsJson = user.getJson(details)
-        println(detailsJson)
-      }
+  def writeToFile(path: String, detailsJson: String) = {
+    val fileWriter = new FileWriter(new File(path))
+    fileWriter.write(detailsJson)
+    fileWriter.close()
+  }
 
-//      if(user.optFinancialData().isDefined) {
-//        "have correct financial details json HIP json models" in {
-//          val details = user.optFinancialDetails
-//          val detailsJson = details.map(user.getJson(_))
-//          println(detailsJson.getOrElse("NO DATA"))
-//        }
-//      }
-//
-//      if(user.optComplianceData.isDefined) {
-//        "have correct compliance json HIP json models" in {
-//          val details = user.optComplianceData
-//          val detailsJson = details.map(user.getJson(_))
-//          println(detailsJson.getOrElse("NO DATA"))
-//        }
-//      }
+  allUsers.foreach { user =>
+    if (user.nino == "AB311140A") {
+      val pathStart = System.getProperty("user.dir") + s"/conf/data"
+      s"${user.nino} user" should {
+        "have correct penalty details json HIP json models and write to file" in {
+          val path = s"$pathStart/hip_penaltiesDetailsData/${user.nino}.json"
+          val details = user.penaltyDetails()
+          val detailsJson = user.getJson(details)
+          writeToFile(path, detailsJson)
+        }
+
+        if (user.optFinancialDetails.isDefined) {
+          val financialDetails = user.optFinancialDetails.get
+          "have correct financial details json HIP json models and write to file" in {
+            val path = s"$pathStart/hip_financialDetailsData/${user.nino}.json"
+            val detailsJson = user.getJson(financialDetails)
+            writeToFile(path, detailsJson)
+          }
+        }
+
+        if (user.optComplianceData.isDefined) {
+          val complianceData = user.optComplianceData.get
+          "have correct compliance json and write to files for local stub" in {
+            val path = s"$pathStart/obligationDataStub/${user.nino}.json"
+            val detailsJson = user.getJson(complianceData, isComplianceForLocalStub = true)
+            writeToFile(path, detailsJson)
+          }
+
+          "have correct compliance json and write to files for penalties stub" in {
+            val path = s"$pathStart/obligationData/${user.nino}.json"
+            val detailsJson = user.getJson(complianceData, true)
+            writeToFile(path, detailsJson)
+          }
+        }
+      }
     }
   }
 
