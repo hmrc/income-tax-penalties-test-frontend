@@ -3,7 +3,7 @@
   "idNumber" : "AL300001A",
   "payload" : {
     "success" : {
-      "processingDate" : "2025-04-05",
+      "processingDate" : "2025-04-05T10:15:10Z",
       "financialData" : {
         "totalisation" : {
           "regimeTotalisation" : {

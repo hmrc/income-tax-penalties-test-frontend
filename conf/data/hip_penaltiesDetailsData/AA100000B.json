@@ -14,7 +14,7 @@
         "lpp" : {
           "manualLPPIndicator" : false,
           "lppDetails" : [ {
-            "principalChargeReference" : "XJ002616061071",
+            "principalChargeReference" : "XJ002616061098",
             "penaltyStatus" : "A",
             "penaltyAmountAccruing" : 40,
             "penaltyAmountPosted" : 0,
@@ -29,7 +29,7 @@
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 2,
             "penaltyChargeCreationDate" : "2026-02-15",
-            "penaltyChargeReference" : "XJ002616061071",
+            "penaltyChargeReference" : "XJ002616061098",
             "penaltyChargeDueDate" : "2026-02-20",
             "principalChargeLatestClearing" : "2026-02-20"
           } ]

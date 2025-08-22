@@ -67,7 +67,7 @@ trait UserDetailsData {
 
   def optFinancialDetails: Option[FinancialDetails] = optFinancialData().map{financialData =>
     FinancialDetails(
-      processingDate = s"$processingDateYear-04-05",
+      processingDate = s"$processingDateYear-04-05T10:15:10Z",
       financialData = Some(financialData)
     )
   }

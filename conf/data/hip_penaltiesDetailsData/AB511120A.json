@@ -14,7 +14,7 @@
             "pocAchievementDate" : "2028-02-07"
           },
           "lspDetails" : [ {
-            "penaltyNumber" : "005000001059",
+            "penaltyNumber" : "005000001094",
             "penaltyCreationDate" : "2027-05-07",
             "penaltyExpiryDate" : "2029-04-05",
             "triggeringProcess" : "ICRU",
@@ -51,7 +51,7 @@
             "chargeAmount" : 200,
             "chargeDueDate" : "2027-06-21"
           }, {
-            "penaltyNumber" : "005000001033",
+            "penaltyNumber" : "005000001049",
             "penaltyCreationDate" : "2027-02-07",
             "penaltyExpiryDate" : "2029-01-05",
             "triggeringProcess" : "ICRU",
@@ -62,23 +62,24 @@
             "lateSubmissions" : [ {
               "lateSubmissionID" : "001",
               "incomeSource" : "JB Painting and Decorating",
-              "taxReturnStatus" : "Open",
+              "taxReturnStatus" : "Fulfilled",
               "taxPeriodStartDate" : "2026-10-06",
               "taxPeriodEndDate" : "2027-01-05",
-              "taxPeriodDueDate" : "2027-02-07"
+              "taxPeriodDueDate" : "2027-02-07",
+              "returnReceiptDate" : "2027-03-01"
             }, {
               "lateSubmissionID" : "002",
               "incomeSource" : "UK property rental income",
-              "taxReturnStatus" : "Open",
+              "taxReturnStatus" : "Fulfilled",
               "taxPeriodStartDate" : "2026-10-06",
               "taxPeriodEndDate" : "2027-01-05",
-              "taxPeriodDueDate" : "2027-02-07"
+              "taxPeriodDueDate" : "2027-02-07",
+              "returnReceiptDate" : "2027-03-01"
             } ],
             "chargeAmount" : 200,
-            "chargeOutstandingAmount" : 200,
             "chargeDueDate" : "2027-03-24"
           }, {
-            "penaltyNumber" : "005000001021",
+            "penaltyNumber" : "005000001088",
             "penaltyCreationDate" : "2027-01-31",
             "penaltyExpiryDate" : "2028-04-05",
             "triggeringProcess" : "ICRU",
@@ -104,7 +105,7 @@
               "returnReceiptDate" : "2027-02-22"
             } ]
           }, {
-            "penaltyNumber" : "005000001050",
+            "penaltyNumber" : "005000001006",
             "penaltyCreationDate" : "2026-11-07",
             "penaltyExpiryDate" : "2028-10-05",
             "triggeringProcess" : "ICRU",
@@ -130,7 +131,7 @@
               "returnReceiptDate" : "2026-12-01"
             } ]
           }, {
-            "penaltyNumber" : "005000001036",
+            "penaltyNumber" : "005000001024",
             "penaltyCreationDate" : "2026-08-07",
             "penaltyExpiryDate" : "2028-07-05",
             "triggeringProcess" : "ICRU",
