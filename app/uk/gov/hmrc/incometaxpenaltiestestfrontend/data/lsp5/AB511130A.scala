@@ -25,25 +25,22 @@ object AB511130A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
     activePenaltyPoints = 5,
-    pocAchievementDate = Some("2028-11-30")
+    pocAchievementDate = Some("2028-08-07")
   )
   val lspPenalty1a = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
     ReportingPeriod(2028, Some(0)),
     addAdditionalIncomeSource = true,
-      penaltyOrder = "8",
     appealLevel = "Tribunal")
     .withPenaltyCategory("T")
 
   val lspPenalty1b = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
     ReportingPeriod(2027, Some(3)),
-    penaltyOrder = "7",
     addAdditionalIncomeSource = true,
     appealLevel = "Second")
     .withPenaltyCategory("T")
 
   val lspPenalty1c = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
       ReportingPeriod(2027, None),
-    penaltyOrder = "6",
       addAdditionalIncomeSource = true)
     .withPenaltyCategory("T")
 
@@ -53,7 +50,7 @@ object AB511130A extends UserDetailsData {
       addAdditionalIncomeSource = true)
     .withPenaltyCategory("T")
     .withAppealInformation(
-      AppealInformation.create("Rejected", "Tribunal")
+      AppealInformation.create("UnderAppeal", "Tribunal")
     )
 
   val lspPenalty3 = LateSubmissionPenaltyDetails.paid(
@@ -62,7 +59,7 @@ object AB511130A extends UserDetailsData {
     addAdditionalIncomeSource = true)
     .withPenaltyCategory("T")
     .withAppealInformation(
-    AppealInformation.create("Rejected", "Tribunal")
+    AppealInformation.create("UnderAppeal", "Second")
   )
 
   val lspPenalty4 = LateSubmissionPenaltyDetails.active(
@@ -71,30 +68,33 @@ object AB511130A extends UserDetailsData {
     returnSubmitted = true,
     addAdditionalIncomeSource = true)
 
+
   val lspPenalty5 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2026, None),
+    ReportingPeriod(2026, Some(3)),
     penaltyOrder = "2",
     returnSubmitted = true,
     addAdditionalIncomeSource = true)
 
   val lspPenalty6 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2026, Some(3)),
+    ReportingPeriod(2026, None),
     returnSubmitted = true,
     addAdditionalIncomeSource = true)
+    .withAppealInformation(
+    AppealInformation.create("Rejected", "Tribunal"))
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
     lspDetails = Seq(lspPenalty1a, lspPenalty1b, lspPenalty1c,
-      lspPenalty3, lspPenalty4, lspPenalty5,
+      lspPenalty2, lspPenalty3, lspPenalty4, lspPenalty5,
       lspPenalty6)
   ))
 
   override def optComplianceData: Option[CompliancePayload] = Some(
     CompliancePayload.apply(nino)
-      .withObligationDetail(ReportingPeriod(2028, Some(2)), false)
       .withObligationDetail(ReportingPeriod(2028, Some(1)), false)
       .withObligationDetail(ReportingPeriod(2028, Some(0)), true)
       .withObligationDetail(ReportingPeriod(2027, Some(3)), true)
+      .withObligationDetail(ReportingPeriod(2027, None), true)
       .withObligationDetail(ReportingPeriod(2027, Some(2)), true)
       .withObligationDetail(ReportingPeriod(2027, Some(1)), true)
       .withObligationDetail(ReportingPeriod(2027, Some(0)), true)

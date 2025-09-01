@@ -9,15 +9,47 @@
       },
       "obligationDetails" : [ {
         "status" : "O",
-        "inboundCorrespondenceFromDate" : "2028-01-06",
-        "inboundCorrespondenceToDate" : "2028-04-05",
-        "inboundCorrespondenceDueDate" : "2028-04-30",
+        "inboundCorrespondenceFromDate" : "2029-01-06",
+        "inboundCorrespondenceToDate" : "2029-04-05",
+        "inboundCorrespondenceDueDate" : "2029-05-07",
         "periodKey" : "#001"
       }, {
         "status" : "O",
+        "inboundCorrespondenceFromDate" : "2028-10-06",
+        "inboundCorrespondenceToDate" : "2029-01-05",
+        "inboundCorrespondenceDueDate" : "2029-02-07",
+        "periodKey" : "#001"
+      }, {
+        "status" : "O",
+        "inboundCorrespondenceFromDate" : "2027-04-06",
+        "inboundCorrespondenceToDate" : "2028-04-05",
+        "inboundCorrespondenceDueDate" : "2029-01-31",
+        "periodKey" : "#001"
+      }, {
+        "status" : "O",
+        "inboundCorrespondenceFromDate" : "2028-07-06",
+        "inboundCorrespondenceToDate" : "2028-10-05",
+        "inboundCorrespondenceDueDate" : "2028-11-07",
+        "periodKey" : "#001"
+      }, {
+        "status" : "O",
+        "inboundCorrespondenceFromDate" : "2028-04-06",
+        "inboundCorrespondenceToDate" : "2028-07-05",
+        "inboundCorrespondenceDueDate" : "2028-08-07",
+        "periodKey" : "#001"
+      }, {
+        "status" : "F",
+        "inboundCorrespondenceFromDate" : "2028-01-06",
+        "inboundCorrespondenceToDate" : "2028-04-05",
+        "inboundCorrespondenceDateReceived" : "2028-06-01",
+        "inboundCorrespondenceDueDate" : "2028-05-07",
+        "periodKey" : "#001"
+      }, {
+        "status" : "F",
         "inboundCorrespondenceFromDate" : "2027-10-06",
         "inboundCorrespondenceToDate" : "2028-01-05",
-        "inboundCorrespondenceDueDate" : "2028-01-31",
+        "inboundCorrespondenceDateReceived" : "2028-03-01",
+        "inboundCorrespondenceDueDate" : "2028-02-07",
         "periodKey" : "#001"
       }, {
         "status" : "O",
@@ -26,38 +58,18 @@
         "inboundCorrespondenceDueDate" : "2028-01-31",
         "periodKey" : "#001"
       }, {
-        "status" : "O",
+        "status" : "F",
         "inboundCorrespondenceFromDate" : "2027-07-06",
         "inboundCorrespondenceToDate" : "2027-10-05",
-        "inboundCorrespondenceDueDate" : "2027-10-31",
+        "inboundCorrespondenceDateReceived" : "2027-12-01",
+        "inboundCorrespondenceDueDate" : "2027-11-07",
         "periodKey" : "#001"
       }, {
         "status" : "F",
         "inboundCorrespondenceFromDate" : "2027-04-06",
         "inboundCorrespondenceToDate" : "2027-07-05",
-        "inboundCorrespondenceDateReceived" : "2027-07-30",
-        "inboundCorrespondenceDueDate" : "2027-07-31",
-        "periodKey" : "#001"
-      }, {
-        "status" : "F",
-        "inboundCorrespondenceFromDate" : "2027-01-06",
-        "inboundCorrespondenceToDate" : "2027-04-05",
-        "inboundCorrespondenceDateReceived" : "2027-04-29",
-        "inboundCorrespondenceDueDate" : "2027-04-30",
-        "periodKey" : "#001"
-      }, {
-        "status" : "F",
-        "inboundCorrespondenceFromDate" : "2026-10-06",
-        "inboundCorrespondenceToDate" : "2027-01-05",
-        "inboundCorrespondenceDateReceived" : "2027-01-30",
-        "inboundCorrespondenceDueDate" : "2027-01-31",
-        "periodKey" : "#001"
-      }, {
-        "status" : "F",
-        "inboundCorrespondenceFromDate" : "2025-04-06",
-        "inboundCorrespondenceToDate" : "2026-04-05",
-        "inboundCorrespondenceDateReceived" : "2027-01-25",
-        "inboundCorrespondenceDueDate" : "2027-01-31",
+        "inboundCorrespondenceDateReceived" : "2027-09-01",
+        "inboundCorrespondenceDueDate" : "2027-08-07",
         "periodKey" : "#001"
       } ]
     } ]

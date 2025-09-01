@@ -31,23 +31,29 @@ object LateSubmissionPenaltyDetails {
     )
     LSPDetails.create(
       reportingPeriod = reportingPeriod,
-      penaltyOrder = penaltyOrder
+      penaltyOrder = Some(penaltyOrder)
     ).withLateSubmission(lateSubmissions)
   }
 
   def expired(reportingPeriod: ReportingPeriod,
-              penaltyOrder: String = "1",
-              addAdditionalIncomeSource: Boolean = false): LSPDetails = {
+              addAdditionalIncomeSource: Boolean = false,
+              thresholdMet: Boolean = false): LSPDetails = {
     val lateSubmissions = LateSubmission.create(reportingPeriod,
       true,
       addAdditionalIncomeSource
     )
-    LSPDetails.create(
+    val defaultDetails = LSPDetails.create(
       reportingPeriod = reportingPeriod,
-      penaltyOrder = penaltyOrder,
+      penaltyOrder = None,
       penaltyStatus = Some("Inactive")
     ).withLateSubmission(lateSubmissions)
       .withExpiryReason("NAT")
+
+    if(thresholdMet) {
+      defaultDetails
+        .withPenaltyCategory("T")
+        .withCharge(200.00, reportingPeriod.penaltyChargeDueDate)
+    } else defaultDetails
   }
 
   def paid(reportingPeriod: ReportingPeriod,
@@ -60,7 +66,7 @@ object LateSubmissionPenaltyDetails {
     )
     LSPDetails.create(
         reportingPeriod = reportingPeriod,
-        penaltyOrder = penaltyOrder
+        penaltyOrder = Some(penaltyOrder)
       )
       .withLateSubmission(lateSubmissions)
       .withCharge(chargeAmount, reportingPeriod.penaltyChargeDueDate)
@@ -77,40 +83,46 @@ object LateSubmissionPenaltyDetails {
     )
     LSPDetails.create(
         reportingPeriod = reportingPeriod,
-        penaltyOrder = penaltyOrder
+        penaltyOrder = Some(penaltyOrder)
       ).withLateSubmission(lateSubmissions)
       .withCharge(chargeAmount, reportingPeriod.penaltyChargeDueDate)
       .withChargeOutstandingAmount(chargeAmount)
   }
 
   def cancelledLateSubmissionPenalty(reportingPeriod: ReportingPeriod,
-                                     penaltyOrder: String = "1",
                                      addAdditionalIncomeSource: Boolean = false,
                                      appealLevel: String = "First",
-                                     expiryReason: String = "APP"): LSPDetails = {
+                                     expiryReason: String = "APP",
+                                     thresholdMet: Boolean = false): LSPDetails = {
     val lateSubmissions = LateSubmission.create(reportingPeriod,
       true,
       addAdditionalIncomeSource
     )
     val appealInformation = AppealInformation.create("Upheld", appealLevel)
 
-    LSPDetails.create(
+    val defaultDetails = LSPDetails.create(
         reportingPeriod = reportingPeriod,
-        penaltyOrder = penaltyOrder,
+        penaltyOrder = None,
         penaltyStatus = Some("Inactive")
       ).withLateSubmission(lateSubmissions)
       .withExpiryReason(expiryReason)
       .withAppealInformation(appealInformation)
+
+    if(thresholdMet) {
+      defaultDetails
+        .withPenaltyCategory("T")
+        .withCharge(200.00, reportingPeriod.penaltyChargeDueDate)
+    } else defaultDetails
   }
 
   def adjusted(reportingPeriod: ReportingPeriod,
-               penaltyOrder: String = "1",
-               isRemoved: Boolean = false): LSPDetails = {
-    val lspDetails = if(isRemoved) {
-      cancelledLateSubmissionPenalty(reportingPeriod, penaltyOrder, expiryReason = "FAP")
-    } else {
-      active(reportingPeriod, penaltyOrder)
-    }
-    lspDetails.withAdjustment()
+               penaltyOrder: String = "1"): LSPDetails = {
+    active(reportingPeriod, penaltyOrder)
+      .withAdjustment()
+  }
+
+  def removedFollowingAdjusted(reportingPeriod: ReportingPeriod): LSPDetails = {
+    cancelledLateSubmissionPenalty(reportingPeriod, expiryReason = "FAP")
+      .withAdjustment()
   }
 }

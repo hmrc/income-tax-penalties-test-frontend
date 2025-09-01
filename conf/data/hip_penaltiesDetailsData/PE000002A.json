@@ -19,21 +19,22 @@
             "penaltyChargeAmount" : 0
           },
           "lspDetails" : [ {
-            "penaltyNumber" : "005000000321",
-            "penaltyCreationDate" : "2028-01-31",
+            "penaltyNumber" : "005000001081",
+            "penaltyCreationDate" : "2028-02-07",
             "penaltyExpiryDate" : "2030-01-05",
             "triggeringProcess" : "ICRU",
             "penaltyOrder" : "1",
             "penaltyCategory" : "P",
             "penaltyStatus" : "Active",
-            "communicationsDate" : "2028-01-31",
+            "communicationsDate" : "2028-02-07",
             "lateSubmissions" : [ {
               "lateSubmissionID" : "001",
               "incomeSource" : "JB Painting and Decorating",
               "taxReturnStatus" : "Fulfilled",
               "taxPeriodStartDate" : "2027-10-06",
               "taxPeriodEndDate" : "2028-01-05",
-              "taxPeriodDueDate" : "2028-01-31"
+              "taxPeriodDueDate" : "2028-02-07",
+              "returnReceiptDate" : "2028-03-01"
             } ]
           } ]
         },
@@ -44,8 +45,8 @@
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 46.02,
-            "principalChargeBillingFrom" : "2027-04-05",
-            "principalChargeBillingTo" : "2028-04-06",
+            "principalChargeBillingFrom" : "2027-04-06",
+            "principalChargeBillingTo" : "2028-04-05",
             "principalChargeDueDate" : "2029-01-31",
             "principalChargeDocNumber" : "DOC1",
             "principalChargeMainTr" : "4720",
@@ -57,16 +58,17 @@
             "lpp1HRCalculationAmt" : 1150.5,
             "lpp1HRDays" : "30",
             "lpp1HRPercentage" : 2,
-            "penaltyChargeCreationDate" : "2029-02-15",
+            "penaltyChargeCreationDate" : "2029-03-03",
             "penaltyChargeReference" : "PE888881102202",
-            "penaltyChargeDueDate" : "2029-03-17"
+            "penaltyChargeDueDate" : "2029-03-17",
+            "principalChargeLatestClearing" : "2029-03-17"
           }, {
             "principalChargeReference" : "PE888881102201",
             "penaltyStatus" : "A",
             "penaltyAmountAccruing" : 46.02,
             "penaltyAmountPosted" : 0,
-            "principalChargeBillingFrom" : "2027-04-05",
-            "principalChargeBillingTo" : "2028-04-06",
+            "principalChargeBillingFrom" : "2027-04-06",
+            "principalChargeBillingTo" : "2028-04-05",
             "principalChargeDueDate" : "2029-01-31",
             "principalChargeDocNumber" : "DOC1",
             "principalChargeMainTr" : "4720",
@@ -80,10 +82,10 @@
             "lpp1HRPercentage" : 2,
             "lpp2Days" : "31",
             "lpp2Percentage" : 10,
-            "penaltyChargeCreationDate" : "2029-02-15",
+            "penaltyChargeCreationDate" : "2029-03-03",
             "penaltyChargeReference" : "PE888881102201",
             "penaltyChargeDueDate" : "2029-03-17",
-            "principalChargeLatestClearing" : "2029-03-30"
+            "principalChargeLatestClearing" : "2029-03-17"
           } ]
         }
       }

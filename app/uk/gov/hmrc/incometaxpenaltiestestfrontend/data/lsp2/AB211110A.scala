@@ -25,10 +25,11 @@ object AB211110A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
     activePenaltyPoints = 2,
-    regimeThreshold = 2
+    regimeThreshold = 2,
+    pocAchievementDate = Some("2029-02-28")
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty1 = LateSubmissionPenaltyDetails.dueOrOverdue(
     ReportingPeriod(2027, None),
     penaltyOrder = "2",
     addAdditionalIncomeSource = true)
@@ -43,10 +44,17 @@ object AB211110A extends UserDetailsData {
     lspDetails = Seq(lspPenalty1, lspPenalty2)
   ))
 
-  override def optComplianceData: Option[CompliancePayload] = None
+  override def optComplianceData: Option[CompliancePayload] = Some(
+    CompliancePayload.apply(nino)
+      .withObligationDetail(ReportingPeriod(2028, None), false)
+      .withObligationDetail(ReportingPeriod(2027, None), false)
+      .withObligationDetail(ReportingPeriod(2026, None), true)
+  )
   override val nino: String = "AB211110A"
-  override val description: String = "LSP2 Return - threshold reached"
-  override val timemachineDate: String = "01/02/2028"
+  override val description: String = "LSP2 Return - threshold reached and due"
+  override val descriptionOverdue: Option[String] = Some("LSP2 Return - threshold reached and overdue")
+  override val timemachineDate: String = "28/02/2028"
+  override val timeMachineDateOverdue: Option[String] = Some("30/03/2028")
   override val mtdItId: String = "211110"
   override val utr: String = "0000211110"
 }

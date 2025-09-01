@@ -18,6 +18,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails
 
 import play.api.libs.json.{Format, Json}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPPDetails.secureRandom
 
 case class LSPDetails(penaltyNumber: String,
                       penaltyCreationDate: String,
@@ -61,14 +62,15 @@ case class LSPDetails(penaltyNumber: String,
 
 object LSPDetails {
   def create(reportingPeriod: ReportingPeriod,
-            penaltyOrder: String = "1",
+            penaltyOrder: Option[String] = Some("1"),
             penaltyStatus: Option[String] = Some("Active")): LSPDetails = {
-    val penaltyNumber = "00500000032" + penaltyOrder
+    val randomInt = secureRandom.nextInt(100) + 1000
+    val penaltyNumber = "00500000" + randomInt.toString
     LSPDetails(
       penaltyNumber = penaltyNumber,
       penaltyCreationDate = reportingPeriod.taxPeriodDueDate,
       penaltyExpiryDate = reportingPeriod.penaltyExpiryDate,
-      penaltyOrder = Some(penaltyOrder),
+      penaltyOrder = penaltyOrder,
       penaltyStatus = penaltyStatus,
       communicationsDate = Some(reportingPeriod.taxPeriodDueDate)
     )

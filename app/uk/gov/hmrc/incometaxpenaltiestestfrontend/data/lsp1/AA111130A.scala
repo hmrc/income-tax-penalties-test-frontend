@@ -45,5 +45,5 @@ object AA111130A extends UserDetailsData {
   override val mtdItId: String = "11130"
   override val utr: String = "1000011130"
   override val description: String = "1 LSP Update - (ACTIVE - first stage appeal rejected)"
-  override val timemachineDate: String = "01/08/2027"
+  override val timemachineDate: String = "30/08/2027"
 }

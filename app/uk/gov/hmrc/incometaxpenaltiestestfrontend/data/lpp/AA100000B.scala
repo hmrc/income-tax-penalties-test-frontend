@@ -42,7 +42,7 @@ object AA100000B extends UserDetailsData {
       reportingPeriod1,
       amount = 40.00,
       isDay15 = true
-    ).withIncomeTaxPaid(reportingPeriod1.getIncomeTaxPaidDate(20))
+    ).withIncomeTaxPaid(reportingPeriod1, true)
   }
   
   override val lpp = Some(LPP(

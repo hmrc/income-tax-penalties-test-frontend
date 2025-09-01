@@ -37,15 +37,16 @@ object AL200001A extends UserDetailsData {
 
   val reportingPeriod1 = ReportingPeriod(2025, None)
 
-  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
+  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
     reportingPeriod1,
-    amount = 80.00
-  ).withIncomeTaxPaid(reportingPeriod1.getIncomeTaxPaidDate(35))
+    amount = 80.00,
+    latePaymentPenaltyDetails2.principalChargeReference
+  ).withIncomeTaxPaid(reportingPeriod1, false)
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
+  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     reportingPeriod1,
     amount = 40.00)
-    .withIncomeTaxPaid(reportingPeriod1.getIncomeTaxPaidDate(35))
+    .withIncomeTaxPaid(reportingPeriod1, false)
   
   override val lpp = Some(LPP(
     manualLPPIndicator = false,

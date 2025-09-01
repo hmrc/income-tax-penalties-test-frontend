@@ -40,7 +40,8 @@ object UserData {
     AB000000C,
     AB000040A,
     AB000041A,
-    AB000042A
+    AB000042A,
+    AB000050A
   )
 
   val lsp1UserData: Seq[UserDetailsData] = List(
@@ -69,13 +70,17 @@ object UserData {
     AA211120A,
     AA211130A,
     AB211110A,
+    AB211120A,
     PE000000A
   )
 
   val lsp3UserData: Seq[UserDetailsData] = List(
     AA300000A,
     AA311110A,
-    AB311110A
+    AB311110A,
+    AB311120A,
+    AB311130A,
+    AB311140A
   )
 
   val lsp4UserData: Seq[UserDetailsData] = List(
@@ -84,16 +89,20 @@ object UserData {
     AB400010A,
     AB400020A,
     AB411110A,
+    AB411145A,
     PE000001A
   )
 
   val lsp5UserData: Seq[UserDetailsData] = List(
     AA500000A,
+    AA500000B,
     AA511110A,
     AB500010A,
     AB511110A,
     AB511120A,
-    AB511130A
+    AB511130A,
+    AB511140A,
+    AB611150A
   )
 
   val lppUserData: Seq[UserDetailsData] = List(
@@ -107,9 +116,6 @@ object UserData {
     AA222220A,
     AA233330A,
     AA244440A,
-    AL100000A,
-    AL100001A,
-    AL100001B,
     AL200001A,
     AL300001A,
     AL300002A,

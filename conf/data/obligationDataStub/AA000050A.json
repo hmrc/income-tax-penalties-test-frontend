@@ -1,0 +1,81 @@
+{
+  "idType" : "NINO",
+  "idNumber" : "AA000050A",
+  "payload" : {
+    "identification" : {
+      "referenceNumber" : "AA000050A",
+      "referenceType" : "ITSA"
+    },
+    "obligationDetails" : [ {
+      "status" : "F",
+      "inboundCorrespondenceFromDate" : "2027-07-06",
+      "inboundCorrespondenceToDate" : "2027-10-05",
+      "inboundCorrespondenceDateReceived" : "2027-12-01",
+      "inboundCorrespondenceDueDate" : "2027-11-07",
+      "periodKey" : "#001"
+    }, {
+      "status" : "F",
+      "inboundCorrespondenceFromDate" : "2027-04-06",
+      "inboundCorrespondenceToDate" : "2027-07-05",
+      "inboundCorrespondenceDateReceived" : "2027-09-01",
+      "inboundCorrespondenceDueDate" : "2027-08-07",
+      "periodKey" : "#001"
+    }, {
+      "status" : "F",
+      "inboundCorrespondenceFromDate" : "2027-01-06",
+      "inboundCorrespondenceToDate" : "2027-04-05",
+      "inboundCorrespondenceDateReceived" : "2027-06-01",
+      "inboundCorrespondenceDueDate" : "2027-05-07",
+      "periodKey" : "#001"
+    }, {
+      "status" : "F",
+      "inboundCorrespondenceFromDate" : "2026-10-06",
+      "inboundCorrespondenceToDate" : "2027-01-05",
+      "inboundCorrespondenceDateReceived" : "2027-03-01",
+      "inboundCorrespondenceDueDate" : "2027-02-07",
+      "periodKey" : "#001"
+    }, {
+      "status" : "F",
+      "inboundCorrespondenceFromDate" : "2025-04-06",
+      "inboundCorrespondenceToDate" : "2026-04-05",
+      "inboundCorrespondenceDateReceived" : "2027-02-22",
+      "inboundCorrespondenceDueDate" : "2027-01-31",
+      "periodKey" : "#001"
+    }, {
+      "status" : "F",
+      "inboundCorrespondenceFromDate" : "2026-07-06",
+      "inboundCorrespondenceToDate" : "2026-10-05",
+      "inboundCorrespondenceDateReceived" : "2026-12-01",
+      "inboundCorrespondenceDueDate" : "2026-11-07",
+      "periodKey" : "#001"
+    }, {
+      "status" : "F",
+      "inboundCorrespondenceFromDate" : "2026-04-06",
+      "inboundCorrespondenceToDate" : "2026-07-05",
+      "inboundCorrespondenceDateReceived" : "2026-09-01",
+      "inboundCorrespondenceDueDate" : "2026-08-07",
+      "periodKey" : "#001"
+    }, {
+      "status" : "F",
+      "inboundCorrespondenceFromDate" : "2026-01-06",
+      "inboundCorrespondenceToDate" : "2026-04-05",
+      "inboundCorrespondenceDateReceived" : "2026-06-01",
+      "inboundCorrespondenceDueDate" : "2026-05-07",
+      "periodKey" : "#001"
+    }, {
+      "status" : "F",
+      "inboundCorrespondenceFromDate" : "2025-10-06",
+      "inboundCorrespondenceToDate" : "2026-01-05",
+      "inboundCorrespondenceDateReceived" : "2026-03-01",
+      "inboundCorrespondenceDueDate" : "2026-02-07",
+      "periodKey" : "#001"
+    }, {
+      "status" : "F",
+      "inboundCorrespondenceFromDate" : "2024-04-06",
+      "inboundCorrespondenceToDate" : "2025-04-05",
+      "inboundCorrespondenceDateReceived" : "2026-02-22",
+      "inboundCorrespondenceDueDate" : "2026-01-31",
+      "periodKey" : "#001"
+    } ]
+  }
+}

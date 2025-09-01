@@ -54,5 +54,5 @@ object AA100000C extends UserDetailsData {
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
   override val description: String = "1 LPP - 15-30 days, tax paid and penalty paid"
-  override val timemachineDate: String = "30/02/2026"
+  override val timemachineDate: String = "28/02/2026"
 }
