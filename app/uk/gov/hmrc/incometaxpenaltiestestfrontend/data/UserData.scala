@@ -119,7 +119,9 @@ object UserData {
     AL200001A,
     AL300001A,
     AL300002A,
-    AL300003A
+    AL300003A,
+    AA233440A
+
   )
 
   val both = Seq(PE000002A)
