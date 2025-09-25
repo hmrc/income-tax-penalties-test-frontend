@@ -39,7 +39,9 @@ object AA100000A extends UserDetailsData {
 
   val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1Penalty(
     reportingPeriod1,
-    amount = 40.00
+    amount = 40.00,
+    isDay15 = true,
+    isTaxPaid = false
   )
   
   override val lpp = Some(LPP(

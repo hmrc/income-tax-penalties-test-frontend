@@ -8,7 +8,7 @@
         "lpp" : {
           "manualLPPIndicator" : false,
           "lppDetails" : [ {
-            "principalChargeReference" : "XJ002616061044",
+            "principalChargeReference" : "XJ002616061089",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 80,
@@ -29,11 +29,11 @@
             "lpp1HRPercentage" : 2,
             "penaltyChargeCreationDate" : "2025-03-03",
             "communicationsDate" : "2025-03-22",
-            "penaltyChargeReference" : "XJ002616061044",
-            "penaltyChargeDueDate" : "2025-03-17",
+            "penaltyChargeReference" : "XJ002616061089",
+            "penaltyChargeDueDate" : "2025-04-18",
             "principalChargeLatestClearing" : "2025-03-17"
           }, {
-            "principalChargeReference" : "XJ002616061044",
+            "principalChargeReference" : "XJ002616061089",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 80,
@@ -56,8 +56,8 @@
             "lpp2Percentage" : 10,
             "penaltyChargeCreationDate" : "2025-03-03",
             "communicationsDate" : "2025-03-22",
-            "penaltyChargeReference" : "XJ002616061044",
-            "penaltyChargeDueDate" : "2025-03-17",
+            "penaltyChargeReference" : "XJ002616061089",
+            "penaltyChargeDueDate" : "2025-04-18",
             "principalChargeLatestClearing" : "2025-03-17"
           } ]
         }

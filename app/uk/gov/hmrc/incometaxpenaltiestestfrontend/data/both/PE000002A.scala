@@ -48,7 +48,8 @@ object PE000002A extends UserDetailsData {
   )
   val lppPenalty1 = LatePaymentPenaltyDetails.lpp1Penalty(
     reportingPeriod1,
-    amount = 46.02
+    amount = 46.02,
+      isTaxPaid = true
   ).withChargeReference("PE888881102202")
     .withIncomeTaxPaid(reportingPeriod1, false)
 

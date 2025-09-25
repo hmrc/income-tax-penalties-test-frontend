@@ -42,7 +42,8 @@ object AL300001A extends UserDetailsData {
 
   val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1Penalty(
     reportingPeriod3,
-    amount = 40.00
+    amount = 40.00,
+    isTaxPaid = false
   ).withAppealInformation(AppealInformation.create("Upheld", "First"))
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
