@@ -19,7 +19,7 @@
             "penaltyChargeAmount" : 0
           },
           "lspDetails" : [ {
-            "penaltyNumber" : "005000001081",
+            "penaltyNumber" : "005000001027",
             "penaltyCreationDate" : "2028-02-07",
             "penaltyExpiryDate" : "2030-01-05",
             "triggeringProcess" : "ICRU",
@@ -52,6 +52,7 @@
             "principalChargeMainTr" : "4720",
             "principalChargeSubTr" : "SUB1",
             "penaltyCategory" : "LPP1",
+            "penaltyAmountOutstanding" : 46.02,
             "lpp1LRCalculationAmt" : 1150.5,
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 2,
@@ -60,7 +61,7 @@
             "lpp1HRPercentage" : 2,
             "penaltyChargeCreationDate" : "2029-03-03",
             "penaltyChargeReference" : "PE888881102202",
-            "penaltyChargeDueDate" : "2029-03-17",
+            "penaltyChargeDueDate" : "2029-04-18",
             "principalChargeLatestClearing" : "2029-03-17"
           }, {
             "principalChargeReference" : "PE888881102201",
@@ -84,7 +85,7 @@
             "lpp2Percentage" : 10,
             "penaltyChargeCreationDate" : "2029-03-03",
             "penaltyChargeReference" : "PE888881102201",
-            "penaltyChargeDueDate" : "2029-03-17",
+            "penaltyChargeDueDate" : "2029-04-18",
             "principalChargeLatestClearing" : "2029-03-17"
           } ]
         }

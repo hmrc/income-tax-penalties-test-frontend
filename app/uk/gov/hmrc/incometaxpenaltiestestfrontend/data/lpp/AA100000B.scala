@@ -41,7 +41,8 @@ object AA100000B extends UserDetailsData {
     LatePaymentPenaltyDetails.lpp1Penalty(
       reportingPeriod1,
       amount = 40.00,
-      isDay15 = true
+      isDay15 = true,
+      isTaxPaid = true
     ).withIncomeTaxPaid(reportingPeriod1, true)
   }
   
@@ -55,7 +56,6 @@ object AA100000B extends UserDetailsData {
   override val utr: String = "1000010000"
   override val description: String = "1 LPP - 15-30 days, tax paid penalty due in future"
   override val descriptionOverdue: Option[String] = Some("1 LPP - 15-30 days, tax paid penalty overdue")
-  override val timemachineDate: String = "20/02/2026"
+  override val timemachineDate: String = "25/02/2026"
   override val timeMachineDateOverdue: Option[String] = Some("20/05/2026")
-
 }

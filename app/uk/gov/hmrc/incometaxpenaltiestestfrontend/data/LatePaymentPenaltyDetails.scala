@@ -23,11 +23,12 @@ object LatePaymentPenaltyDetails {
 
   def lpp1Penalty(reportingPeriod: ReportingPeriod,
                   amount: BigDecimal,
-                  isDay15: Boolean = false): LPPDetails = {
+                  isDay15: Boolean = false,
+                  isTaxPaid: Boolean): LPPDetails = {
     LPPDetails.create(
       reportingPeriod,
       "LPP1",
-      status = if(isDay15) "A" else "P",
+      status = if(isDay15 && !isTaxPaid) "A" else "P",
       amount = amount,
       isDay15To30 = isDay15
     ).withLPP1CalculationFields(isDay15)

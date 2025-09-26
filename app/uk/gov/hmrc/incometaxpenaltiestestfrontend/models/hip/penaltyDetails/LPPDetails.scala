@@ -55,7 +55,7 @@ case class LPPDetails(principalChargeReference: String,
 
   def withIncomeTaxPaid(reportingPeriod: ReportingPeriod, isDay15: Boolean): LPPDetails = {
     val taxPaidDate = reportingPeriod.getIncomeTaxPaidDate(if(isDay15) 20 else 45)
-    val penChargeDueDate = reportingPeriod.getIncomeTaxPaidDate(if(isDay15) 20 else 45)
+    val penChargeDueDate = reportingPeriod.getPenaltyChargeDueDate(if(isDay15) 20 else 45)
     copy(principalChargeLatestClearing = Some(taxPaidDate),
       penaltyChargeDueDate = Some(penChargeDueDate)
     )
@@ -137,9 +137,9 @@ object LPPDetails extends JsonUtils {
             chargeRef: Option[String] = None): LPPDetails = {
     val randomInt = secureRandom.nextInt(100) + 1000
     val principleChargeRef = chargeRef.getOrElse("XJ00261606" + randomInt.toString)
-    val (amountAccruing, amountPosted): (BigDecimal, BigDecimal) = status match {
-      case "A" => (amount, 0.00)
-      case _ => (0.00, amount)
+    val (amountAccruing, amountPosted, outstandingPenalty): (BigDecimal, BigDecimal, Option[BigDecimal]) = status match {
+      case "A" => (amount, 0.00, None)
+      case _ => (0.00, amount, Some(amount))
     }
     LPPDetails(
       principalChargeReference = principleChargeRef,
@@ -152,7 +152,8 @@ object LPPDetails extends JsonUtils {
       penaltyCategory = Some(category),
       penaltyChargeReference = Some(principleChargeRef),
       penaltyChargeCreationDate = Some(reportingPeriod.penaltyChargeCreationDate(isDay15To30)),
-      penaltyChargeDueDate = Some(reportingPeriod.penaltyChargeDueDate)
+      penaltyChargeDueDate = Some(reportingPeriod.penaltyChargeDueDate),
+      penaltyAmountOutstanding = outstandingPenalty
     )
   }
 }
