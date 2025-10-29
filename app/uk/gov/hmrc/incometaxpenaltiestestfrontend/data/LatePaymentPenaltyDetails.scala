@@ -17,7 +17,7 @@
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.data
 
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LPPDetails}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPPDetails
 
 object LatePaymentPenaltyDetails {
 
@@ -28,7 +28,7 @@ object LatePaymentPenaltyDetails {
     LPPDetails.create(
       reportingPeriod,
       "LPP1",
-      status = if(isDay15 && !isTaxPaid) "A" else "P",
+      status = if (isDay15 && !isTaxPaid) "A" else "P",
       amount = amount,
       isDay15To30 = isDay15
     ).withLPP1CalculationFields(isDay15)
@@ -38,11 +38,11 @@ object LatePaymentPenaltyDetails {
                   amount: BigDecimal,
                   principalChargeRef: String): LPPDetails = {
     LPPDetails.create(
-      reportingPeriod,
-      "LPP2",
-      amount = amount,
-      chargeRef = Some(principalChargeRef)
-    )
+        reportingPeriod,
+        "LPP2",
+        amount = amount,
+        chargeRef = Some(principalChargeRef)
+      )
       .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
   }
@@ -51,15 +51,15 @@ object LatePaymentPenaltyDetails {
                amount: BigDecimal,
                isDay15: Boolean = false): LPPDetails = {
     LPPDetails.create(
-      reportingPeriod,
-      "LPP1",
-      "P",
-      amount = amount,
-      isDay15To30 = isDay15
-    )
-     .withIncomeTaxPaid(reportingPeriod, isDay15)
-    .withLPP1CalculationFields(isDay15)
-    .withFullyPaidAmount(reportingPeriod.defaultPenaltyPaidDate(isDay15))
+        reportingPeriod,
+        "LPP1",
+        "P",
+        amount = amount,
+        isDay15To30 = isDay15
+      )
+      .withIncomeTaxPaid(reportingPeriod, isDay15)
+      .withLPP1CalculationFields(isDay15)
+      .withFullyPaidAmount(reportingPeriod.defaultPenaltyPaidDate(isDay15))
   }
 
   def lpp2Paid(reportingPeriod: ReportingPeriod,
@@ -70,7 +70,7 @@ object LatePaymentPenaltyDetails {
         "LPP2",
         "P",
         amount = amount,
-        chargeRef =Some(principalChargeRef)
+        chargeRef = Some(principalChargeRef)
       )
       .withIncomeTaxPaid(reportingPeriod, false)
       .withLPP1CalculationFields(false)
@@ -93,7 +93,6 @@ object LatePaymentPenaltyDetails {
   }
 
 
-
   def lpp2DueOrOverdue(reportingPeriod: ReportingPeriod,
                        amount: BigDecimal,
                        principalChargeRef: String): LPPDetails = {
@@ -110,9 +109,9 @@ object LatePaymentPenaltyDetails {
   }
 
   def lpp1PartiallyPaid(reportingPeriod: ReportingPeriod,
-              amount: BigDecimal,
+                        amount: BigDecimal,
                         amountPaid: BigDecimal,
-              isDay15: Boolean = false): LPPDetails = {
+                        isDay15: Boolean = false): LPPDetails = {
     LPPDetails.create(
         reportingPeriod,
         "LPP1",

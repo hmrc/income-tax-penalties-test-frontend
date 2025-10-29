@@ -33,6 +33,7 @@
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors
 
 import play.api.libs.json.Json
+import play.api.libs.ws.*
 import uk.gov.hmrc.http.client.HttpClientV2
 import uk.gov.hmrc.http.{HeaderCarrier, StringContextOps}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig

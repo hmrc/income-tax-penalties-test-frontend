@@ -138,8 +138,8 @@ object LPPDetails extends JsonUtils {
     val randomInt = secureRandom.nextInt(100) + 1000
     val principleChargeRef = chargeRef.getOrElse("XJ00261606" + randomInt.toString)
     val (amountAccruing, amountPosted, outstandingPenalty): (BigDecimal, BigDecimal, Option[BigDecimal]) = status match {
-      case "A" => (amount, 0.00, None)
-      case _ => (0.00, amount, Some(amount))
+      case "A" => (amount, BigDecimal(0.00), None)
+      case _ => (BigDecimal(0.00), amount, Some(amount))
     }
     LPPDetails(
       principalChargeReference = principleChargeRef,

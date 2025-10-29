@@ -38,6 +38,6 @@ object PostedUser {
           "userType" -> optional(text),
           "useBTANavBar" -> boolean,
           "arn" -> optional(text),
-        )(PostedUser.apply)(PostedUser.unapply)
+        )(PostedUser.apply)(o => Some(Tuple.fromProductTyped(o)))
       )
 }

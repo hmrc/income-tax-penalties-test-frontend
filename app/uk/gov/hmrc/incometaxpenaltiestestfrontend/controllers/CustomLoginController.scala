@@ -47,14 +47,14 @@ import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
-                                      implicit val mcc: MessagesControllerComponents,
-                                      implicit val executionContext: ExecutionContext,
+class CustomLoginController @Inject()(
                                       loginPage: LoginPage,
                                       enterUserPage: EnterUserPage,
                                       val customAuthConnector: CustomAuthConnector,
                                       val timeMachineConnector: TimeMachineConnector
-                                     ) extends FrontendController(mcc) with I18nSupport {
+                                     )(implicit val appConfig: AppConfig,
+                                       mcc: MessagesControllerComponents,
+                                       executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
 
   lazy val displayQAUsers = appConfig.displayQAUserRecords
   lazy val allUserRecords = UserData.allUserRecords(displayQAUsers)
@@ -63,7 +63,7 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
     Ok(loginPage(routes.CustomLoginController.postLogin, allUserRecords, false, displayQAUsers))
   }
 
-  def showFilteredLogin(penaltyType: String, optLspNum: Option[String]) = Action { implicit request =>
+  def showFilteredLogin(penaltyType: String, optLspNum: Option[String]) = Action { implicit request: MessagesRequest[AnyContent] =>
     val filteredUserData = UserData.getUserRecordsForPenaltyType(penaltyType, optLspNum)
     Ok(loginPage(routes.CustomLoginController.postLogin, filteredUserData, true, false))
   }
@@ -113,8 +113,8 @@ class CustomLoginController @Inject()(implicit val appConfig: AppConfig,
           val redirectUrl = appConfig.penaltiesHomeUrl
           successRedirect(bearer, auth, redirectUrl, Some(origin))
         }
-      case code =>
-        InternalServerError("something went wrong.." + code)
+      case null =>
+        InternalServerError("something went wrong..")
     }
   }
 
