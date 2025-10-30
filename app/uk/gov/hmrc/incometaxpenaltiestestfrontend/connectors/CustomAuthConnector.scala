@@ -34,13 +34,13 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors
 
 import play.api.Logger
 import play.api.http.Status.{CREATED, TOO_MANY_REQUESTS}
-import play.api.libs.json._
+import play.api.libs.json.*
+import play.api.libs.ws.*
 import uk.gov.hmrc.auth.core.PlayAuthConnector
 import uk.gov.hmrc.http.client.HttpClientV2
 import uk.gov.hmrc.http.{HeaderCarrier, HttpResponse, StringContextOps, TooManyRequestException}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.LoginUtil._
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.LoginUtil.*
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.UserRecord
 
 import java.util.UUID

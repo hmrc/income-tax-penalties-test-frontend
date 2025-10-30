@@ -17,7 +17,7 @@
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip
 
 import play.api.data.Form
-import play.api.data.Forms.{boolean, mapping, nonEmptyText, optional, text}
+import play.api.data.Forms._
 
 case class EnteredUser(nino: String,
                        utr: String,
@@ -38,6 +38,6 @@ object EnteredUser {
           "utr" -> nonEmptyText,
           "userType" -> optional(text),
           "arn" -> optional(text)
-        )(EnteredUser.apply)(EnteredUser.unapply)
+        )(EnteredUser.apply)(o => Some(Tuple.fromProductTyped(o)))
       )
 }

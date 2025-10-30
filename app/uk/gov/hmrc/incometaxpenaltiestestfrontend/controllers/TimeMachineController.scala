@@ -28,12 +28,12 @@ import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class TimeMachineController @Inject()(implicit val appConfig: AppConfig,
-                                      implicit val mcc: MessagesControllerComponents,
-                                      implicit val executionContext: ExecutionContext,
+class TimeMachineController @Inject()(
                                       timeMachinePage: TimeMachine,
                                       val timeMachineConnector: TimeMachineConnector
-                                     ) extends FrontendController(mcc) with I18nSupport {
+                                     )(implicit val appConfig: AppConfig,
+                                       mcc: MessagesControllerComponents,
+                                       executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
 
   val onPageLoad: Action[AnyContent] = Action { implicit request =>
     Ok(timeMachinePage(routes.TimeMachineController.submit))
