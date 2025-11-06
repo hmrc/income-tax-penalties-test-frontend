@@ -74,17 +74,17 @@ case class LPPDetails(principalChargeReference: String,
   def withLpp1LR(calculationAmount: BigDecimal): LPPDetails =
     copy(
       lpp1LRDays = Some("15"),
-      lpp1LRPercentage = Some(2.00),
+      lpp1LRPercentage = Some(3.00),
       lpp1LRCalculationAmt = Some(calculationAmount)
     )
 
   def withLpp1HR(calculationAmount: BigDecimal): LPPDetails =
     copy(
       lpp1LRDays = Some("15"),
-      lpp1LRPercentage = Some(2.00),
+      lpp1LRPercentage = Some(3.00),
       lpp1LRCalculationAmt = Some(calculationAmount),
       lpp1HRDays = Some("30"),
-      lpp1HRPercentage = Some(2.00),
+      lpp1HRPercentage = Some(3.00),
       lpp1HRCalculationAmt = Some(calculationAmount)
     )
 

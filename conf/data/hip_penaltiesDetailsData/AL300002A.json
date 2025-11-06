@@ -14,7 +14,7 @@
         "lpp" : {
           "manualLPPIndicator" : false,
           "lppDetails" : [ {
-            "principalChargeReference" : "XJ002616061000",
+            "principalChargeReference" : "XJ002616061082",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 40,
@@ -28,12 +28,12 @@
             "penaltyAmountOutstanding" : 40,
             "lpp1LRCalculationAmt" : 1000,
             "lpp1LRDays" : "15",
-            "lpp1LRPercentage" : 2,
+            "lpp1LRPercentage" : 3,
             "lpp1HRCalculationAmt" : 1000,
             "lpp1HRDays" : "30",
-            "lpp1HRPercentage" : 2,
+            "lpp1HRPercentage" : 3,
             "penaltyChargeCreationDate" : "2026-03-03",
-            "penaltyChargeReference" : "XJ002616061000",
+            "penaltyChargeReference" : "XJ002616061082",
             "penaltyChargeDueDate" : "2026-03-17",
             "appealInformation" : [ {
               "appealStatus" : "C",
@@ -41,7 +41,7 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "principalChargeReference" : "XJ002616061000",
+            "principalChargeReference" : "XJ002616061082",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 40,
@@ -56,14 +56,14 @@
             "penaltyAmountOutstanding" : 40,
             "lpp1LRCalculationAmt" : 1000,
             "lpp1LRDays" : "15",
-            "lpp1LRPercentage" : 2,
+            "lpp1LRPercentage" : 3,
             "lpp1HRCalculationAmt" : 1000,
             "lpp1HRDays" : "30",
-            "lpp1HRPercentage" : 2,
+            "lpp1HRPercentage" : 3,
             "lpp2Days" : "31",
             "lpp2Percentage" : 10,
             "penaltyChargeCreationDate" : "2026-03-03",
-            "penaltyChargeReference" : "XJ002616061000",
+            "penaltyChargeReference" : "XJ002616061082",
             "penaltyChargeDueDate" : "2026-04-18",
             "appealInformation" : [ {
               "appealStatus" : "C",
@@ -72,7 +72,7 @@
             } ],
             "principalChargeLatestClearing" : "2026-03-17"
           }, {
-            "principalChargeReference" : "XJ002616061087",
+            "principalChargeReference" : "XJ002616061023",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 40,
@@ -87,12 +87,12 @@
             "penaltyAmountOutstanding" : 40,
             "lpp1LRCalculationAmt" : 1000,
             "lpp1LRDays" : "15",
-            "lpp1LRPercentage" : 2,
+            "lpp1LRPercentage" : 3,
             "lpp1HRCalculationAmt" : 1000,
             "lpp1HRDays" : "30",
-            "lpp1HRPercentage" : 2,
+            "lpp1HRPercentage" : 3,
             "penaltyChargeCreationDate" : "2027-03-03",
-            "penaltyChargeReference" : "XJ002616061087",
+            "penaltyChargeReference" : "XJ002616061023",
             "penaltyChargeDueDate" : "2027-03-17",
             "appealInformation" : [ {
               "appealStatus" : "C",
@@ -104,7 +104,7 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "principalChargeReference" : "XJ002616061087",
+            "principalChargeReference" : "XJ002616061023",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 40,
@@ -119,14 +119,14 @@
             "penaltyAmountOutstanding" : 40,
             "lpp1LRCalculationAmt" : 1000,
             "lpp1LRDays" : "15",
-            "lpp1LRPercentage" : 2,
+            "lpp1LRPercentage" : 3,
             "lpp1HRCalculationAmt" : 1000,
             "lpp1HRDays" : "30",
-            "lpp1HRPercentage" : 2,
+            "lpp1HRPercentage" : 3,
             "lpp2Days" : "31",
             "lpp2Percentage" : 10,
             "penaltyChargeCreationDate" : "2027-03-03",
-            "penaltyChargeReference" : "XJ002616061087",
+            "penaltyChargeReference" : "XJ002616061023",
             "penaltyChargeDueDate" : "2027-04-18",
             "appealInformation" : [ {
               "appealStatus" : "C",
@@ -139,7 +139,7 @@
             } ],
             "principalChargeLatestClearing" : "2027-03-17"
           }, {
-            "principalChargeReference" : "XJ002616061077",
+            "principalChargeReference" : "XJ002616061006",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 40,
@@ -154,13 +154,13 @@
             "penaltyAmountOutstanding" : 0,
             "lpp1LRCalculationAmt" : 1000,
             "lpp1LRDays" : "15",
-            "lpp1LRPercentage" : 2,
+            "lpp1LRPercentage" : 3,
             "lpp1HRCalculationAmt" : 1000,
             "lpp1HRDays" : "30",
-            "lpp1HRPercentage" : 2,
+            "lpp1HRPercentage" : 3,
             "penaltyChargeCreationDate" : "2028-03-02",
             "communicationsDate" : "2028-03-21",
-            "penaltyChargeReference" : "XJ002616061077",
+            "penaltyChargeReference" : "XJ002616061006",
             "penaltyChargeDueDate" : "2028-04-17",
             "appealInformation" : [ {
               "appealStatus" : "C",
@@ -177,7 +177,7 @@
             } ],
             "principalChargeLatestClearing" : "2028-03-16"
           }, {
-            "principalChargeReference" : "XJ002616061077",
+            "principalChargeReference" : "XJ002616061006",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 40,
@@ -192,15 +192,15 @@
             "penaltyAmountOutstanding" : 0,
             "lpp1LRCalculationAmt" : 1000,
             "lpp1LRDays" : "15",
-            "lpp1LRPercentage" : 2,
+            "lpp1LRPercentage" : 3,
             "lpp1HRCalculationAmt" : 1000,
             "lpp1HRDays" : "30",
-            "lpp1HRPercentage" : 2,
+            "lpp1HRPercentage" : 3,
             "lpp2Days" : "31",
             "lpp2Percentage" : 10,
             "penaltyChargeCreationDate" : "2028-03-02",
             "communicationsDate" : "2028-03-21",
-            "penaltyChargeReference" : "XJ002616061077",
+            "penaltyChargeReference" : "XJ002616061006",
             "penaltyChargeDueDate" : "2028-04-17",
             "appealInformation" : [ {
               "appealStatus" : "C",

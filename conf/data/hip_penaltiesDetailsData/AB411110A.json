@@ -14,7 +14,7 @@
             "pocAchievementDate" : "2028-11-07"
           },
           "lspDetails" : [ {
-            "penaltyNumber" : "005000001084",
+            "penaltyNumber" : "005000001080",
             "penaltyCreationDate" : "2027-11-07",
             "penaltyExpiryDate" : "2029-10-05",
             "triggeringProcess" : "ICRU",
@@ -42,7 +42,7 @@
             "chargeAmount" : 200,
             "chargeDueDate" : "2027-12-22"
           }, {
-            "penaltyNumber" : "005000001068",
+            "penaltyNumber" : "005000001000",
             "penaltyCreationDate" : "2027-08-07",
             "penaltyExpiryDate" : "2029-07-05",
             "triggeringProcess" : "ICRU",
@@ -77,7 +77,7 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "penaltyNumber" : "005000001002",
+            "penaltyNumber" : "005000001094",
             "penaltyCreationDate" : "2027-05-07",
             "penaltyExpiryDate" : "2029-04-05",
             "triggeringProcess" : "ICRU",
@@ -101,7 +101,7 @@
               "taxPeriodDueDate" : "2027-05-07"
             } ]
           }, {
-            "penaltyNumber" : "005000001052",
+            "penaltyNumber" : "005000001067",
             "penaltyCreationDate" : "2027-02-07",
             "penaltyExpiryDate" : "2029-01-05",
             "triggeringProcess" : "ICRU",
@@ -127,7 +127,7 @@
               "returnReceiptDate" : "2027-03-01"
             } ]
           }, {
-            "penaltyNumber" : "005000001017",
+            "penaltyNumber" : "005000001071",
             "penaltyCreationDate" : "2027-01-31",
             "penaltyExpiryDate" : "2028-04-05",
             "triggeringProcess" : "ICRU",
