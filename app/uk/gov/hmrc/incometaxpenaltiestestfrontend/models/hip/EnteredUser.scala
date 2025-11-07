@@ -21,6 +21,7 @@ import play.api.data.Forms._
 
 case class EnteredUser(nino: String,
                        utr: String,
+                       mtdItId: Option[String],
                        userType: Option[String],
                        arn: Option[String] = None
                      ) {
@@ -36,6 +37,7 @@ object EnteredUser {
         mapping(
           "nino" -> nonEmptyText,
           "utr" -> nonEmptyText,
+          "mtdItId" -> optional(text),
           "userType" -> optional(text),
           "arn" -> optional(text)
         )(EnteredUser.apply)(o => Some(Tuple.fromProductTyped(o)))

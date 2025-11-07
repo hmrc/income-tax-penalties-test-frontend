@@ -89,7 +89,8 @@ class CustomLoginController @Inject()(
         Future(BadRequest(enterUserPage(formWithErrors, routes.CustomLoginController.postEnteredUser)))},
       (enteredUser: EnteredUser) => {
         val user = allUserRecords.get(enteredUser.nino).collect{case(x) if x.utr == enteredUser.utr => x}
-          .getOrElse(UserRecord(enteredUser.nino, "10000", enteredUser.utr, "entered user", "ignore"))
+          .getOrElse(UserRecord(enteredUser.nino, enteredUser.mtdItId.getOrElse("10000"),
+            enteredUser.utr, "entered user", "ignore"))
         loginInUser(user, enteredUser.isAgent, false, enteredUser.arn)
       }
     )
