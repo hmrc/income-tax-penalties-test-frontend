@@ -90,7 +90,8 @@ object UserData {
     AB400020A,
     AB411110A,
     AB411145A,
-    PE000001A
+    PE000001A,
+    PE000003A
   )
 
   val lsp5UserData: Seq[UserDetailsData] = List(
