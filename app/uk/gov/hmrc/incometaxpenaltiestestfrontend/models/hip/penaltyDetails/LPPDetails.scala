@@ -122,6 +122,9 @@ case class LPPDetails(principalChargeReference: String,
       penaltyChargeReference = Some(ref)
     )
   }
+  
+  def withTimeToPay(timeToPay: Option[Seq[TimeToPay]]): LPPDetails =
+    copy(timeToPay = timeToPay)
 
 }
 

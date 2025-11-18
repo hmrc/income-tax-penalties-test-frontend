@@ -18,8 +18,12 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails
 
 import play.api.libs.json.{Format, Json}
 
-case class TimeToPay(ttpStartDate: String,
-                     ttpEndDate: String)
+import java.time.LocalDate
+
+case class TimeToPay(TTPStartDate: LocalDate,
+                     TTPEndDate: LocalDate,
+                     proposalDate: Option[LocalDate],
+                     agreementDate: Option[LocalDate])
 
 object TimeToPay {
   implicit val format: Format[TimeToPay] = Json.format[TimeToPay]

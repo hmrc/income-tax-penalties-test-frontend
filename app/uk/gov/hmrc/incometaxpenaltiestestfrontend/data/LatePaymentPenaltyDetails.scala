@@ -17,21 +17,23 @@
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.data
 
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPPDetails
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPPDetails, TimeToPay}
 
 object LatePaymentPenaltyDetails {
 
   def lpp1Penalty(reportingPeriod: ReportingPeriod,
                   amount: BigDecimal,
                   isDay15: Boolean = false,
-                  isTaxPaid: Boolean): LPPDetails = {
+                  isTaxPaid: Boolean,
+                  ttp: Option[Seq[TimeToPay]] = None): LPPDetails = {
     LPPDetails.create(
-      reportingPeriod,
-      "LPP1",
-      status = if (isDay15 && !isTaxPaid) "A" else "P",
-      amount = amount,
-      isDay15To30 = isDay15
-    ).withLPP1CalculationFields(isDay15)
+        reportingPeriod,
+        "LPP1",
+        status = if (isDay15 && !isTaxPaid) "A" else "P",
+        amount = amount,
+        isDay15To30 = isDay15
+      ).withLPP1CalculationFields(isDay15)
+      .withTimeToPay(ttp)
   }
 
   def lpp2Penalty(reportingPeriod: ReportingPeriod,
