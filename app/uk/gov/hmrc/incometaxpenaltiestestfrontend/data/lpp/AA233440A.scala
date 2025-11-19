@@ -20,9 +20,6 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPP
 
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-
 object AA233440A extends UserDetailsData {
 
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
@@ -53,7 +50,7 @@ object AA233440A extends UserDetailsData {
   override val utr: String = "1000023344"
   override val description: String = "Charge Period LPP2 Display"
   override val descriptionOverdue: Option[String] = Some("Charge Period LPP2 Display")
-  override val timemachineDate: String = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+  override val timemachineDate: String = "05/04/2028"
   override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
 
 }

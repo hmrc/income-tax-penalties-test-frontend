@@ -31,7 +31,8 @@
             "lpp2Percentage" : 10,
             "penaltyChargeCreationDate" : "2028-03-02",
             "penaltyChargeReference" : "XJ002616061069",
-            "penaltyChargeDueDate" : "2028-03-16"
+            "penaltyChargeDueDate" : "2028-04-17",
+            "principalChargeLatestClearing" : "2028-03-16"
           }, {
             "principalChargeReference" : "PE888881102201",
             "penaltyStatus" : "A",
