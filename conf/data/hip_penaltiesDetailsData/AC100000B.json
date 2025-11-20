@@ -1,6 +1,6 @@
 {
   "idType": "NINO",
-  "idNumber": "AC100000A",
+  "idNumber": "AC100000B",
   "payload": {
     "success": {
       "processingDate": "2025-04-05T10:15:10Z",
@@ -36,7 +36,7 @@
                 {
                   "ttpStartDate": "2024-03-17",
                   "ttpEndDate": "2029-04-17",
-                  "agreementDate": "2026-02-17"
+                  "proposalDate": "2026-02-17"
                 }
               ]
             }

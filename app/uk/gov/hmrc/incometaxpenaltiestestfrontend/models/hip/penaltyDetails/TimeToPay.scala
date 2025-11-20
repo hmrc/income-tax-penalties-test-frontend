@@ -20,10 +20,10 @@ import play.api.libs.json.{Format, Json}
 
 import java.time.LocalDate
 
-case class TimeToPay(TTPStartDate: LocalDate,
-                     TTPEndDate: LocalDate,
+case class TimeToPay(
                      proposalDate: Option[LocalDate],
-                     agreementDate: Option[LocalDate])
+                     agreementDate: Option[LocalDate]
+                    )
 
 object TimeToPay {
   implicit val format: Format[TimeToPay] = Json.format[TimeToPay]

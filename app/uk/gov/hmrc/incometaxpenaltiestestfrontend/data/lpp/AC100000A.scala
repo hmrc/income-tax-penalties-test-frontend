@@ -43,7 +43,7 @@ object AC100000A extends UserDetailsData {
     amount = 40.00,
     isDay15 = true,
     isTaxPaid = false,
-    ttp = Some(Seq(TimeToPay(LocalDate.of(2024, 1, 1),LocalDate.of(2027, 1, 31),Some(LocalDate.of(2026, 1, 31)),None)))
+    ttp = Some(TimeToPay(None, Some(LocalDate.of(2026, 2, 17))))
   )
 
   override val lpp = Some(LPP(
@@ -54,7 +54,7 @@ object AC100000A extends UserDetailsData {
   override val nino: String = "AC100000A"
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
-  override val description: String = "1 LPP - 15-30 days, tax unpaid, *proposed payment plan*"
+  override val description: String = "1 LPP - 15-30 days, tax unpaid, TTP Agreed"
   override val timemachineDate: String = "2026/02/02"
 }
 

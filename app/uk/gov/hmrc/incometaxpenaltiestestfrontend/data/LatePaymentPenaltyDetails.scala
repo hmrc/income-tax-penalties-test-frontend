@@ -25,7 +25,7 @@ object LatePaymentPenaltyDetails {
                   amount: BigDecimal,
                   isDay15: Boolean = false,
                   isTaxPaid: Boolean,
-                  ttp: Option[Seq[TimeToPay]] = None): LPPDetails = {
+                  ttp: Option[TimeToPay] = None): LPPDetails = {
     LPPDetails.create(
         reportingPeriod,
         "LPP1",
@@ -38,7 +38,9 @@ object LatePaymentPenaltyDetails {
 
   def lpp2Penalty(reportingPeriod: ReportingPeriod,
                   amount: BigDecimal,
-                  principalChargeRef: String): LPPDetails = {
+                  principalChargeRef: String,
+                 ttp: Option[TimeToPay] = None
+                 ): LPPDetails = {
     LPPDetails.create(
         reportingPeriod,
         "LPP2",
@@ -47,6 +49,7 @@ object LatePaymentPenaltyDetails {
       )
       .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
+      .withTimeToPay(ttp)
   }
 
   def lpp1Paid(reportingPeriod: ReportingPeriod,
