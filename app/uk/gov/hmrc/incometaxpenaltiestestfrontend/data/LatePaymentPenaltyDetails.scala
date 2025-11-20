@@ -107,6 +107,7 @@ object LatePaymentPenaltyDetails {
         amount = amount,
         chargeRef = Some(principalChargeRef)
       )
+      .withIncomeTaxPaid(reportingPeriod, false)
       .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
       .withFullyDueAmount()
