@@ -53,7 +53,7 @@ trait JsonUtils {
         penaltyChargeDueDate <- (json \ "penaltyChargeDueDate").validateOpt[String]
         appealInformation <- (json \ "appealInformation").validateOpt[Seq[AppealInformation]]
         principalChargeLatestClearing <- (json \ "principalChargeLatestClearing").validateOpt[String]
-        timeToPay <- (json \ "timeToPay").validateOpt[Seq[TimeToPay]]
+        timeToPay <- (json \ "timeToPay").validateOpt[TimeToPay]
       }
       yield {
         LPPDetails(principalChargeReference, penaltyStatus, penaltyAmountAccruing, penaltyAmountPosted, principalChargeBillingFrom,
