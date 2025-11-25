@@ -85,6 +85,20 @@
             }
         ))
 
+        @govukInput(Input(
+            id = "mtdItId",
+            name = "mtdItId",
+            label = Label(
+                isPageHeading = false,
+                classes = "govuk-label--m",
+                content = Text("Input valid MTDITID")
+            ),
+            errorMessage = form.errors("mtdItId") match {
+                case Nil => None
+                case errors => Some(ErrorMessage(content = HtmlContent(errors.map(err => messages(err.message)).mkString("<br>"))))
+            }
+        ))
+
         @govukRadios(Radios(
             name = "userType",
             fieldset = Some(Fieldset(

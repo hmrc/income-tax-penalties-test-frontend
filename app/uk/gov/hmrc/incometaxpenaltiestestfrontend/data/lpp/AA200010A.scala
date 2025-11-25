@@ -33,7 +33,8 @@ object AA200010A extends UserDetailsData {
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
-    amount = 80.00
+    amount = 80.00,
+    optChargeRef = Some("XJ002616061089")
   ).withAppealInformation(
     AppealInformation.create("Rejected", "First")
   )
@@ -55,6 +56,6 @@ object AA200010A extends UserDetailsData {
   override val utr: String = "1000020001"
   override val description: String = "2 LPPs - (1 LPP ESTIMATE, 1 LPP DUE, 1 LPP PAID) *Second Stage Appeal*"
   override val descriptionOverdue: Option[String] = Some("2 LPPs - (1 LPP ESTIMATE, 1 LPP OVERDUE, 1 LPP PAID)")
-  override val timemachineDate: String = "02/02/2028"
+  override val timemachineDate: String = "05/04/2028"
   override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
 }

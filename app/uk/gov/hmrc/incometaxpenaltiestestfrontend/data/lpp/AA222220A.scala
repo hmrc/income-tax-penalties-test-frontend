@@ -31,7 +31,8 @@ object AA222220A extends UserDetailsData {
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
-    amount = 80.00
+    amount = 80.00,
+    optChargeRef = Some("XJ002616061098")
   )
 
   override def optFinancialData(): Option[FinancialData] = Some(
@@ -51,6 +52,6 @@ object AA222220A extends UserDetailsData {
   override val utr: String = "1000022222"
   override val description: String = "2nd increased LPP - (1 LPP ESTIMATE, 1 LPP DUE, 1 LPP PAID)"
   override val descriptionOverdue: Option[String] = Some("2nd increased LPP - 1 LPP ESTIMATE - (1 LPP OVERDUE, 1 LPP PAID)")
-  override val timemachineDate: String = "02/02/2028"
+  override val timemachineDate: String = "05/04/2028"
   override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
 }

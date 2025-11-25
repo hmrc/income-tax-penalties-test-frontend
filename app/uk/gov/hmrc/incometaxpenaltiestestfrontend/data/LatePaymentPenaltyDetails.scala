@@ -49,13 +49,15 @@ object LatePaymentPenaltyDetails {
 
   def lpp1Paid(reportingPeriod: ReportingPeriod,
                amount: BigDecimal,
-               isDay15: Boolean = false): LPPDetails = {
+               isDay15: Boolean = false,
+               optChargeRef: Option[String] = None): LPPDetails = {
     LPPDetails.create(
         reportingPeriod,
         "LPP1",
         "P",
         amount = amount,
-        isDay15To30 = isDay15
+        isDay15To30 = isDay15,
+        chargeRef = optChargeRef
       )
       .withIncomeTaxPaid(reportingPeriod, isDay15)
       .withLPP1CalculationFields(isDay15)
@@ -80,13 +82,15 @@ object LatePaymentPenaltyDetails {
 
   def lpp1DueOrOverdue(reportingPeriod: ReportingPeriod,
                        amount: BigDecimal,
-                       isDay15: Boolean = false): LPPDetails = {
+                       isDay15: Boolean = false,
+                       optChargeRef: Option[String] = None): LPPDetails = {
     LPPDetails.create(
         reportingPeriod,
         "LPP1",
         "P",
         amount = amount,
-        isDay15
+        isDay15,
+        chargeRef = optChargeRef
       )
       .withLPP1CalculationFields(isDay15)
       .withFullyDueAmount()
@@ -103,6 +107,7 @@ object LatePaymentPenaltyDetails {
         amount = amount,
         chargeRef = Some(principalChargeRef)
       )
+      .withIncomeTaxPaid(reportingPeriod, false)
       .withLPP1CalculationFields(false)
       .withLpp2CalculationFields()
       .withFullyDueAmount()

@@ -25,7 +25,8 @@ object AA123450A extends UserDetailsData {
 
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1Paid(
     ReportingPeriod(2024, None),
-    amount = 80.00
+    amount = 80.00,
+    optChargeRef = Some("XJ002616061089")
   )
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2Paid(
