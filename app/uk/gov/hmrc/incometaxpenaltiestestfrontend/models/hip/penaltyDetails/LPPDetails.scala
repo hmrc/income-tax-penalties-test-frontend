@@ -48,7 +48,7 @@ case class LPPDetails(principalChargeReference: String,
                       penaltyChargeDueDate: Option[String] = None,
                       appealInformation: Option[Seq[AppealInformation]] = None,
                       principalChargeLatestClearing: Option[String] = None,
-                      timeToPay: Option[Seq[TimeToPay]] = None
+                      timeToPay: Option[TimeToPay] = None
                      ) {
 
   lazy val penaltyAmount = if(penaltyStatus == "A") penaltyAmountAccruing else penaltyAmountPosted
@@ -122,6 +122,9 @@ case class LPPDetails(principalChargeReference: String,
       penaltyChargeReference = Some(ref)
     )
   }
+  
+  def withTimeToPay(timeToPay: Option[TimeToPay]): LPPDetails =
+    copy(timeToPay = timeToPay)
 
 }
 
