@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPP
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{BreathingSpace, LPP}
 
 object AA200000B extends UserDetailsData {
 
@@ -33,6 +33,7 @@ object AA200000B extends UserDetailsData {
     ReportingPeriod(2027, None),
     amount = 80.00
   )
+  
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
@@ -40,6 +41,13 @@ object AA200000B extends UserDetailsData {
       totalAccountPostedInterest = Some(80.00)
     )
   )
+
+  override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
+    BreathingSpace(
+      bsStartDate = "2025-04-06",
+      bsEndDate = "2025-04-06"
+    )
+  ))
 
   override val lpp: Option[LPP] = Some(LPP(
     manualLPPIndicator = false,

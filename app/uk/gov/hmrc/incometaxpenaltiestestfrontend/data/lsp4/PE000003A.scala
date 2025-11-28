@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp4
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{BreathingSpace, LSP, LSPSummary}
 
 object PE000003A extends UserDetailsData {
 
@@ -53,7 +53,13 @@ object PE000003A extends UserDetailsData {
     lspDetails = Seq(lspPenalty1, lspPenalty2, lspPenalty3, lspPenalty4)
   ))
 
-
+  override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
+    BreathingSpace(
+      bsStartDate = "2025-04-06",
+      bsEndDate = "2025-04-06"
+    )
+  ))
+  
   override def optComplianceData: Option[CompliancePayload] = Some(
     CompliancePayload.apply(nino)
       .withObligationDetail(ReportingPeriod(2028, Some(1)), false)
