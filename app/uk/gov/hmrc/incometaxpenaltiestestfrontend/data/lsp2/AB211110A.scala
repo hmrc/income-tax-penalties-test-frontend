@@ -32,7 +32,8 @@ object AB211110A extends UserDetailsData {
   val lspPenalty1 = LateSubmissionPenaltyDetails.dueOrOverdue(
     ReportingPeriod(2027, None),
     penaltyOrder = "2",
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true
+  ).withPenaltyCategory("T")
 
   val lspPenalty2 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2026, None),

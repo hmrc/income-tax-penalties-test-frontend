@@ -14,7 +14,7 @@
             "pocAchievementDate" : "2029-02-07"
           },
           "lspDetails" : [ {
-            "penaltyNumber" : "005000001024",
+            "penaltyNumber" : "005000001086",
             "penaltyCreationDate" : "2027-02-07",
             "penaltyExpiryDate" : "2029-01-05",
             "triggeringProcess" : "ICRU",
@@ -41,7 +41,7 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "penaltyNumber" : "005000001098",
+            "penaltyNumber" : "005000001016",
             "penaltyCreationDate" : "2027-05-07",
             "penaltyExpiryDate" : "2029-04-05",
             "triggeringProcess" : "ICRU",
@@ -64,7 +64,7 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "penaltyNumber" : "005000001026",
+            "penaltyNumber" : "005000001025",
             "penaltyCreationDate" : "2027-08-07",
             "penaltyExpiryDate" : "2029-07-05",
             "triggeringProcess" : "ICRU",
@@ -91,12 +91,12 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "penaltyNumber" : "005000001026",
+            "penaltyNumber" : "005000001076",
             "penaltyCreationDate" : "2027-11-07",
             "penaltyExpiryDate" : "2029-10-05",
             "triggeringProcess" : "ICRU",
             "penaltyOrder" : "4",
-            "penaltyCategory" : "P",
+            "penaltyCategory" : "T",
             "penaltyStatus" : "Active",
             "communicationsDate" : "2027-11-07",
             "lateSubmissions" : [ {
@@ -124,12 +124,12 @@
             "chargeOutstandingAmount" : 200,
             "chargeDueDate" : "2027-12-22"
           }, {
-            "penaltyNumber" : "005000001092",
+            "penaltyNumber" : "005000001023",
             "penaltyCreationDate" : "2028-01-31",
             "penaltyExpiryDate" : "2029-04-05",
             "triggeringProcess" : "ICRU",
             "penaltyOrder" : "5",
-            "penaltyCategory" : "T",
+            "penaltyCategory" : "C",
             "penaltyStatus" : "Active",
             "communicationsDate" : "2028-01-31",
             "lateSubmissions" : [ {
