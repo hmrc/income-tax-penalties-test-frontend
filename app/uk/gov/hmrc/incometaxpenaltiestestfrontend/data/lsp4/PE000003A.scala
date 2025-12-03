@@ -55,8 +55,8 @@ object PE000003A extends UserDetailsData {
 
   override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
     BreathingSpace(
-      bsStartDate = "2025-04-06",
-      bsEndDate = "2025-04-06"
+      bsStartDate = "2027-08-30",
+      bsEndDate = "2028-08-30"
     )
   ))
   
