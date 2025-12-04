@@ -34,7 +34,7 @@ object AB311120A extends UserDetailsData {
     penaltyOrder = "3",
     addAdditionalIncomeSource = true).withAppealInformation(
     AppealInformation.create("UnderAppeal", "First")
-  )
+  ).withPenaltyCategory("C")
 
   val lspPenalty2 = LateSubmissionPenaltyDetails.dueOrOverdue(
     ReportingPeriod(2026, None),
@@ -43,7 +43,7 @@ object AB311120A extends UserDetailsData {
     addAdditionalIncomeSource = true)
     .withAppealInformation(
       AppealInformation.create("Rejected", "Second")
-    )
+    ).withPenaltyCategory("T")
 
   val lspPenalty3 = LateSubmissionPenaltyDetails.active(
       ReportingPeriod(2025, None),

@@ -32,14 +32,14 @@ object AA500000B extends UserDetailsData {
     ReportingPeriod(2027, None),
     penaltyOrder = "5",
     returnSubmitted = true
-  ).withPenaltyCategory("T").withAppealInformation(
+  ).withPenaltyCategory("C").withAppealInformation(
     AppealInformation.create("UnderAppeal", "Tribunal")
   )
 
   val lspPenalty2 = LateSubmissionPenaltyDetails.dueOrOverdue(
     ReportingPeriod(2027, Some(2)),
     penaltyOrder = "4"
-  ).withAppealInformation(
+  ).withPenaltyCategory("T").withAppealInformation(
     AppealInformation.create("UnderAppeal", "Tribunal")
   )
 
