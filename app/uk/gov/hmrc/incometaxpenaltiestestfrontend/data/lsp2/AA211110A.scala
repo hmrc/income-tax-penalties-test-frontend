@@ -23,6 +23,8 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP
 
 object AA211110A extends UserDetailsData {
 
+  private val stubCommunicationsDate: String = "2024-02-08"
+
   val lspSummary = LSPSummary(
     activePenaltyPoints = 2
   )
@@ -31,12 +33,14 @@ object AA211110A extends UserDetailsData {
     ReportingPeriod(2027, Some(2)),
     penaltyOrder = "2",
     returnSubmitted = true,
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true
+  ).copy(communicationsDate = Some(stubCommunicationsDate))
 
   val lspPenalty2 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(1)),
     returnSubmitted = true,
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true
+  ).copy(communicationsDate = Some(stubCommunicationsDate))
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,

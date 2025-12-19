@@ -13,7 +13,7 @@
             "penaltyChargeAmount" : 0
           },
           "lspDetails" : [ {
-            "penaltyNumber" : "005000001038",
+            "penaltyNumber" : "005000001072",
             "penaltyCreationDate" : "2027-05-07",
             "penaltyExpiryDate" : "2029-04-05",
             "triggeringProcess" : "ICRU",
@@ -39,7 +39,7 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "penaltyNumber" : "005000001091",
+            "penaltyNumber" : "005000001020",
             "penaltyCreationDate" : "2027-08-07",
             "penaltyExpiryDate" : "2029-07-05",
             "triggeringProcess" : "ICRU",
@@ -56,7 +56,7 @@
               "taxPeriodDueDate" : "2027-08-07"
             } ]
           }, {
-            "penaltyNumber" : "005000001002",
+            "penaltyNumber" : "005000001014",
             "penaltyCreationDate" : "2027-11-07",
             "penaltyExpiryDate" : "2029-10-05",
             "triggeringProcess" : "ICRU",

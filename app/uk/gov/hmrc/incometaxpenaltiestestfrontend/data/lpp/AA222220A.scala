@@ -23,17 +23,27 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPP
 
 object AA222220A extends UserDetailsData {
 
+  private val stubCommunicationsDate: String = "2024-02-08"
+  private val stubPrincipalChargeLatestClearing: String = "2025-03-17"
+
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
     46.02,
     latePaymentPenaltyDetails2.principalChargeReference
-  )
+  ).copy(
+    communicationsDate = Some(stubCommunicationsDate),
+    penaltyStatus = "P",
+    principalChargeLatestClearing = Some(stubPrincipalChargeLatestClearing)
+  ) // To align with stubs
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
     amount = 80.00,
     optChargeRef = Some("XJ002616061098")
-  )
+  ).copy(
+    communicationsDate = Some(stubCommunicationsDate),
+    principalChargeLatestClearing = Some(stubPrincipalChargeLatestClearing)
+  ) // To align with stubs
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(

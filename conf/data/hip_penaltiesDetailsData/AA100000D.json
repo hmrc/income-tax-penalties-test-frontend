@@ -1,6 +1,6 @@
 {
   "idType" : "NINO",
-  "idNumber" : "AA100000C",
+  "idNumber" : "AA100000D",
   "payload" : {
     "success" : {
       "processingDate" : "2025-04-05T10:15:10Z",
@@ -9,15 +9,15 @@
           "lspTotalValue" : 0,
           "penalisedPrincipalTotal" : 0,
           "lppPostedTotal" : 0,
-          "lppEstimatedTotal" : 40
+          "lppEstimatedTotal" : 80
         },
         "lpp" : {
           "manualLPPIndicator" : false,
           "lppDetails" : [ {
-            "principalChargeReference" : "XJ002616061095",
-            "penaltyStatus" : "P",
-            "penaltyAmountAccruing" : 0,
-            "penaltyAmountPosted" : 40,
+            "principalChargeReference" : "XJ002616061027",
+            "penaltyStatus" : "A",
+            "penaltyAmountAccruing" : 40,
+            "penaltyAmountPosted" : 0,
             "principalChargeBillingFrom" : "2024-04-06",
             "principalChargeBillingTo" : "2025-04-05",
             "principalChargeDueDate" : "2026-01-31",
@@ -25,18 +25,18 @@
             "principalChargeMainTr" : "4720",
             "principalChargeSubTr" : "SUB1",
             "penaltyCategory" : "LPP1",
-            "penaltyAmountPaid" : 40,
-            "penaltyAmountOutstanding" : 0,
             "lpp1LRCalculationAmt" : 2000,
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 2,
             "penaltyChargeCreationDate" : "2026-02-15",
-            "communicationsDate" : "2026-03-12",
-            "penaltyChargeReference" : "XJ002616061095",
-            "penaltyChargeDueDate" : "2026-03-24",
-            "principalChargeLatestClearing" : "2026-02-20"
+            "penaltyChargeReference" : "XJ002616061027",
+            "penaltyChargeDueDate" : "2026-03-17"
           } ]
-        }
+        },
+        "breathingSpace" : [ {
+          "bsStartDate" : "2026-02-02",
+          "bsEndDate" : "2027-02-02"
+        } ]
       }
     }
   }

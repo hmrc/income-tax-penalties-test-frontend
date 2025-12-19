@@ -13,11 +13,7 @@
             "totalAccountPostedInterest" : 0,
             "totalAccountAccruingInterest" : 40
           }
-        },
-        "breathingSpace" : [{
-          "bsStartDate" : "2025-04-06",
-          "bsEndDate" : "2025-04-06"
-        }]
+        }
       }
     }
   }
