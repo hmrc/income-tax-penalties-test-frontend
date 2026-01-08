@@ -21,7 +21,7 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPP
 
-object AA200000B extends UserDetailsData {
+object AA200000C extends UserDetailsData {
 
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
@@ -46,7 +46,7 @@ object AA200000B extends UserDetailsData {
     lppDetails = Some(Seq(latePaymentPenaltyDetails1, latePaymentPenaltyDetails2))
   ))
 
-  override val nino: String = "AA200000B"
+  override val nino: String = "AA200000C"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
   override val description: String = "PFA - 2 LPPs - (1 LPP2 ESTIMATE, 1 LPP1 DUE)"
