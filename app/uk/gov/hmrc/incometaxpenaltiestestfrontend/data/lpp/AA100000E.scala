@@ -21,7 +21,7 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
 
-object AA100000E extends UserDetailsData {
+object AA120000C extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
@@ -49,7 +49,7 @@ object AA100000E extends UserDetailsData {
     lppDetails =  Some(Seq(latePaymentPenaltyDetails1))
   ))
 
-  override val nino: String = "AA100000E"
+  override val nino: String = "AA120000C"
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
   override val description: String = "PFA - 1 LPP - 15-30 days, tax unpaid"
