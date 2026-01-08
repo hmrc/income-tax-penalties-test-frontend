@@ -42,7 +42,7 @@ object AA300000A extends UserDetailsData {
     ReportingPeriod(2027, Some(0))
   ).withAppealInformation(
     AppealInformation.create("Rejected", "Second")
-  )
+  ).copy(penaltyNumber = "005000001015")
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
