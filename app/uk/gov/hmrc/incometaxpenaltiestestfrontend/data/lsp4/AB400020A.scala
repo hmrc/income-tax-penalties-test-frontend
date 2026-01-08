@@ -35,7 +35,7 @@ object AB400020A extends UserDetailsData {
       addAdditionalIncomeSource = true)
     .withAppealInformation(
       AppealInformation.create("UnderAppeal", "Second")
-    )
+    ).withPenaltyCategory("T")
 
   val lspPenalty2 = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
     ReportingPeriod(2027, Some(3)),
