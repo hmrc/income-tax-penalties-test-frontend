@@ -39,6 +39,7 @@ object AA211120A extends UserDetailsData {
     ReportingPeriod(2027, Some(1)),
     addAdditionalIncomeSource = true)
     .withAppealInformation(appealInformation)
+    .copy(communicationsDate = Some("2023-11-07"))
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
