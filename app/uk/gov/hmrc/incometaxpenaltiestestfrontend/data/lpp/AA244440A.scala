@@ -28,12 +28,13 @@ object AA244440A extends UserDetailsData {
     46.02,
     22.02,
     latePaymentPenaltyDetails2.principalChargeReference
-  )
+  ).copy(communicationsDate = Some("2024-03-21"))
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1Paid(
     ReportingPeriod(2027, None),
-    amount = 80.00
-  )
+    amount = 80.00,
+    optChargeRef = Some("XJ002616061007")
+  ).copy(communicationsDate = Some("2024-03-21"))
 
   val latePaymentPenaltyDetails3 = LatePaymentPenaltyDetails.lpp1Paid(
     ReportingPeriod(2026, None),
