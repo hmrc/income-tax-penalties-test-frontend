@@ -14,7 +14,7 @@
             "pocAchievementDate" : "2029-02-07"
           },
           "lspDetails" : [ {
-            "penaltyNumber" : "005000001086",
+            "penaltyNumber" : "005000001025",
             "penaltyCreationDate" : "2027-02-07",
             "penaltyExpiryDate" : "2029-01-05",
             "triggeringProcess" : "ICRU",
@@ -41,7 +41,7 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "penaltyNumber" : "005000001016",
+            "penaltyNumber" : "005000001012",
             "penaltyCreationDate" : "2027-05-07",
             "penaltyExpiryDate" : "2029-04-05",
             "triggeringProcess" : "ICRU",
@@ -64,7 +64,7 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "penaltyNumber" : "005000001025",
+            "penaltyNumber" : "005000001012",
             "penaltyCreationDate" : "2027-08-07",
             "penaltyExpiryDate" : "2029-07-05",
             "triggeringProcess" : "ICRU",
@@ -91,7 +91,7 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "penaltyNumber" : "005000001076",
+            "penaltyNumber" : "005000001064",
             "penaltyCreationDate" : "2027-11-07",
             "penaltyExpiryDate" : "2029-10-05",
             "triggeringProcess" : "ICRU",

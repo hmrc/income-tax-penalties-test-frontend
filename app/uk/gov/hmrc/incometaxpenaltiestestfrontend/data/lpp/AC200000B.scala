@@ -25,17 +25,17 @@ import java.time.LocalDate
 
 object AC200000B extends UserDetailsData {
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
-    ReportingPeriod(2027, None),
-    2.19,
-    latePaymentPenaltyDetails2.principalChargeReference,
-    ttp = Some(TimeToPay(Some(LocalDate.of(2026, 2, 16)), None))
-  )
-
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+  private val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
     amount = 80.00
+  )
+
+  private val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2Penalty(
+    ReportingPeriod(2027, None),
+    2.19,
+    latePaymentPenaltyDetails1.principalChargeReference
   ).withTimeToPay(Some(TimeToPay(Some(LocalDate.of(2026, 2, 16)), None)))
+
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
@@ -52,6 +52,6 @@ object AC200000B extends UserDetailsData {
   override val nino: String = "AC200000B"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "2 LPPs - (LPP2 ESTIMATE - TTP Proposed, LPP1 DUE - TTP Proposed)"
+  override val description: String = "2 LPPs - (LPP2 ESTIMATE - TTP Proposed, LPP1 DUE)"
   override val timemachineDate: String = "02/02/2028"
 }
