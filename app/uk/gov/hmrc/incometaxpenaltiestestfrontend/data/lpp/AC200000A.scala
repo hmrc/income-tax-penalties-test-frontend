@@ -25,16 +25,17 @@ import java.time.LocalDate
 
 object AC200000A extends UserDetailsData {
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
-    ReportingPeriod(2027, None),
-    2.19,
-    latePaymentPenaltyDetails2.principalChargeReference
-  )
-
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+  private val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
     amount = 80.00
+  )
+
+  private val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2Penalty(
+    ReportingPeriod(2027, None),
+    2.19,
+    latePaymentPenaltyDetails1.principalChargeReference
   ).withTimeToPay(Some(TimeToPay(None, Some(LocalDate.of(2026, 2, 16)))))
+
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
