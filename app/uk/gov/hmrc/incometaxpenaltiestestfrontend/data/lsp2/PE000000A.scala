@@ -32,6 +32,8 @@ object PE000000A extends UserDetailsData {
   val lspPenalty2 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(2)),
     penaltyOrder = "2"
+  ).copy(
+    communicationsDate = Some("2023-11-07"),
   )
 
   override val lsp: Option[LSP] = Some(LSP(
