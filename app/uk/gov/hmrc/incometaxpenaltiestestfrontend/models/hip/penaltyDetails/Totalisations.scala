@@ -21,7 +21,10 @@ import play.api.libs.json.{Format, Json}
 case class Totalisations(lspTotalValue: BigDecimal = 0.00,
                          penalisedPrincipalTotal: BigDecimal = 0.00,
                          lppPostedTotal: BigDecimal = 0.00,
-                         lppEstimatedTotal: BigDecimal = 0.00)
+                         lppEstimatedTotal: BigDecimal = 0.00,
+                         totalAccountOverdue: BigDecimal = 0.00,
+                         totalAccountPostedInterest: BigDecimal = 0.00,
+                         totalAccountAccruingInterest: BigDecimal = 0.00)
 
 object Totalisations {
   implicit val format: Format[Totalisations] = Json.format[Totalisations]
