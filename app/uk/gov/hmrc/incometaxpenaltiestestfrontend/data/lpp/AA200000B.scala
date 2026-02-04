@@ -19,9 +19,15 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{BreathingSpace, LPP}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{BreathingSpace, LPP, Totalisations}
 
 object AA200000B extends UserDetailsData {
+
+  override val totalisations: Option[Totalisations] = Some(
+    Totalisations(
+      totalAccountOverdue = 82.19
+    )
+  )
 
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),

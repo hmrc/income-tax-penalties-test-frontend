@@ -25,7 +25,8 @@ object AA120000C extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 80.00
+      totalAccountOverdue = 40.00,
+      totalAccountAccruingInterest = 0.81
     )
   )
 
@@ -42,7 +43,7 @@ object AA120000C extends UserDetailsData {
     amount = 40.00,
     isDay15 = true,
     isTaxPaid = false
-  )
+  ).withPFA()
   
   override val lpp = Some(LPP(
     manualLPPIndicator = false,

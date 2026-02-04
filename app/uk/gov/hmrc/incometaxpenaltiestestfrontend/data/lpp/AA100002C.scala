@@ -25,7 +25,7 @@ object AA100002C extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 40.00
+      totalAccountOverdue = 20.00
     )
   )
 

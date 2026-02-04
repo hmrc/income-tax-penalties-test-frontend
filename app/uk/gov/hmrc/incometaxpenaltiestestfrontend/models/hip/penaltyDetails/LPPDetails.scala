@@ -125,6 +125,9 @@ case class LPPDetails(principalChargeReference: String,
   
   def withTimeToPay(timeToPay: Option[TimeToPay]): LPPDetails =
     copy(timeToPay = timeToPay)
+    
+  def withPFA(): LPPDetails =
+    copy(principalChargeMainTr = "4915")
 
 }
 

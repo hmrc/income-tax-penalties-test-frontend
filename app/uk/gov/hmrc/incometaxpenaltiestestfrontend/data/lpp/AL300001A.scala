@@ -19,15 +19,9 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LPP, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LPP}
 
 object AL300001A extends UserDetailsData {
-
-  override val totalisations: Option[Totalisations] = Some(
-    Totalisations(
-      lppEstimatedTotal = 120.00
-    )
-  )
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
