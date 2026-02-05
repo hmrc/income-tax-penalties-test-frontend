@@ -6,3 +6,6 @@ service.text = This is your new service
 filterPage.title = Filter by {0}
 nino.error.required = Nino is required
 utr.error.required = UTR is required
+updateDownstreamDate.error.unknown = Select if you want to alter time downstream
+updateITSAdate.error.unknown = Select if you want to alter time (ITSA)
+dateInput.error.required = A date is required to set the time machine

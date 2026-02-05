@@ -137,8 +137,8 @@ class CustomLoginController @Inject()(
         Some(user.timeMachineDate)
       }
       for {
-        _ <- timeMachineConnector.updatePenalties(timemachineTime)
-        _ <- timeMachineConnector.updatePenaltiesAppeals(timemachineTime)
+        _ <- timeMachineConnector.updateITSAPenalties(timemachineTime)
+        _ <- timeMachineConnector.updateITSAPenaltiesAppeals(timemachineTime)
       } yield ((): Unit)
     }
   }
