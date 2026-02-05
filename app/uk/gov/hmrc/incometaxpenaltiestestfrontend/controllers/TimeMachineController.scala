@@ -25,6 +25,8 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.{TimeMachineData, TimeM
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.TimeMachine
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -62,16 +64,18 @@ class TimeMachineController @Inject()(timeMachinePage: TimeMachine,
               .map(_ => Redirect(routes.CustomLoginController.showLogin))
 
           case TimeMachineData(true, true, dateInput) =>
+            val date = LocalDateTime.parse(dateInput).toLocalDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
             for
               _ <- timeMachineConnector.updatePenaltiesDownstream(Some(dateInput))
-              _ <- timeMachineConnector.updateITSAPenalties(Some(dateInput))
-              _ <- timeMachineConnector.updateITSAPenaltiesAppeals(Some(dateInput))
+              _ <- timeMachineConnector.updateITSAPenalties(Some(date))
+              _ <- timeMachineConnector.updateITSAPenaltiesAppeals(Some(date))
             yield Redirect(routes.CustomLoginController.showLogin)
 
           case TimeMachineData(false, true, dateInput) =>
+            val date = LocalDateTime.parse(dateInput).toLocalDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
             for
-              _ <- timeMachineConnector.updateITSAPenalties(Some(dateInput))
-              _ <- timeMachineConnector.updateITSAPenaltiesAppeals(Some(dateInput))
+              _ <- timeMachineConnector.updateITSAPenalties(Some(date))
+              _ <- timeMachineConnector.updateITSAPenaltiesAppeals(Some(date))
             yield Redirect(routes.CustomLoginController.showLogin)
 
           case _ =>

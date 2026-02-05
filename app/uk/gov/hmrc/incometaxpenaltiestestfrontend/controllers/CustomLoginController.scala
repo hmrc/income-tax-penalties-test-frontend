@@ -33,25 +33,27 @@
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
 
 import play.api.i18n.I18nSupport
-import play.api.mvc._
+import play.api.mvc.*
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.config.AppConfig
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.connectors.{CustomAuthConnector, TimeMachineConnector}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.UserData
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.EnteredUser
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.{PostedUser, UserRecord}
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html._
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.html.*
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class CustomLoginController @Inject()(
-                                      loginPage: LoginPage,
-                                      enterUserPage: EnterUserPage,
-                                      val customAuthConnector: CustomAuthConnector,
-                                      val timeMachineConnector: TimeMachineConnector
+                                       loginPage: LoginPage,
+                                       enterUserPage: EnterUserPage,
+                                       val customAuthConnector: CustomAuthConnector,
+                                       val timeMachineConnector: TimeMachineConnector
                                      )(implicit val appConfig: AppConfig,
                                        mcc: MessagesControllerComponents,
                                        executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
@@ -86,9 +88,10 @@ class CustomLoginController @Inject()(
   val postEnteredUser: Action[AnyContent] = Action.async { implicit request =>
     EnteredUser.form.bindFromRequest().fold(
       formWithErrors => {
-        Future(BadRequest(enterUserPage(formWithErrors, routes.CustomLoginController.postEnteredUser)))},
+        Future(BadRequest(enterUserPage(formWithErrors, routes.CustomLoginController.postEnteredUser)))
+      },
       (enteredUser: EnteredUser) => {
-        val user = allUserRecords.get(enteredUser.nino).collect{case(x) if x.utr == enteredUser.utr => x}
+        val user = allUserRecords.get(enteredUser.nino).collect { case (x) if x.utr == enteredUser.utr => x }
           .getOrElse(UserRecord(enteredUser.nino, enteredUser.mtdItId.getOrElse("10000"),
             enteredUser.utr, "entered user", "ignore"))
         loginInUser(user, enteredUser.isAgent, false, enteredUser.arn)
@@ -107,7 +110,7 @@ class CustomLoginController @Inject()(
       case (authExchange, _) =>
         val (bearer, auth) = (authExchange.bearerToken, authExchange.sessionAuthorityUri)
         if (isAgent) {
-          val redirectUrl = routes.SetupAgentController.addAgentData(user.nino, user.utr,Option(user.mtditid)).url
+          val redirectUrl = routes.SetupAgentController.addAgentData(user.nino, user.utr, Option(user.mtditid)).url
           successRedirect(bearer, auth, redirectUrl, None)
         } else {
           val origin = if (useBTANavBar) "BTA" else "PTA"
@@ -128,18 +131,21 @@ class CustomLoginController @Inject()(
   }
 
   private def updateTimeMachine(user: UserRecord)(implicit hc: HeaderCarrier): Future[Unit] = {
-    if (user.timeMachineDate == "ignore") {
-      Future.successful((): Unit)
-    } else {
-      val timemachineTime = if (user.timeMachineDate == "now") {
-        None
-      } else {
-        Some(user.timeMachineDate)
-      }
-      for {
-        _ <- timeMachineConnector.updateITSAPenalties(timemachineTime)
-        _ <- timeMachineConnector.updateITSAPenaltiesAppeals(timemachineTime)
-      } yield ((): Unit)
+    user.timeMachineDate match {
+      case "ignore" => Future.unit
+      case "now" =>
+        for {
+          _ <- timeMachineConnector.updatePenaltiesDownstream(None)
+          _ <- timeMachineConnector.updateITSAPenalties(None)
+          _ <- timeMachineConnector.updateITSAPenaltiesAppeals(None)
+        } yield ()
+      case date =>
+        val formattedDate = LocalDate.parse(date.replace("/", "-"), DateTimeFormatter.ofPattern("dd-MM-yyyy")).atStartOfDay().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+        for {
+          _ <- timeMachineConnector.updatePenaltiesDownstream(Some(formattedDate))
+          _ <- timeMachineConnector.updateITSAPenalties(Some(date))
+          _ <- timeMachineConnector.updateITSAPenaltiesAppeals(Some(date))
+        } yield ()
     }
   }
 
