@@ -21,50 +21,45 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{BreathingSpace, LPP, Totalisations}
 
-object AA200000B extends UserDetailsData {
+object AA100001D extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      totalAccountOverdue = 82.19
+      totalAccountOverdue = 40.00,
+      totalAccountAccruingInterest = 0.81
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
-    ReportingPeriod(2027, None),
-    2.19,
-    latePaymentPenaltyDetails2.principalChargeReference
-  )
-
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
-    ReportingPeriod(2027, None),
-    amount = 80.00
-  )
-  
-
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(2.19),
-      totalAccountPostedInterest = Some(80.00)
+      totalAccountAccruingInterest = Some(40.00)
     )
   )
 
   override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
     BreathingSpace(
-      bsStartDate = "2028-02-20",
-      bsEndDate = "2029-02-20"
+      bsStartDate = "2026-01-16",
+      bsEndDate = "2026-02-16"
     )
   ))
 
-  override val lpp: Option[LPP] = Some(LPP(
+  val reportingPeriod1 = ReportingPeriod(2025, None)
+
+  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1Penalty(
+    reportingPeriod1,
+    amount = 40.00,
+    isDay15 = true,
+    isTaxPaid = false
+  )
+  
+  override val lpp = Some(LPP(
     manualLPPIndicator = false,
-    lppDetails = Some(Seq(latePaymentPenaltyDetails1, latePaymentPenaltyDetails2))
+    lppDetails =  Some(Seq(latePaymentPenaltyDetails1))
   ))
 
-  override val nino: String = "AA200000B"
-  override val mtdItId: String = "20000"
-  override val utr: String = "1000020000"
-  override val description: String = "Breathing Space - 2 LPPs - (1 LPP2 ESTIMATE, 1 LPP1 DUE)"
-  override val descriptionOverdue: Option[String] = Some("2 LPPs - (1 LPP ESTIMATE, 1 LPP OVERDUE)")
-  override val timemachineDate: String = "04/04/2028"
-  override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
+  override val nino: String = "AA100001D"
+  override val mtdItId: String = "10000"
+  override val utr: String = "1000010000"
+  override val description: String = "Ex Breathing Space 1 LPP - 15-30 days, tax unpaid"
+  override val timemachineDate: String = "20/02/2026"
 }
