@@ -16,21 +16,59 @@
 
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 @import uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
+@import uk.gov.hmrc.incometaxpenaltiestestfrontend.views.ErrorSummaryViewModel
 
 @this(
-    layout: Layout,
-    govukButton: GovukButton,
-    govukInput : GovukInput,
-    form: FormWithCSRF
+        layout: Layout,
+        govukButton: GovukButton,
+        govukInput: GovukInput,
+        govukCheckboxes: GovukCheckboxes,
+        govukErrorSummary: GovukErrorSummary,
+        formHelper: FormWithCSRF
 )
 
-@(postAction: Call)(implicit request: Request[_], messages: Messages)
+@(form: Form[_], postAction: Call)(implicit request: Request[_], messages: Messages)
 
 @layout(pageTitle = "Time machine - Manage your Income Tax updates - GOV.UK") {
 
     <link href='/report-quarterly/income-and-expenses/view/assets/stylesheets/application.css' media="screen" rel="stylesheet" type="text/css" />
 
-    @form(postAction) {
+    @if(form.errors.nonEmpty) {
+        @govukErrorSummary(ErrorSummaryViewModel(form))
+    }
+
+    @formHelper(postAction) {
+
+        @govukCheckboxes(Checkboxes(
+            name = "timemachine-options",
+            fieldset = Some(Fieldset(
+                legend = Some(Legend(
+                    content = Text("Choose the service you want to time travel with"),
+                    classes = "govuk-fieldset__legend--l",
+                    isPageHeading = true
+                ))
+            )),
+            hint = Some(Hint(
+                content = HtmlContent("ITSA is the default time machine.<br><br> Select one or both time machines")
+            )),
+            items = Seq(
+                CheckboxItem(
+                    name = Some("updateDownstreamDate"),
+                    content = Text("Set date/time downstream in Penalties backend"),
+                    value = "true"
+                ),
+                CheckboxItem(
+                    name = Some("updateItsaDate"),
+                    content = Text("Set date/time in ITSA Penalties & ITSA Penalties Appeals"),
+                    value = "true",
+                    checked = true
+                )
+            ),
+            errorMessage = (form.errors("updateDownstreamDate"), form.errors("updateItsaDate")) match {
+                case (Nil, Nil) => None
+                case _ => Some(ErrorMessage(content = Text("Select your time machine/s")))
+            }
+        ))
 
         @govukInput(Input(
             id = "date-input",
@@ -41,13 +79,21 @@
                 content = Text("Input Time Machine date")
             ),
             hint = Some(Hint(
-                content = Text("For example, 27/03/2007")
-            ))
+                content = Text("For example, 2007-12-03T10:15:30")
+            )),
+            errorMessage = form.errors("dateInput") match {
+                case Nil => None
+                case errors => Some(ErrorMessage(content = HtmlContent(errors.map(err => messages(err.message)).mkString("<br>"))))
+            }
         ))
 
-    <p class="govuk-body govuk-!-margin-bottom-3">
-        <a href="@controllers.routes.TimeMachineController.reset.url" class="govuk-link">Reset Time Machine</a>
-    </p>
+        <p class="govuk-body govuk-!-margin-bottom-3">
+            <a href="@controllers.routes.TimeMachineController.reset.url" class="govuk-link">Reset ITSA Time Machine</a>
+        </p>
+
+        <p class="govuk-body govuk-!-margin-bottom-3">
+            <a href="@controllers.routes.TimeMachineController.resetDownstream.url" class="govuk-link">Reset Downstream Time Machine</a>
+        </p>
 
         @govukButton(Button(content = Text("Submit")))
     }

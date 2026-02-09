@@ -29,7 +29,23 @@ class TimeMachineConnector @Inject()(val appConfig: AppConfig,
 
   lazy val NUM_CALLS = if(appConfig.incomeTaxPenaltiesUrl.contains("localhost")) 1 else 5
 
-  def updatePenalties(optTimeMachineDate: Option[String], numCalls: Int = 0)(implicit hc: HeaderCarrier): Future[HttpResponse] = {
+  def updatePenaltiesDownstream(optTimeMachineDate: Option[String], numCalls: Int = 0)(implicit hc: HeaderCarrier): Future[HttpResponse] = {
+    lazy val url = s"${appConfig.penaltiesUrl}/test-only/time-machine-now"
+    val urlWithOptQuery = optTimeMachineDate.fold(url)(timeMachineDate => s"$url?dateToSet=$timeMachineDate")
+
+    http
+      .get(url"$urlWithOptQuery")
+      .execute[HttpResponse]
+      .flatMap {result =>
+        if((numCalls + 1) < NUM_CALLS) {
+          updateITSAPenalties(optTimeMachineDate, numCalls + 1)
+        } else {
+          Future.successful(result)
+        }
+      }
+  }
+  
+  def updateITSAPenalties(optTimeMachineDate: Option[String], numCalls: Int = 0)(implicit hc: HeaderCarrier): Future[HttpResponse] = {
     lazy val url = s"${appConfig.incomeTaxPenaltiesUrl}/view-penalty/self-assessment/test-only/time-machine-now"
     val urlWithOptQuery = optTimeMachineDate.fold(url)(timeMachineDate => s"$url?dateToSet=$timeMachineDate")
 
@@ -38,15 +54,14 @@ class TimeMachineConnector @Inject()(val appConfig: AppConfig,
       .execute[HttpResponse]
       .flatMap {result =>
         if((numCalls + 1) < NUM_CALLS) {
-          updatePenalties(optTimeMachineDate, numCalls + 1)
+          updateITSAPenalties(optTimeMachineDate, numCalls + 1)
         } else {
           Future.successful(result)
         }
       }
-
   }
 
-  def updatePenaltiesAppeals(optTimeMachineDate: Option[String], numCalls: Int = 0)(implicit hc: HeaderCarrier): Future[HttpResponse] = {
+  def updateITSAPenaltiesAppeals(optTimeMachineDate: Option[String], numCalls: Int = 0)(implicit hc: HeaderCarrier): Future[HttpResponse] = {
     lazy val url = s"${appConfig.incomeTaxPenaltiesAppealsUrl}/view-penalty/self-assessment/test-only/time-machine-now"
     val urlWithOptQuery = optTimeMachineDate.fold(url)(timeMachineDate => s"$url?dateToSet=$timeMachineDate")
 
@@ -55,7 +70,7 @@ class TimeMachineConnector @Inject()(val appConfig: AppConfig,
       .execute[HttpResponse]
       .flatMap {result =>
         if((numCalls + 1) < NUM_CALLS) {
-          updatePenaltiesAppeals(optTimeMachineDate, numCalls + 1)
+          updateITSAPenaltiesAppeals(optTimeMachineDate, numCalls + 1)
         } else {
           Future.successful(result)
         }

@@ -16,16 +16,27 @@
 
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.models
 
-import play.api.data.Form
-import play.api.data.Forms.text
+import play.api.data.Forms.*
+import play.api.data.validation.Constraints.nonEmpty
+import play.api.data.{Form, Forms}
 
 
-object TimeMachineForm {
+case class TimeMachineData(updateDownstreamDate: Boolean, updateItsaDate: Boolean, dateInput: String)
 
-  val form: Form[String] = {
+object TimeMachineData:
+  def unapply(o: TimeMachineData) = Some(o.updateDownstreamDate, o.updateItsaDate, o.dateInput)
 
-    Form("dateInput" -> text)
-  }
-}
+object TimeMachineForm:
+
+  val form: Form[TimeMachineData] = Form(
+    mapping(
+      "updateDownstreamDate" -> boolean,
+      "updateItsaDate" -> boolean,
+      "dateInput" -> text.verifying(nonEmpty)
+    )(TimeMachineData.apply)(TimeMachineData.unapply)
+  )
+
+
+
 
 

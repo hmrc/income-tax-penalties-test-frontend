@@ -14,4 +14,5 @@ POST       /login                               uk.gov.hmrc.incometaxpenaltieste
 POST       /login/enterUser                     uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.CustomLoginController.postEnteredUser
 GET        /time-machine                        uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.TimeMachineController.onPageLoad
 GET        /time-machine/reset                  uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.TimeMachineController.reset
+GET        /time-machine/resetDownstream        uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.TimeMachineController.resetDownstream
 POST       /time-machine                        uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers.TimeMachineController.submit
