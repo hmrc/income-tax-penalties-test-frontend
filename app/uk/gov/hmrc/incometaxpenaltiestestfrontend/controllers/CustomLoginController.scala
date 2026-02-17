@@ -101,7 +101,6 @@ class CustomLoginController @Inject()(
 
   private def loginInUser(user: UserRecord, isPrimaryAgent: Boolean, isSecondaryAgent: Boolean, useBTANavBar: Boolean, arn: Option[String])
                          (implicit hc: HeaderCarrier): Future[Result] = {
-    println(s"§§§ ${isPrimaryAgent}, ${isSecondaryAgent}")
     val loggedInUser = for {
       login <- customAuthConnector.login(user, isPrimaryAgent, isSecondaryAgent, arn)
       _ <- updateTimeMachine(user)
@@ -112,7 +111,6 @@ class CustomLoginController @Inject()(
         val (bearer, auth) = (authExchange.bearerToken, authExchange.sessionAuthorityUri)
         if (isPrimaryAgent || isSecondaryAgent) {
           val redirectUrl = routes.SetupAgentController.addAgentData(user.nino, user.utr, Option(user.mtditid)).url
-          println("IN HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
           successRedirect(bearer, auth, redirectUrl, None)
         } else {
           val origin = if (useBTANavBar) "BTA" else "PTA"

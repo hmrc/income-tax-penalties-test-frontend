@@ -70,10 +70,7 @@ class CustomAuthConnector @Inject()(appConfig: AppConfig,
     val createdPayload = if (userRecord.nino.contains("No Nino")) {
       createPayloadNoNino(userRecord)
     } else {
-      val payload = createPayload(userRecord, isPrimaryAgent, isSecondaryAgent, arn)
-      println("$$$$$$$$$$$$$$$$$$$$$$$")
-      println(payload)
-      payload
+      createPayload(userRecord, isPrimaryAgent, isSecondaryAgent, arn)
     }
     loginRequest(createdPayload)
   }
