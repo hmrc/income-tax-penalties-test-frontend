@@ -25,8 +25,12 @@ case class PostedUser(nino: String,
                       arn: Option[String] = None
                      ) {
 
-  def isAgent: Boolean = {
-    userType.fold(false)(_=="agent")
+  def isPrimaryAgent: Boolean = {
+    userType.fold(false)(_ == "primary-agent")
+  }
+
+  def isSecondaryAgent: Boolean = {
+    userType.fold(false)(_ == "secondary-agent")
   }
 }
 

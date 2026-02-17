@@ -80,7 +80,7 @@ class CustomLoginController @Inject()(
         Future(BadRequest(s"Invalid form submission: $formWithErrors")),
       (postedUser: PostedUser) => {
         val user = allUserRecords(postedUser.nino)
-        loginInUser(user, postedUser.isAgent, postedUser.useBTANavBar, postedUser.arn)
+        loginInUser(user, postedUser.isPrimaryAgent, postedUser.isSecondaryAgent, postedUser.useBTANavBar, postedUser.arn)
       }
     )
   }
@@ -94,23 +94,25 @@ class CustomLoginController @Inject()(
         val user = allUserRecords.get(enteredUser.nino).collect { case (x) if x.utr == enteredUser.utr => x }
           .getOrElse(UserRecord(enteredUser.nino, enteredUser.mtdItId.getOrElse("10000"),
             enteredUser.utr, "entered user", "ignore"))
-        loginInUser(user, enteredUser.isAgent, false, enteredUser.arn)
+        loginInUser(user, enteredUser.isPrimaryAgent, enteredUser.isSecondaryAgent, false, enteredUser.arn)
       }
     )
   }
 
-  private def loginInUser(user: UserRecord, isAgent: Boolean, useBTANavBar: Boolean, arn: Option[String])
+  private def loginInUser(user: UserRecord, isPrimaryAgent: Boolean, isSecondaryAgent: Boolean, useBTANavBar: Boolean, arn: Option[String])
                          (implicit hc: HeaderCarrier): Future[Result] = {
+    println(s"§§§ ${isPrimaryAgent}, ${isSecondaryAgent}")
     val loggedInUser = for {
-      login <- customAuthConnector.login(user, isAgent, arn)
+      login <- customAuthConnector.login(user, isPrimaryAgent, isSecondaryAgent, arn)
       _ <- updateTimeMachine(user)
     } yield login
 
     loggedInUser.map {
       case (authExchange, _) =>
         val (bearer, auth) = (authExchange.bearerToken, authExchange.sessionAuthorityUri)
-        if (isAgent) {
+        if (isPrimaryAgent || isSecondaryAgent) {
           val redirectUrl = routes.SetupAgentController.addAgentData(user.nino, user.utr, Option(user.mtditid)).url
+          println("IN HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
           successRedirect(bearer, auth, redirectUrl, None)
         } else {
           val origin = if (useBTANavBar) "BTA" else "PTA"

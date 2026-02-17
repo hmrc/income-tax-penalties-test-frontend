@@ -92,9 +92,13 @@
                     conditionalHtml = Some(displayBTANavBar)
                 ),
                 RadioItem(
-                    content = Text("Agent"),
-                    value = Some("agent"),
+                    content = Text("Primary Agent"),
+                    value = Some("primary-agent"),
                     conditionalHtml = Some(displayARNField)
+                ),
+                RadioItem(
+                    content = Text("Secondary Agent"),
+                    value = Some("secondary-agent")
                 )
             )
         ))
