@@ -6,3 +6,4 @@ service.text = This is your new service
 filterPage.title = Filter by {0}
 nino.error.required = Nino is required
 utr.error.required = UTR is required
+dateInput.error.required = A date is required to set the time machine
