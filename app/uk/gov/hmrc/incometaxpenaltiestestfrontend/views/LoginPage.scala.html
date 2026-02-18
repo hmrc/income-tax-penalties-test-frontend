@@ -76,7 +76,7 @@
                 NINO
             </label>
             <select class="govuk-select" id="nino" name="nino">
-                @users.map { case (nino, user) =>
+                @users.toSeq.sortBy(_._1).map { case (nino, user) =>
                 <option value="@nino">@nino - @user.description</option>
                 }
             </select>
