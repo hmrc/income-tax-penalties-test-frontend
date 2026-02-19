@@ -50,8 +50,8 @@ object AA200001B extends UserDetailsData {
 
   override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
     BreathingSpace(
-      bsStartDate = "2027-03-02",
-      bsEndDate = "2028-03-02"
+      bsStartDate = "2028-03-12",
+      bsEndDate = "2028-05-10"
     )
   ))
 
@@ -63,8 +63,6 @@ object AA200001B extends UserDetailsData {
   override val nino: String = "AA200001B"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "Ex Breathing Space - 2 LPPs - (1 LPP2 ESTIMATE, 1 LPP1 DUE)"
-  override val descriptionOverdue: Option[String] = Some("Ex Breathing Space - 2 LPPs - (1 LPP ESTIMATE, 1 LPP OVERDUE)")
-  override val timemachineDate: String = "10/03/2028"
-  override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
+  override val description: String = "Ex Breathing Space - 2 LPPs - (1 LPP2 ESTIMATE, 1 LPP1 OVERDUE)"
+  override val timemachineDate: String = "10/06/2028"
 }
