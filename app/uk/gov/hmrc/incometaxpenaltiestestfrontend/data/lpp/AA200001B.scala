@@ -21,7 +21,7 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{BreathingSpace, LPP, Totalisations}
 
-object AA200000B extends UserDetailsData {
+object AA200001B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
@@ -50,8 +50,8 @@ object AA200000B extends UserDetailsData {
 
   override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
     BreathingSpace(
-      bsStartDate = "2028-02-20",
-      bsEndDate = "2029-02-20"
+      bsStartDate = "2028-03-12",
+      bsEndDate = "2028-05-10"
     )
   ))
 
@@ -60,11 +60,9 @@ object AA200000B extends UserDetailsData {
     lppDetails = Some(Seq(latePaymentPenaltyDetails1, latePaymentPenaltyDetails2))
   ))
 
-  override val nino: String = "AA200000B"
+  override val nino: String = "AA200001B"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "Breathing Space - 2 LPPs - (1 LPP2 ESTIMATE, 1 LPP1 DUE)"
-  override val descriptionOverdue: Option[String] = Some("2 LPPs - (1 LPP ESTIMATE, 1 LPP OVERDUE)")
-  override val timemachineDate: String = "10/03/2028"
-  override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
+  override val description: String = "Ex Breathing Space - 2 LPPs - (1 LPP2 ESTIMATE, 1 LPP1 OVERDUE)"
+  override val timemachineDate: String = "10/06/2028"
 }
