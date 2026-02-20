@@ -25,6 +25,7 @@
     govukButton: GovukButton,
     govukCheckboxes: GovukCheckboxes,
     govukRadios: GovukRadios,
+    govukWarningText : GovukWarningText,
     form: FormWithCSRF,
     govukInput: GovukInput
 )
@@ -69,6 +70,12 @@
     <link href='/report-quarterly/income-and-expenses/view/assets/stylesheets/application.css' media="screen" rel="stylesheet" type="text/css" />
 
     <h1 class="govuk-heading-l">Select Nino/User</h1>
+
+
+    @govukWarningText(WarningText(
+        iconFallbackText = Some("Warning"),
+        content = Text("Selecting a Nino from the dropdown list will override datetime set via Time Machine if set in the stub.")
+    ))
 
     @form(postAction) {
         <div class="govuk-form-group">
