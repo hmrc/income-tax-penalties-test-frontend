@@ -103,6 +103,7 @@ object UserData {
     AB511120A,
     AB511130A,
     AB511140A,
+    AB522240A,
     AB611150A
   )
 
