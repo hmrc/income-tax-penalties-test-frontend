@@ -37,7 +37,7 @@ object AL200001A extends UserDetailsData {
 
   val reportingPeriod1 = ReportingPeriod(2025, None)
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
+  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     reportingPeriod1,
     amount = 80.00,
     latePaymentPenaltyDetails2.principalChargeReference
@@ -56,8 +56,8 @@ object AL200001A extends UserDetailsData {
   override val nino: String = "AL200001A"
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
-  override val description: String = "1 LPP - 31 + days, tax paid penalty due"
-  override val descriptionOverdue: Option[String] = Some("1 LPP - 31 + days, tax paid penalty overdue")
-  override val timemachineDate: String = "05/03/2026"
-  override val timeMachineDateOverdue: Option[String] = Some("05/05/2026")
+  override val description: String = "2 LPPs - 31 + days, tax paid - (1 LPP2 DUE, 1 LPP1 DUE)"
+  override val descriptionOverdue: Option[String] = Some("2 LPPs - 31 + days, tax paid - (1 LPP2 OVERDUE, 1 LPP1 OVERDUE)")
+  override val timemachineDate: String = "10/04/2026"
+  override val timeMachineDateOverdue: Option[String] = Some("20/04/2026")
 }

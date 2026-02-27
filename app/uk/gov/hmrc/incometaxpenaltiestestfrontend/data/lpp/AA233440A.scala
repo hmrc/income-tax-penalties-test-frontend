@@ -29,7 +29,7 @@ object AA233440A extends UserDetailsData {
   )
 
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
-    ReportingPeriod(2027, None),
+    ReportingPeriod(2026, None),
     46.02,
     "XJ002616061069"
   )
@@ -54,9 +54,6 @@ object AA233440A extends UserDetailsData {
   override val nino: String = "AA233440A"
   override val mtdItId: String = "23344"
   override val utr: String = "1000023344"
-  override val description: String = "Charge Period LPP2 Display"
-  override val descriptionOverdue: Option[String] = Some("Charge Period LPP2 Display")
+  override val description: String = "2 LPPs - Charge Period LPP2 Display - (1 LPP2 ESTIMATE, 1 LPP2 OVERDUE)"
   override val timemachineDate: String = "05/04/2028"
-  override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
-
 }

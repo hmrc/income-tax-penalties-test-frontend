@@ -28,6 +28,13 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.UserRecord
 
 object UserData {
 
+  val oneOff: Seq[UserDetailsData] = List(
+    AA200010A,
+    AA233440A,
+    AL200001A,
+    PE000002A
+  )
+
   val noPenaltiesData: Seq[UserDetailsData] = List(AA000000A)
   val lsp0UserData: Seq[UserDetailsData] = List(
     AA000000B,

@@ -47,8 +47,6 @@ object AA100000C extends UserDetailsData {
   override val nino: String = "AA100000C"
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
-  override val description: String = "1 LPP - 15-30 days, tax paid and penalty paid"
-  override val descriptionOverdue: Option[String] = Some("1 LPP - 15-30 days, tax paid and penalty paid - penaltyChargeDueDate passed")
-  override val timemachineDate: String = "14/02/2026"
-  override val timeMachineDateOverdue: Option[String] = Some("28/02/2026")
+  override val description: String = "1 LPP - 15-30 days, tax paid - (1 LPP1 PAID)"
+  override val timemachineDate: String = "28/02/2026"
 }
