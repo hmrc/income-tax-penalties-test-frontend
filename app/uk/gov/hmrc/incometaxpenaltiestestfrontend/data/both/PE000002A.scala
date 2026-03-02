@@ -46,6 +46,7 @@ object PE000002A extends UserDetailsData {
     ReportingPeriod(2027, Some(3)),
     returnSubmitted = true
   )
+  
   val lppPenalty1 = LatePaymentPenaltyDetails.lpp1Penalty(
     reportingPeriod1,
     amount = 46.02,
@@ -53,7 +54,7 @@ object PE000002A extends UserDetailsData {
   ).withChargeReference("PE888881102202")
     .withIncomeTaxPaid(reportingPeriod1, false)
 
-  val lppPenalty2 = LatePaymentPenaltyDetails.lpp2Penalty(
+  val lppPenalty2 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     reportingPeriod1,
     amount = 46.02,
       lppPenalty1.principalChargeReference)
@@ -76,6 +77,6 @@ object PE000002A extends UserDetailsData {
   override val nino: String = "PE000002A"
   override val mtdItId: String = "XTIT52155169861"
   override val utr: String = "1000010000"
-  override val description: String = "1 LSP, 2 LPP - 15-30 days and 31days +, tax unpaid"
+  override val description: String = "1 LSP, 2 LPP - 31+ days, tax paid - (1 LSP Update, 1 LPP2 DUE, 1 LPP1 DUE)"
   override val timemachineDate: String = "05/04/2029"
 }

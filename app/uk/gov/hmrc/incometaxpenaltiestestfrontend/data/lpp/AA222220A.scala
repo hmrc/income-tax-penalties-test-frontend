@@ -56,8 +56,8 @@ object AA222220A extends UserDetailsData {
   override val nino: String = "AA222220A"
   override val mtdItId: String = "22222"
   override val utr: String = "1000022222"
-  override val description: String = "2nd increased LPP - (1 LPP ESTIMATE, 1 LPP DUE, 1 LPP PAID)"
-  override val descriptionOverdue: Option[String] = Some("2nd increased LPP - 1 LPP ESTIMATE - (1 LPP OVERDUE, 1 LPP PAID)")
+  override val description: String = "2 LPPs - 2nd increased LPP - (1 LPP2 ESTIMATE, 1 LPP1 DUE)"
+  override val descriptionOverdue: Option[String] = Some("2 LPPs - 2nd increased LPP - (1 LPP2 ESTIMATE, 1 LPP1 OVERDUE)")
   override val timemachineDate: String = "05/03/2028"
   override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
 }

@@ -60,6 +60,6 @@ object AA100001D extends UserDetailsData {
   override val nino: String = "AA100001D"
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
-  override val description: String = "Ex Breathing Space 1 LPP - 15-30 days, tax unpaid"
+  override val description: String = "Ex Breathing Space - 1 LPP - 15-30 days, tax unpaid - (1 LPP1 ESTIMATE)"
   override val timemachineDate: String = "20/02/2026"
 }

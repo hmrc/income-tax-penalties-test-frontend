@@ -58,6 +58,6 @@ object AC200000A extends UserDetailsData {
   override val nino: String = "AC200000A"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "2 LPPs - (LPP2 ESTIMATE - TTP Agreed, LPP1 DUE)"
-  override val timemachineDate: String = "04/04/2028"
+  override val description: String = "TTP - 2 LPPs - (1 LPP2 ESTIMATE - TTP Agreed, 1 LPP1 DUE)"
+  override val timemachineDate: String = "04/03/2028"
 }
