@@ -14,22 +14,6 @@
  * limitations under the License.
  */
 
-///*
-// * Copyright 2023 HM Revenue & Customs
-// *
-// * Licensed under the Apache License, Version 2.0 (the "License");
-// * you may not use this file except in compliance with the License.
-// * You may obtain a copy of the License at
-// *
-// *     http://www.apache.org/licenses/LICENSE-2.0
-// *
-// * Unless required by applicable law or agreed to in writing, software
-// * distributed under the License is distributed on an "AS IS" BASIS,
-// * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// * See the License for the specific language governing permissions and
-// * limitations under the License.
-// */
-
 package uk.gov.hmrc.incometaxpenaltiestestfrontend.controllers
 
 import play.api.i18n.I18nSupport
@@ -80,7 +64,7 @@ class CustomLoginController @Inject()(
         Future(BadRequest(s"Invalid form submission: $formWithErrors")),
       (postedUser: PostedUser) => {
         val user = allUserRecords(postedUser.nino)
-        loginInUser(user, postedUser.isAgent, postedUser.useBTANavBar, postedUser.arn)
+        loginInUser(user, postedUser.isPrimaryAgent, postedUser.isSecondaryAgent, postedUser.useBTANavBar, postedUser.arn)
       }
     )
   }
@@ -94,22 +78,22 @@ class CustomLoginController @Inject()(
         val user = allUserRecords.get(enteredUser.nino).collect { case (x) if x.utr == enteredUser.utr => x }
           .getOrElse(UserRecord(enteredUser.nino, enteredUser.mtdItId.getOrElse("10000"),
             enteredUser.utr, "entered user", "ignore"))
-        loginInUser(user, enteredUser.isAgent, false, enteredUser.arn)
+        loginInUser(user, enteredUser.isPrimaryAgent, enteredUser.isSecondaryAgent, false, enteredUser.arn)
       }
     )
   }
 
-  private def loginInUser(user: UserRecord, isAgent: Boolean, useBTANavBar: Boolean, arn: Option[String])
+  private def loginInUser(user: UserRecord, isPrimaryAgent: Boolean, isSecondaryAgent: Boolean, useBTANavBar: Boolean, arn: Option[String])
                          (implicit hc: HeaderCarrier): Future[Result] = {
     val loggedInUser = for {
-      login <- customAuthConnector.login(user, isAgent, arn)
+      login <- customAuthConnector.login(user, isPrimaryAgent, isSecondaryAgent, arn)
       _ <- updateTimeMachine(user)
     } yield login
 
     loggedInUser.map {
       case (authExchange, _) =>
         val (bearer, auth) = (authExchange.bearerToken, authExchange.sessionAuthorityUri)
-        if (isAgent) {
+        if (isPrimaryAgent || isSecondaryAgent) {
           val redirectUrl = routes.SetupAgentController.addAgentData(user.nino, user.utr, Option(user.mtditid)).url
           successRedirect(bearer, auth, redirectUrl, None)
         } else {
@@ -118,7 +102,7 @@ class CustomLoginController @Inject()(
           successRedirect(bearer, auth, redirectUrl, Some(origin))
         }
       case null =>
-        InternalServerError("something went wrong..")
+        InternalServerError("something went wrong.")
     }
   }
 
