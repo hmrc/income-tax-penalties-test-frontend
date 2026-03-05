@@ -61,7 +61,7 @@ object AA233330A extends UserDetailsData {
   override val utr: String = "1000023333"
   override val description: String = "3 LPPs - (1 LPP2 DUE, 2 LPP1s PAID)"
   override val descriptionOverdue: Option[String] = Some("3 LPPs - (1 LPP2 OVERDUE, 2 LPP1s PAID)")
-  override val timemachineDate: String = "02/02/2028"
+  override val timemachineDate: String = "09/04/2028"
   override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
 
 }

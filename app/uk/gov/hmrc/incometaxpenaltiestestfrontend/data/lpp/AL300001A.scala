@@ -82,5 +82,5 @@ object AL300001A extends UserDetailsData {
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
   override val description: String = "6 LPPs - multiple LPP with success appeal status - (6 LPPs CANCELLED)"
-  override val timemachineDate: String = "05/03/2028"
+  override val timemachineDate: String = "27/03/2028"
 }
