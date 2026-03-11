@@ -16,7 +16,7 @@
           "lspDetails" : [ {
             "penaltyNumber" : "005000001028",
             "penaltyCreationDate" : "2026-11-07",
-            "penaltyExpiryDate" : "2028-10-05",
+            "penaltyExpiryDate" : "2028-12-07",
             "triggeringProcess" : "ICRU",
             "penaltyCategory" : "P",
             "penaltyStatus" : "Inactive",
@@ -42,7 +42,7 @@
           }, {
             "penaltyNumber" : "005000001046",
             "penaltyCreationDate" : "2026-08-07",
-            "penaltyExpiryDate" : "2028-07-05",
+            "penaltyExpiryDate" : "2028-09-07",
             "triggeringProcess" : "ICRU",
             "penaltyCategory" : "P",
             "penaltyStatus" : "Inactive",
@@ -68,7 +68,7 @@
           }, {
             "penaltyNumber" : "005000001017",
             "penaltyCreationDate" : "2026-05-07",
-            "penaltyExpiryDate" : "2028-04-05",
+            "penaltyExpiryDate" : "2028-06-07",
             "triggeringProcess" : "ICRU",
             "penaltyCategory" : "P",
             "penaltyStatus" : "Inactive",
@@ -94,7 +94,7 @@
           }, {
             "penaltyNumber" : "005000001042",
             "penaltyCreationDate" : "2026-02-07",
-            "penaltyExpiryDate" : "2028-01-05",
+            "penaltyExpiryDate" : "2028-03-07",
             "triggeringProcess" : "ICRU",
             "penaltyCategory" : "P",
             "penaltyStatus" : "Inactive",
@@ -120,7 +120,7 @@
           }, {
             "penaltyNumber" : "005000001020",
             "penaltyCreationDate" : "2026-01-31",
-            "penaltyExpiryDate" : "2027-04-05",
+            "penaltyExpiryDate" : "2028-02-29",
             "triggeringProcess" : "ICRU",
             "penaltyCategory" : "P",
             "penaltyStatus" : "Inactive",
