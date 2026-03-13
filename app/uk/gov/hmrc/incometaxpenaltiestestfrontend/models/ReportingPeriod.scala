@@ -49,7 +49,11 @@ case class ReportingPeriod(year: Int, optQuarter: Option[Int]) {
     taxDueDate.plusDays(31).format(dateTimeFormatter)
   }
   val penaltyChargeDueDate = taxDueDate.plusDays(45).format(dateTimeFormatter)
-  val penaltyExpiryDate = taxYearEnd.plusYears(2).format(dateTimeFormatter)
+  val penaltyExpiryDate = {
+    val target = taxDueDate.plusYears(2).plusMonths(1)
+    val day = math.min(taxDueDate.getDayOfMonth, target.lengthOfMonth)
+    target.withDayOfMonth(day).format(dateTimeFormatter)
+  }
   val defaultRecievedDate = taxDueDate.plusMonths(1).minusDays(6).format(dateTimeFormatter)
   val defaultPenaltyPaidDate: Boolean => String = isDay15to30 => if(isDay15to30) {
     taxDueDate.plusDays(40).format(dateTimeFormatter)
