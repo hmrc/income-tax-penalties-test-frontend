@@ -26,8 +26,7 @@ import java.time.LocalDate
 object AC100000A extends UserDetailsData {
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      totalAccountOverdue = 40.00,
-      totalAccountAccruingInterest = 0.81
+      lppEstimatedTotal = 40.00
     )
   )
 
