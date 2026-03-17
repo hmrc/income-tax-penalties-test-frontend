@@ -33,13 +33,15 @@ object AA211130A extends UserDetailsData {
   val lspPenalty1 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(2)),
       penaltyOrder = "3",
-    addAdditionalIncomeSource = true)
+      returnSubmitted = true,
+      addAdditionalIncomeSource = true)
     .withAppealInformation(appealInformation)
 
   val lspPenalty2 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(1)),
       penaltyOrder = "2",
-    addAdditionalIncomeSource = true)
+      returnSubmitted = true,
+      addAdditionalIncomeSource = true)
     .withAppealInformation(appealInformation)
 
 
@@ -57,5 +59,5 @@ object AA211130A extends UserDetailsData {
   override val mtdItId: String = "211130"
   override val utr: String = "0000211130"
   override val description: String = "LSP2 - returns submitted, one success and one rejected first stage appeal"
-  override val timemachineDate: String = "30/11/2027"
+  override val timemachineDate: String = "30/12/2027"
 }

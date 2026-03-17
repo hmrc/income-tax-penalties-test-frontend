@@ -88,8 +88,8 @@ object AB511140A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2026, None), true)
   )
   override val nino: String = "AB511140A"
-  override val description: String = "LSP5, 5 points latest tax return due, oldest penalty cancelled"
-  override val descriptionOverdue: Option[String] = Some("LSP5, 5 points latest tax return overdue, oldest penalty cancelled")
+  override val description: String = "LSP5 - 5 points latest tax return due, oldest penalty cancelled"
+  override val descriptionOverdue: Option[String] = Some("LSP5 - 5 points latest tax return overdue, oldest penalty cancelled")
   override val timemachineDate: String = "03/03/2028"
   override val timeMachineDateOverdue: Option[String] = Some("04/04/2028")
   override val mtdItId: String = "XTIT12345511140"

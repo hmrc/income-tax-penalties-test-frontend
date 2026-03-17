@@ -93,7 +93,7 @@ object AB522240A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2026, None), true)
   )
   override val nino: String = "AB522240A"
-  override val description: String = "Breathing Space LSP5, 5 points latest tax return due, oldest penalty cancelled"
+  override val description: String = "Breathing Space - LSP5 - 5 points, 2 penalties in breathing space"
   override val timemachineDate: String = "03/03/2028"
   override val mtdItId: String = "XTIT12345511140"
   override val utr: String = "0000511140"

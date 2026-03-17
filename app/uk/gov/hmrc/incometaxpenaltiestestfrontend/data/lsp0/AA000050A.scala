@@ -68,6 +68,6 @@ object AA000050A extends UserDetailsData {
   override val nino: String = "AA000050A"
   override val mtdItId: String = "000050"
   override val utr: String = "1234000050"
-  override val description: String = "0 LSP Update- Compliance period ended and points expired"
+  override val description: String = "0 LSP Update - Compliance period ended and points expired"
   override val timemachineDate: String = "01/12/2027"
 }

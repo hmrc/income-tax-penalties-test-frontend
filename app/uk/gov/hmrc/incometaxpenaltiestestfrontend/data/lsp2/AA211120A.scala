@@ -32,7 +32,8 @@ object AA211120A extends UserDetailsData {
   val lspPenalty2 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(2)),
       penaltyOrder = "2",
-    addAdditionalIncomeSource = true)
+      returnSubmitted = true,
+      addAdditionalIncomeSource = true)
     .withAppealInformation(appealInformation)
     .copy(
       communicationsDate = Some("2023-11-07"),
@@ -41,7 +42,8 @@ object AA211120A extends UserDetailsData {
 
   val lspPenalty1 = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(1)),
-    addAdditionalIncomeSource = true)
+      returnSubmitted = true,
+      addAdditionalIncomeSource = true)
     .withAppealInformation(appealInformation)
 
 
