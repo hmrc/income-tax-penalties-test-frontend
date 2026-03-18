@@ -38,13 +38,13 @@ object AA244440A extends UserDetailsData {
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1Paid(
     ReportingPeriod(2027, None),
-    amount = 80.00,
+    amount = 120.00,
     optChargeRef = Some("XJ002616061007")
   ).copy(communicationsDate = Some("2024-03-21"))
 
   val latePaymentPenaltyDetails3 = LatePaymentPenaltyDetails.lpp1Paid(
     ReportingPeriod(2026, None),
-    amount = 40.00
+    amount = 60.00
   )
 
   override def optFinancialData(): Option[FinancialData] = Some(
