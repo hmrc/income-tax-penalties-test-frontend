@@ -17,7 +17,7 @@
         "lpp" : {
           "manualLPPIndicator" : false,
           "lppDetails" : [ {
-            "principalChargeReference" : "XJ002616061027",
+            "principalChargeReference" : "XJ002616061023",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 120,
@@ -37,10 +37,10 @@
             "lpp1HRDays" : "30",
             "lpp1HRPercentage" : 3,
             "penaltyChargeCreationDate" : "2028-03-02",
-            "penaltyChargeReference" : "XJ002616061027",
+            "penaltyChargeReference" : "XJ002616061023",
             "penaltyChargeDueDate" : "2028-03-16"
           }, {
-            "principalChargeReference" : "XJ002616061027",
+            "principalChargeReference" : "XJ002616061023",
             "penaltyStatus" : "A",
             "penaltyAmountAccruing" : 2.19,
             "penaltyAmountPosted" : 0,
@@ -60,7 +60,7 @@
             "lpp2Days" : "31",
             "lpp2Percentage" : 10,
             "penaltyChargeCreationDate" : "2028-03-02",
-            "penaltyChargeReference" : "XJ002616061027",
+            "penaltyChargeReference" : "XJ002616061023",
             "penaltyChargeDueDate" : "2028-03-16",
             "timeToPay" : {
               "proposalDate" : "2026-02-16"
