@@ -37,13 +37,13 @@ object AA200000C extends UserDetailsData {
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
-    amount = 80.00
+    amount = 120.00
   ).withPFA()
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
       totalAccountAccruingInterest = Some(2.19),
-      totalAccountPostedInterest = Some(80.00)
+      totalAccountPostedInterest = Some(120.00)
     )
   )
 

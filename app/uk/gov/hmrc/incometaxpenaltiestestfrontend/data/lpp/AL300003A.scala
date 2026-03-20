@@ -42,37 +42,37 @@ object AL300003A extends UserDetailsData {
 
   val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1Penalty(
     reportingPeriod3,
-    amount = 40.00,
+    amount = 60.00,
     isTaxPaid = false
   ).withAppealInformation(AppealInformation.create("UnderAppeal", "First"))
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
       reportingPeriod3,
-      amount = 40.00,
+      amount = 60.00,
       latePaymentPenaltyDetails1.principalChargeReference)
     .withIncomeTaxPaid(reportingPeriod3, false)
     .withAppealInformation(AppealInformation.create("UnderAppeal", "First"))
 
   val latePaymentPenaltyDetails3 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     reportingPeriod2,
-    amount = 40.00
+    amount = 60.00
   ).withAppealInformation(AppealInformation.create("UnderAppeal", "Second"))
 
   val latePaymentPenaltyDetails4 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
       reportingPeriod2,
-      amount = 40.00,
+      amount = 60.00,
       latePaymentPenaltyDetails3.principalChargeReference)
     .withIncomeTaxPaid(reportingPeriod2, false)
     .withAppealInformation(AppealInformation.create("UnderAppeal", "Second"))
 
   val latePaymentPenaltyDetails5 = LatePaymentPenaltyDetails.lpp1Paid(
     reportingPeriod1,
-    amount = 40.00
+    amount = 60.00
   ).withAppealInformation(AppealInformation.create("UnderAppeal", "Tribunal"))
 
   val latePaymentPenaltyDetails6 = LatePaymentPenaltyDetails.lpp2Paid(
       reportingPeriod1,
-      amount = 40.00,
+      amount = 60.00,
       latePaymentPenaltyDetails5.principalChargeReference)
     .withIncomeTaxPaid(reportingPeriod1, false)
     .withAppealInformation(AppealInformation.create("UnderAppeal", "Tribunal"))
