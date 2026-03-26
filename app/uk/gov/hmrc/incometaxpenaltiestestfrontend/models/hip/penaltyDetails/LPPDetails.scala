@@ -126,8 +126,10 @@ case class LPPDetails(principalChargeReference: String,
   def withTimeToPay(timeToPay: Option[TimeToPay]): LPPDetails =
     copy(timeToPay = timeToPay)
     
-  def withPFA(): LPPDetails =
-    copy(principalChargeMainTr = "4915")
+  def withPFA(): LPPDetails = {
+    copy(principalChargeMainTr = "4915", principalChargeDueDate = "2028-03-19", penaltyChargeDueDate = Some("2028-05-19"))
+  }
+
 
 }
 
@@ -158,7 +160,7 @@ object LPPDetails extends JsonUtils {
       penaltyCategory = Some(category),
       penaltyChargeReference = Some(principleChargeRef),
       penaltyChargeCreationDate = Some(reportingPeriod.penaltyChargeCreationDate(isDay15To30)),
-      penaltyChargeDueDate = Some(reportingPeriod.penaltyChargeDueDate),
+      penaltyChargeDueDate = Some(reportingPeriod.getPenaltyChargeDueDate(if(isDay15To30) 15 else 31)),
       penaltyAmountOutstanding = outstandingPenalty
     )
   }
