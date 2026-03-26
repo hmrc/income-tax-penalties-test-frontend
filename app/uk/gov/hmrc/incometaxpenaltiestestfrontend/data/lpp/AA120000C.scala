@@ -43,7 +43,7 @@ object AA120000C extends UserDetailsData {
     amount = 40.00,
     isDay15 = true,
     isTaxPaid = false
-  ).withPFA()
+  ).withPFA().copy(principalChargeDueDate = "2026-03-19", penaltyChargeDueDate = Some("2026-05-19"))
   
   override val lpp = Some(LPP(
     manualLPPIndicator = false,
