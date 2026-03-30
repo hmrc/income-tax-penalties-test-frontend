@@ -27,13 +27,13 @@ object AC200000A extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppPostedTotal = 40.00
+      lppPostedTotal = 60.00
     )
   )
 
   private val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
-    amount = 80.00
+    amount = 120.00
   )
 
   private val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2Penalty(
@@ -46,7 +46,7 @@ object AC200000A extends UserDetailsData {
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
       totalAccountAccruingInterest = Some(2.19),
-      totalAccountPostedInterest = Some(80.00)
+      totalAccountPostedInterest = Some(120.00)
     )
   )
 

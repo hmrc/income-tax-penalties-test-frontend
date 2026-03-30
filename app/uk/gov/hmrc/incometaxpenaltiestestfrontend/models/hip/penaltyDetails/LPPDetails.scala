@@ -20,6 +20,7 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.JsonUtils
 
 import java.security.SecureRandom
+import scala.language.postfixOps
 
 case class LPPDetails(principalChargeReference: String,
                       penaltyStatus: String,
@@ -63,10 +64,10 @@ case class LPPDetails(principalChargeReference: String,
 
   def withLPP1CalculationFields(isDay15: Boolean): LPPDetails = {
     if(isDay15) {
-      val calculationAmount = penaltyAmount * 50
+      val calculationAmount = (penaltyAmount * 33.34).setScale(0,scala.math.BigDecimal.RoundingMode.FLOOR)
       withLpp1LR(calculationAmount)
     } else {
-      val calculationAmount = penaltyAmount * 25
+      val calculationAmount = (penaltyAmount * 16.66).setScale(0,scala.math.BigDecimal.RoundingMode.CEILING)
       withLpp1HR(calculationAmount)
     }
   }
@@ -74,17 +75,19 @@ case class LPPDetails(principalChargeReference: String,
   def withLpp1LR(calculationAmount: BigDecimal): LPPDetails =
     copy(
       lpp1LRDays = Some("15"),
-      lpp1LRPercentage = Some(2.00),
-      lpp1LRCalculationAmt = Some(calculationAmount)
+      lpp1LRPercentage = Some(3.00),
+          lpp1LRCalculationAmt = Some(calculationAmount.setScale(0, scala.math.BigDecimal.RoundingMode.FLOOR))
     )
+
+
 
   def withLpp1HR(calculationAmount: BigDecimal): LPPDetails =
     copy(
       lpp1LRDays = Some("15"),
-      lpp1LRPercentage = Some(2.00),
+      lpp1LRPercentage = Some(3.00),
       lpp1LRCalculationAmt = Some(calculationAmount),
       lpp1HRDays = Some("30"),
-      lpp1HRPercentage = Some(2.00),
+      lpp1HRPercentage = Some(3.00),
       lpp1HRCalculationAmt = Some(calculationAmount)
     )
 
