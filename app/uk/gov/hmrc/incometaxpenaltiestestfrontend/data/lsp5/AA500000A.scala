@@ -86,7 +86,7 @@ object AA500000A extends UserDetailsData {
 
   override val nino: String = "AA500000A"
   override val description: String = "LSP5 - penalty due, penalty overdue with rejected appeal, penalties 1-3 under appeal"
-  override val timemachineDate: String = "30/03/2028"
+  override val timemachineDate: String = "12/03/2028"
   override val mtdItId: String = "50000"
   override val utr: String = "1000050000"
 }

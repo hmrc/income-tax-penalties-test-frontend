@@ -76,5 +76,5 @@ object AB400010A extends UserDetailsData {
   override val mtdItId: String = "400010"
   override val utr: String = "0000400010"
   override val description: String = "LSP4 - paid and success appeal penalty at LSP 4"
-  override val timemachineDate: String = "30/05/2028"
+  override val timemachineDate: String = "30/06/2028"
 }
