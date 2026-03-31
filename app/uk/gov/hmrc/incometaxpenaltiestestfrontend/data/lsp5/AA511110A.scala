@@ -84,6 +84,7 @@ object AA511110A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2028, Some(0)), true)
       .withObligationDetail(ReportingPeriod(2027, Some(3)), true)
   )
+  
   override val nino: String = "AA511110A"
   override val description: String = "LSP5 - penalty due, under appeal and appeal rejected"
   override val descriptionOverdue: Option[String] = Some("LSP5 - penalty overdue, under appeal and appeal rejected")

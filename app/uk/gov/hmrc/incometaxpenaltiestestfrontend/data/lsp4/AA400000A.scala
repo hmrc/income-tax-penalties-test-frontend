@@ -70,8 +70,8 @@ object AA400000A extends UserDetailsData {
   )
 
   override val nino: String = "AA400000A"
-  override val description: String = "LSP4 - penalty due, and under first stage appeal"
-  override val descriptionOverdue: Option[String] = Some("LSP4 - penalty overdue, and under first stage appeal")
+  override val description: String = "LSP4 - penalty due, under first stage appeal"
+  override val descriptionOverdue: Option[String] = Some("LSP4 - penalty overdue, under first stage appeal")
   override val timemachineDate: String = "28/02/2028"
   override val timeMachineDateOverdue: Option[String] = Some("30/03/2028")
   override val mtdItId: String = "400000"

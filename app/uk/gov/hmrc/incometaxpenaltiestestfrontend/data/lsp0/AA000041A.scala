@@ -36,9 +36,9 @@ object AA000041A extends UserDetailsData {
   ))
 
   override def optComplianceData: Option[CompliancePayload] = None
-  override val nino: String = "AA111141A"
+  override val nino: String = "AA000041A"
   override val mtdItId: String = "000041"
   override val utr: String = "1234000041"
-  override val description: String = "0 LSP Update- Success Second stage appeal"
-  override val timemachineDate: String = "30/08/2027"
+  override val description: String = "0 LSP Update - Success Second stage appeal"
+  override val timemachineDate: String = "30/09/2027"
 }

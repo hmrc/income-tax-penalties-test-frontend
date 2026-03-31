@@ -85,8 +85,8 @@ object AB511110A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2026, Some(1)), true)
   )
   override val nino: String = "AB511110A"
-  override val description: String = "LSP5- penalties paid, latest penalty appeal rejected, penalty 4 tribunal rejected, penalty 1-3 tribunal under appeal"
-  override val timemachineDate: String = "30/05/2027"
+  override val description: String = "LSP5 - penalties paid, penalty 5 appeal rejected, penalty 4 tribunal rejected"
+  override val timemachineDate: String = "02/06/2027"
   override val mtdItId: String = "XTIT12345511110"
   override val utr: String = "0000511110"
 }

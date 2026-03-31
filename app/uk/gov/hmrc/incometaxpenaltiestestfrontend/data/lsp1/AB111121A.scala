@@ -44,6 +44,6 @@ object AB111121A extends UserDetailsData {
   override val nino: String = "AB111121A"
   override val mtdItId: String = "11121"
   override val utr: String = "1000011121"
-  override val description: String = "1 LSP Return - (ACTIVE - under seond stage appeal)"
+  override val description: String = "1 LSP Return - (ACTIVE - under second stage appeal)"
   override val timemachineDate: String = "28/02/2028"
 }
