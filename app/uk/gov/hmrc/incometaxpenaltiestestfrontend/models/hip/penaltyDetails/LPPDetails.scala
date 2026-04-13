@@ -61,13 +61,21 @@ case class LPPDetails(principalChargeReference: String,
       penaltyChargeDueDate = Some(penChargeDueDate)
     )
   }
+  val is2028TaxYear = principalChargeBillingFrom >= "2027"
+  val lpp1Percentage: Option[BigDecimal] = if(is2028TaxYear)Some(4.00) else Some(3.00)
 
   def withLPP1CalculationFields(isDay15: Boolean): LPPDetails = {
-    if(isDay15) {
+    if(isDay15 && !is2028TaxYear) {
       val calculationAmount = (penaltyAmount * 33.34).setScale(0,scala.math.BigDecimal.RoundingMode.FLOOR)
       withLpp1LR(calculationAmount)
-    } else {
+    } else if(isDay15 && is2028TaxYear) {
+      val calculationAmount = (penaltyAmount * 100)
+      withLpp1LR(calculationAmount)
+    } else if(!isDay15 && !is2028TaxYear){
       val calculationAmount = (penaltyAmount * 16.66).setScale(0,scala.math.BigDecimal.RoundingMode.CEILING)
+      withLpp1HR(calculationAmount)
+    } else {
+      val calculationAmount = (penaltyAmount * 50)
       withLpp1HR(calculationAmount)
     }
   }
@@ -75,7 +83,7 @@ case class LPPDetails(principalChargeReference: String,
   def withLpp1LR(calculationAmount: BigDecimal): LPPDetails =
     copy(
       lpp1LRDays = Some("15"),
-      lpp1LRPercentage = Some(3.00),
+      lpp1LRPercentage = lpp1Percentage,
           lpp1LRCalculationAmt = Some(calculationAmount.setScale(0, scala.math.BigDecimal.RoundingMode.FLOOR))
     )
 
@@ -84,10 +92,10 @@ case class LPPDetails(principalChargeReference: String,
   def withLpp1HR(calculationAmount: BigDecimal): LPPDetails =
     copy(
       lpp1LRDays = Some("15"),
-      lpp1LRPercentage = Some(3.00),
+      lpp1LRPercentage = lpp1Percentage,
       lpp1LRCalculationAmt = Some(calculationAmount),
       lpp1HRDays = Some("30"),
-      lpp1HRPercentage = Some(3.00),
+      lpp1HRPercentage = lpp1Percentage,
       lpp1HRCalculationAmt = Some(calculationAmount)
     )
 
