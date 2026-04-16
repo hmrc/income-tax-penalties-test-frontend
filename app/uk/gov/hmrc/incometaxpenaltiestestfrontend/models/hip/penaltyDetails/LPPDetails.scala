@@ -69,13 +69,13 @@ case class LPPDetails(principalChargeReference: String,
       val calculationAmount = (penaltyAmount * 33.34).setScale(0,scala.math.BigDecimal.RoundingMode.FLOOR)
       withLpp1LR(calculationAmount)
     } else if(isDay15 && is2028TaxYear) {
-      val calculationAmount = (penaltyAmount * 100)
+      val calculationAmount = (penaltyAmount * 25)
       withLpp1LR(calculationAmount)
     } else if(!isDay15 && !is2028TaxYear){
       val calculationAmount = (penaltyAmount * 16.66).setScale(0,scala.math.BigDecimal.RoundingMode.CEILING)
       withLpp1HR(calculationAmount)
     } else {
-      val calculationAmount = (penaltyAmount * 50)
+      val calculationAmount = (penaltyAmount * 12.5)
       withLpp1HR(calculationAmount)
     }
   }
