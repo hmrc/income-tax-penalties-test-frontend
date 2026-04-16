@@ -26,13 +26,13 @@ object PE000002A extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 92.00
+      lppEstimatedTotal = 92.04
     )
   )
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(92.00)
+      totalAccountAccruingInterest = Some(92.04)
     )
   )
 
@@ -49,14 +49,14 @@ object PE000002A extends UserDetailsData {
   
   val lppPenalty1 = LatePaymentPenaltyDetails.lpp1Penalty(
     reportingPeriod1,
-    amount = 92.00,
+    amount = 92.04,
       isTaxPaid = true
   ).withChargeReference("PE888881102202")
     .withIncomeTaxPaid(reportingPeriod1, false)
 
   val lppPenalty2 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     reportingPeriod1,
-    amount = 92.00,
+    amount = 92.04,
       lppPenalty1.principalChargeReference)
     .withChargeReference("PE888881102201")
     .withIncomeTaxPaid(reportingPeriod1, false)
