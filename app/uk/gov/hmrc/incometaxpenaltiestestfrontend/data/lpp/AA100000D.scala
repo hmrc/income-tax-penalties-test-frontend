@@ -50,7 +50,7 @@ object AA100000D extends UserDetailsData {
     amount = 60.00,
     isDay15 = true,
     isTaxPaid = false
-  )
+  ).withIncomeTaxPaid(reportingPeriod1, true).copy(penaltyChargeDueDate = Some("2026-03-19"))
   
   override val lpp = Some(LPP(
     manualLPPIndicator = false,
