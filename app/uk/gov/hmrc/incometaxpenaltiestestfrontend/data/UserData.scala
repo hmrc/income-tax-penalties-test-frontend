@@ -114,6 +114,7 @@ object UserData {
     AA100000D,
     AA100001A,
     AA100011A,
+    AA100001B,
     AA100001D,
     AA120000C,
     AA100002C,
