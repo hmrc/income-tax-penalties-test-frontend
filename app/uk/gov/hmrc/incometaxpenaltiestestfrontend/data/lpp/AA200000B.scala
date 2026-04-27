@@ -33,7 +33,7 @@ object AA200000B extends UserDetailsData {
     ReportingPeriod(2027, None),
     2.19,
     latePaymentPenaltyDetails2.principalChargeReference
-  )
+  ).withIncomeTaxPaid(ReportingPeriod(2027, None), true).copy(penaltyChargeDueDate = Some("2028-04-03"))
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
