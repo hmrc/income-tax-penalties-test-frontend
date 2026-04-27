@@ -23,6 +23,7 @@ import java.security.SecureRandom
 import scala.language.postfixOps
 
 case class LPPDetails(principalChargeReference: String,
+                      supplement: Option[Boolean] = Some(false),
                       penaltyStatus: String,
                       penaltyAmountAccruing: BigDecimal,
                       penaltyAmountPosted: BigDecimal,
@@ -141,6 +142,8 @@ case class LPPDetails(principalChargeReference: String,
     copy(principalChargeMainTr = "4915", principalChargeDueDate = "2028-03-19", penaltyChargeDueDate = Some("2028-05-19"))
   }
 
+  def withSupplementary(supplement: Option[Boolean]): LPPDetails =
+    copy(supplement = Some(true))
 
 }
 

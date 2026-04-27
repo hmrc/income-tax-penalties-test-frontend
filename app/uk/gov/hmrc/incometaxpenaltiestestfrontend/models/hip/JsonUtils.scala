@@ -27,6 +27,7 @@ trait JsonUtils {
     override def reads(json: JsValue): JsResult[LPPDetails] = {
       for {
         principalChargeReference <- (json \ "principalChargeReference").validate[String]
+        supplement <- (json\"supplement").validateOpt[Boolean]
         penaltyStatus <- (json \ "penaltyStatus").validate[String]
         penaltyAmountAccruing <- (json \ "penaltyAmountAccruing").validate[BigDecimal]
         penaltyAmountPosted <- (json \ "penaltyAmountPosted").validate[BigDecimal]
@@ -56,7 +57,7 @@ trait JsonUtils {
         timeToPay <- (json \ "timeToPay").validateOpt[TimeToPay]
       }
       yield {
-        LPPDetails(principalChargeReference, penaltyStatus, penaltyAmountAccruing, penaltyAmountPosted, principalChargeBillingFrom,
+        LPPDetails(principalChargeReference, supplement, penaltyStatus, penaltyAmountAccruing, penaltyAmountPosted, principalChargeBillingFrom,
           principalChargeBillingTo, principalChargeDueDate, principalChargeDocNumber, principalChargeMainTr, principalChargeSubTr, penaltyCategory, penaltyAmountPaid,
           penaltyAmountOutstanding, lpp1LRCalculationAmt, lpp1LRDays, lpp1LRPercentage, lpp1HRCalculationAmt, lpp1HRDays, lpp1HRPercentage,
           lpp2Days, lpp2Percentage, penaltyChargeCreationDate, communicationsDate,
@@ -67,6 +68,7 @@ trait JsonUtils {
     override def writes(o: LPPDetails): JsValue = {
       jsonObjNoNulls(
         "principalChargeReference" -> o.principalChargeReference,
+        "supplement" -> o.supplement,
         "penaltyStatus" -> o.penaltyStatus,
         "penaltyAmountAccruing" -> o.penaltyAmountAccruing,
         "penaltyAmountPosted" -> o.penaltyAmountPosted,
