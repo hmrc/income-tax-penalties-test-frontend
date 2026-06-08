@@ -29,9 +29,18 @@ object AA220002C extends UserDetailsData {
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
+
+//    lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
+  //    ReportingPeriod(2027, None),
+  //    46.02,
+  //    22.02,
+  //    latePaymentPenaltyDetails2.principalChargeReference
+  //  ).copy(communicationsDate = Some("2024-03-21"))
+
+  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
     ReportingPeriod(2027, None),
-    2.19,
+    30.00,
+    15.00,
     latePaymentPenaltyDetails2.principalChargeReference
   )
 
