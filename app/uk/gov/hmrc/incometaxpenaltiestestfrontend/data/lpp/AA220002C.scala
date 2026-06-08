@@ -51,6 +51,6 @@ object AA220002C extends UserDetailsData {
   override val nino: String = "AA220002C"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "31+ days,tax and penalty both partly paid (1LPP1 £70.00 due, 1LPP2 Estimate)"
+  override val description: String = "31+ days,income tax partly paid and penalty partly paid (1LPP1 £70.00 due, 1LPP2 £50.00 due)"
   override val timemachineDate: String = "05/03/2028"
 }

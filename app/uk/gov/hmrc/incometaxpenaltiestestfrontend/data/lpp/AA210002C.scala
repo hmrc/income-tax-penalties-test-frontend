@@ -18,7 +18,6 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
 
 object AA210002C extends UserDetailsData {
@@ -39,14 +38,9 @@ object AA210002C extends UserDetailsData {
     ReportingPeriod(2027, None),
     amount = 60.00,
     amountPaid = 20.00
-  )
+  ).copy(principalChargeLatestClearing = None)
 
-  override def optFinancialData(): Option[FinancialData] = Some(
-    FinancialData.create(
-      totalAccountAccruingInterest = Some(2.19),
-      totalAccountPostedInterest = Some(120.00)
-    )
-  )
+
 
   override val lpp: Option[LPP] = Some(LPP(
     manualLPPIndicator = false,
@@ -56,6 +50,6 @@ object AA210002C extends UserDetailsData {
   override val nino: String = "AA210002C"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "31+ days,tax unpaid but penalty partly paid (1LPP1 £40.00 due, 1LPP2 Estimate)"
+  override val description: String = "31+ days,income tax unpaid but penalty partly paid (1LPP1 £40.00 due, 1LPP2 Estimate)"
   override val timemachineDate: String = "05/03/2028"
 }
