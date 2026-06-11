@@ -33,13 +33,13 @@ object AA220002C extends UserDetailsData {
     40.00,
     15.00,
     latePaymentPenaltyDetails2.principalChargeReference
-  ).copy(penaltyChargeDueDate = Some("2028-08-26"))
+  ).copy(penaltyChargeDueDate = Some("2028-08-26"), principalChargeLatestClearing = Some("2028-03-30"))
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1PartiallyPaid(
     ReportingPeriod(2027, None),
     amount = 90.00,
     amountPaid = 20.00
-  ).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1000), penaltyAmountPosted = 90, penaltyAmountOutstanding = Some(70))
+  ).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1000), penaltyAmountPosted = 90, penaltyAmountOutstanding = Some(70), principalChargeLatestClearing = Some("2028-03-30"))
 
 
 
