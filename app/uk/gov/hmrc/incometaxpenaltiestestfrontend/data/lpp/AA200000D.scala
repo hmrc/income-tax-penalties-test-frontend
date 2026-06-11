@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{BreathingSpace, LPP, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
 
 object AA200000D extends UserDetailsData {
 
@@ -53,6 +53,6 @@ object AA200000D extends UserDetailsData {
   override val nino: String = "AA200000D"
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
-  override val description: String = "TTP - 2 LPP - 15-30 days, tax unpaid"
+  override val description: String = "TTP - 2 LPP - 15-30 days, tax unpaid, 1 LPP with supplementary charge"
   override val timemachineDate: String = "21/02/2026"
 }
