@@ -33,7 +33,7 @@ object AA233330B extends UserDetailsData {
     ReportingPeriod(2027, None),
     46.02,
     latePaymentPenaltyDetails2.principalChargeReference
-  )
+  ).withSupplementary(supplement = Some(true))
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1Paid(
     ReportingPeriod(2027, None),
