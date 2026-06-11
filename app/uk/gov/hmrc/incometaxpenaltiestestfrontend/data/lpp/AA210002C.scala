@@ -24,13 +24,13 @@ object AA210002C extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 120
+      lppEstimatedTotal = 1.09
     )
   )
 
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
-    2.19,
+    1.09,
     latePaymentPenaltyDetails2.principalChargeReference
   )
 
