@@ -17,11 +17,11 @@
         "lpp" : {
           "manualLPPIndicator" : false,
           "lppDetails" : [ {
-            "principalChargeReference" : "XJ002616061038",
-            "supplement" : true,
+            "principalChargeReference" : "XJ002616061069",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 60,
+            "penaltyAmountOutstanding" : 60,
             "principalChargeBillingFrom" : "2024-04-06",
             "principalChargeBillingTo" : "2025-04-05",
             "principalChargeDueDate" : "2026-01-31",
@@ -29,14 +29,14 @@
             "principalChargeMainTr" : "4720",
             "principalChargeSubTr" : "SUB1",
             "penaltyCategory" : "LPP1",
-            "penaltyAmountOutstanding" : 60,
             "lpp1LRCalculationAmt" : 2000,
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 3,
             "penaltyChargeCreationDate" : "2026-02-15",
-            "penaltyChargeReference" : "XJ002616061038",
+            "penaltyChargeReference" : "XJ002616061069",
             "penaltyChargeDueDate" : "2026-03-24",
-            "principalChargeLatestClearing" : "2026-02-20"
+            "principalChargeLatestClearing" : "2026-02-20",
+            "supplement" : true
           } ]
         }
       }

@@ -39,7 +39,7 @@
               "appealDescription" : "some description"
             } ]
           }, {
-            "penaltyNumber" : "005000001053",
+            "penaltyNumber" : "005000001019",
             "penaltyCreationDate" : "2027-08-07",
             "penaltyExpiryDate" : "2029-09-07",
             "triggeringProcess" : "ICRU",
@@ -56,7 +56,7 @@
               "taxPeriodDueDate" : "2027-08-07"
             } ]
           }, {
-            "penaltyNumber" : "005000001018",
+            "penaltyNumber" : "005000001006",
             "penaltyCreationDate" : "2027-11-07",
             "penaltyExpiryDate" : "2029-12-07",
             "triggeringProcess" : "ICRU",

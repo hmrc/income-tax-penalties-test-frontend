@@ -17,10 +17,11 @@
         "lpp" : {
           "manualLPPIndicator" : false,
           "lppDetails" : [ {
-            "principalChargeReference" : "XJ002616061051",
+            "principalChargeReference" : "XJ002616061009",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 120,
+            "penaltyAmountOutstanding" : 120,
             "principalChargeBillingFrom" : "2024-04-06",
             "principalChargeBillingTo" : "2025-04-05",
             "principalChargeDueDate" : "2026-01-31",
@@ -29,7 +30,6 @@
             "principalChargeSubTr" : "SUB1",
             "penaltyCategory" : "LPP2",
             "penaltyAmountPaid" : 0,
-            "penaltyAmountOutstanding" : 120,
             "lpp1LRCalculationAmt" : 2000,
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 3,
@@ -39,14 +39,16 @@
             "lpp2Days" : "31",
             "lpp2Percentage" : 10,
             "penaltyChargeCreationDate" : "2026-03-03",
-            "penaltyChargeReference" : "XJ002616061051",
+            "penaltyChargeReference" : "XJ002616061009",
             "penaltyChargeDueDate" : "2026-04-18",
-            "principalChargeLatestClearing" : "2026-03-17"
+            "principalChargeLatestClearing" : "2026-03-17",
+            "supplement" : false
           }, {
-            "principalChargeReference" : "XJ002616061051",
+            "principalChargeReference" : "XJ002616061009",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 60,
+            "penaltyAmountOutstanding" : 60,
             "principalChargeBillingFrom" : "2024-04-06",
             "principalChargeBillingTo" : "2025-04-05",
             "principalChargeDueDate" : "2026-01-31",
@@ -55,7 +57,6 @@
             "principalChargeSubTr" : "SUB1",
             "penaltyCategory" : "LPP1",
             "penaltyAmountPaid" : 0,
-            "penaltyAmountOutstanding" : 60,
             "lpp1LRCalculationAmt" : 1000,
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 3,
@@ -63,9 +64,10 @@
             "lpp1HRDays" : "30",
             "lpp1HRPercentage" : 3,
             "penaltyChargeCreationDate" : "2026-03-03",
-            "penaltyChargeReference" : "XJ002616061051",
+            "penaltyChargeReference" : "XJ002616061009",
             "penaltyChargeDueDate" : "2026-04-18",
-            "principalChargeLatestClearing" : "2026-03-17"
+            "principalChargeLatestClearing" : "2026-03-17",
+            "supplement" : false
           } ]
         }
       }

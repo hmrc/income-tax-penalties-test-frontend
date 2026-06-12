@@ -18,10 +18,10 @@
           "manualLPPIndicator" : false,
           "lppDetails" : [ {
             "principalChargeReference" : "XJ002616061007",
-            "supplement" : false,
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 46.02,
+            "penaltyAmountOutstanding" : 24,
             "principalChargeBillingFrom" : "2026-04-06",
             "principalChargeBillingTo" : "2027-04-05",
             "principalChargeDueDate" : "2028-01-31",
@@ -30,7 +30,6 @@
             "principalChargeSubTr" : "SUB1",
             "penaltyCategory" : "LPP2",
             "penaltyAmountPaid" : 22.02,
-            "penaltyAmountOutstanding" : 24,
             "lpp1LRCalculationAmt" : 767,
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 3,
@@ -43,13 +42,14 @@
             "communicationsDate" : "2024-03-21",
             "penaltyChargeReference" : "XJ002616061007",
             "penaltyChargeDueDate" : "2028-04-17",
-            "principalChargeLatestClearing" : "2028-03-16"
+            "principalChargeLatestClearing" : "2028-03-16",
+            "supplement" : false
           }, {
             "principalChargeReference" : "XJ002616061007",
-            "supplement" : false,
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 120,
+            "penaltyAmountOutstanding" : 0,
             "principalChargeBillingFrom" : "2026-04-06",
             "principalChargeBillingTo" : "2027-04-05",
             "principalChargeDueDate" : "2028-01-31",
@@ -58,7 +58,6 @@
             "principalChargeSubTr" : "SUB1",
             "penaltyCategory" : "LPP1",
             "penaltyAmountPaid" : 120,
-            "penaltyAmountOutstanding" : 0,
             "lpp1LRCalculationAmt" : 2000,
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 3,
@@ -69,13 +68,14 @@
             "communicationsDate" : "2024-03-21",
             "penaltyChargeReference" : "XJ002616061007",
             "penaltyChargeDueDate" : "2028-04-17",
-            "principalChargeLatestClearing" : "2028-03-16"
+            "principalChargeLatestClearing" : "2028-03-16",
+            "supplement" : false
           }, {
-            "principalChargeReference" : "XJ002616061063",
-            "supplement" : false,
+            "principalChargeReference" : "XJ002616061017",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 60,
+            "penaltyAmountOutstanding" : 0,
             "principalChargeBillingFrom" : "2025-04-06",
             "principalChargeBillingTo" : "2026-04-05",
             "principalChargeDueDate" : "2027-01-31",
@@ -84,7 +84,6 @@
             "principalChargeSubTr" : "SUB1",
             "penaltyCategory" : "LPP1",
             "penaltyAmountPaid" : 60,
-            "penaltyAmountOutstanding" : 0,
             "lpp1LRCalculationAmt" : 1000,
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 3,
@@ -93,9 +92,10 @@
             "lpp1HRPercentage" : 3,
             "penaltyChargeCreationDate" : "2027-03-03",
             "communicationsDate" : "2027-03-22",
-            "penaltyChargeReference" : "XJ002616061063",
+            "penaltyChargeReference" : "XJ002616061017",
             "penaltyChargeDueDate" : "2027-04-18",
-            "principalChargeLatestClearing" : "2027-03-17"
+            "principalChargeLatestClearing" : "2027-03-17",
+            "supplement" : false
           } ]
         }
       }

@@ -12,6 +12,7 @@
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 120,
+            "penaltyAmountOutstanding" : 0,
             "principalChargeBillingFrom" : "2023-04-06",
             "principalChargeBillingTo" : "2024-04-05",
             "principalChargeDueDate" : "2025-01-31",
@@ -20,7 +21,6 @@
             "principalChargeSubTr" : "SUB1",
             "penaltyCategory" : "LPP1",
             "penaltyAmountPaid" : 120,
-            "penaltyAmountOutstanding" : 0,
             "lpp1LRCalculationAmt" : 2000,
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 3,
@@ -31,12 +31,14 @@
             "communicationsDate" : "2025-03-22",
             "penaltyChargeReference" : "XJ002616061044",
             "penaltyChargeDueDate" : "2025-04-18",
-            "principalChargeLatestClearing" : "2025-03-17"
+            "principalChargeLatestClearing" : "2025-03-17",
+            "supplement" : false
           }, {
             "principalChargeReference" : "XJ002616061044",
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 120,
+            "penaltyAmountOutstanding" : 0,
             "principalChargeBillingFrom" : "2023-04-06",
             "principalChargeBillingTo" : "2024-04-05",
             "principalChargeDueDate" : "2025-01-31",
@@ -45,7 +47,6 @@
             "principalChargeSubTr" : "SUB1",
             "penaltyCategory" : "LPP2",
             "penaltyAmountPaid" : 120,
-            "penaltyAmountOutstanding" : 0,
             "lpp1LRCalculationAmt" : 2000,
             "lpp1LRDays" : "15",
             "lpp1LRPercentage" : 3,
@@ -58,7 +59,8 @@
             "communicationsDate" : "2025-03-22",
             "penaltyChargeReference" : "XJ002616061044",
             "penaltyChargeDueDate" : "2025-04-18",
-            "principalChargeLatestClearing" : "2025-03-17"
+            "principalChargeLatestClearing" : "2025-03-17",
+            "supplement" : false
           } ]
         }
       }

@@ -34,9 +34,9 @@ trait JsonUtils {
         principalChargeBillingFrom <- (json \ "principalChargeBillingFrom").validate[String]
         principalChargeBillingTo <- (json \ "principalChargeBillingTo").validate[String]
         principalChargeDueDate <- (json \ "principalChargeDueDate").validate[String]
-        principalChargeDocNumber <- (json \ "principalChargeDocNumber").validate[String]
+        principalChargeDocNumber <- (json \ "principalChargeDocNumber").validateOpt[String]
         principalChargeMainTr <- (json \ "principalChargeMainTr").validate[String]
-        principalChargeSubTr <- (json \ "principalChargeSubTr").validate[String]
+        principalChargeSubTr <- (json \ "principalChargeSubTr").validateOpt[String]
         penaltyCategory <- (json \ "penaltyCategory").validateOpt[String]
         penaltyAmountPaid <- (json \ "penaltyAmountPaid").validateOpt[BigDecimal]
         penaltyAmountOutstanding <- (json \ "penaltyAmountOutstanding").validateOpt[BigDecimal]
@@ -68,10 +68,10 @@ trait JsonUtils {
     override def writes(o: LPPDetails): JsValue = {
       jsonObjNoNulls(
         "principalChargeReference" -> o.principalChargeReference,
-        "supplement" -> o.supplement,
         "penaltyStatus" -> o.penaltyStatus,
         "penaltyAmountAccruing" -> o.penaltyAmountAccruing,
         "penaltyAmountPosted" -> o.penaltyAmountPosted,
+        "penaltyAmountOutstanding" -> o.penaltyAmountOutstanding,
         "principalChargeBillingFrom" -> o.principalChargeBillingFrom,
         "principalChargeBillingTo" -> o.principalChargeBillingTo,
         "principalChargeDueDate" -> o.principalChargeDueDate,
@@ -80,7 +80,6 @@ trait JsonUtils {
         "principalChargeSubTr" -> o.principalChargeSubTr,
         "penaltyCategory" -> o.penaltyCategory,
         "penaltyAmountPaid" -> o.penaltyAmountPaid,
-        "penaltyAmountOutstanding" -> o.penaltyAmountOutstanding,
         "lpp1LRCalculationAmt" -> o.lpp1LRCalculationAmt,
         "lpp1LRDays" -> o.lpp1LRDays,
         "lpp1LRPercentage" -> o.lpp1LRPercentage,
@@ -95,7 +94,8 @@ trait JsonUtils {
         "penaltyChargeDueDate" -> o.penaltyChargeDueDate,
         "appealInformation" -> o.appealInformation,
         "principalChargeLatestClearing" -> o.principalChargeLatestClearing,
-        "timeToPay" -> o.timeToPay
+        "timeToPay" -> o.timeToPay,
+        "supplement" -> o.supplement
       )
     }
   }
