@@ -1,0 +1,72 @@
+{
+  "idType" : "NINO",
+  "idNumber" : "AA200000D",
+  "payload" : {
+    "success" : {
+      "processingDate" : "2025-04-05T10:15:10Z",
+      "penaltyData" : {
+        "totalisations" : {
+          "lspTotalValue" : 0,
+          "penalisedPrincipalTotal" : 0,
+          "lppPostedTotal" : 0,
+          "lppEstimatedTotal" : 0,
+          "totalAccountOverdue" : 60,
+          "totalAccountPostedInterest" : 0,
+          "totalAccountAccruingInterest" : 0.81
+        },
+        "lpp" : {
+          "manualLPPIndicator" : false,
+          "lppDetails" : [ {
+            "principalChargeReference" : "XJ002616061062",
+            "supplement" : false,
+            "penaltyStatus" : "P",
+            "penaltyAmountAccruing" : 0,
+            "penaltyAmountPosted" : 2580,
+            "principalChargeBillingFrom" : "2024-04-06",
+            "principalChargeBillingTo" : "2025-04-05",
+            "principalChargeDueDate" : "2026-05-16",
+            "principalChargeDocNumber" : "DOC1",
+            "principalChargeMainTr" : "4915",
+            "principalChargeSubTr" : "SUB1",
+            "penaltyCategory" : "LPP1",
+            "penaltyAmountPaid" : 0,
+            "penaltyAmountOutstanding" : 2580,
+            "lpp1LRCalculationAmt" : 129000,
+            "lpp1LRDays" : "16",
+            "lpp1LRPercentage" : 2,
+            "lpp1HRCalculationAmt" : 129000,
+            "lpp1HRDays" : "30",
+            "lpp1HRPercentage" : 2,
+            "penaltyChargeCreationDate" : "2026-04-16",
+            "penaltyChargeReference" : "XJ002616061062",
+            "penaltyChargeDueDate" : "2026-07-09"
+          }, {
+            "principalChargeReference" : "XJ002616061014",
+            "supplement" : true,
+            "penaltyStatus" : "P",
+            "penaltyAmountAccruing" : 0,
+            "penaltyAmountPosted" : 2580,
+            "principalChargeBillingFrom" : "2024-04-06",
+            "principalChargeBillingTo" : "2025-04-05",
+            "principalChargeDueDate" : "2026-05-16",
+            "principalChargeDocNumber" : "DOC1",
+            "principalChargeMainTr" : "4915",
+            "principalChargeSubTr" : "SUB1",
+            "penaltyCategory" : "LPP1",
+            "penaltyAmountPaid" : 0,
+            "penaltyAmountOutstanding" : 2580,
+            "lpp1LRCalculationAmt" : 129000,
+            "lpp1LRDays" : "16",
+            "lpp1LRPercentage" : 2,
+            "lpp1HRCalculationAmt" : 129000,
+            "lpp1HRDays" : "30",
+            "lpp1HRPercentage" : 2,
+            "penaltyChargeCreationDate" : "2026-04-16",
+            "penaltyChargeReference" : "XJ002616061014",
+            "penaltyChargeDueDate" : "2026-07-09"
+          } ]
+        }
+      }
+    }
+  }
+}
