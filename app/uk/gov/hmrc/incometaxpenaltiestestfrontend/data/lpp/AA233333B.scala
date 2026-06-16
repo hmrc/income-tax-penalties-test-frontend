@@ -21,17 +21,18 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
 
-object AA233330B extends UserDetailsData {
+object AA233333B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 46.00
+      lppEstimatedTotal = 8.20
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
+  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
     ReportingPeriod(2027, None),
-    46.02,
+    8.20,
+    5.20,
     latePaymentPenaltyDetails2.principalChargeReference
   ).withSupplementary(supplement = Some(true))
 
@@ -42,12 +43,12 @@ object AA233330B extends UserDetailsData {
 
   val latePaymentPenaltyDetails3 = LatePaymentPenaltyDetails.lpp1Paid(
     ReportingPeriod(2026, None),
-    amount = 60.00
+    amount = 120.00
   )
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountPostedInterest = Some(46.02)
+      totalAccountPostedInterest = Some(8.20)
     )
   )
 
@@ -56,12 +57,10 @@ object AA233330B extends UserDetailsData {
     lppDetails = Some(Seq(latePaymentPenaltyDetails1, latePaymentPenaltyDetails2, latePaymentPenaltyDetails3))
   ))
 
-  override val nino: String = "AA233330B"
+  override val nino: String = "AA233333B"
   override val mtdItId: String = "23333"
   override val utr: String = "1000023333"
-  override val description: String = "3 LPPs - (1 LPP2 DUE, 2 LPP1s PAID) with supplementary charge"
-  override val descriptionOverdue: Option[String] = Some("3 LPPs - (1 LPP2 OVERDUE, 2 LPP1s PAID) with supplementary charge")
+  override val description: String = "3 LPPs - (1 LPP2 DUE, 2 LPP1s Partly PAID) with supplementary charge"
   override val timemachineDate: String = "09/04/2028"
-  override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
 
 }

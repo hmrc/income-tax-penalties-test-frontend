@@ -1,6 +1,6 @@
 {
   "idType" : "NINO",
-  "idNumber" : "AA233330B",
+  "idNumber" : "AA233333B",
   "payload" : {
     "success" : {
       "processingDate" : "2025-04-05T10:15:10Z",
@@ -10,7 +10,7 @@
             "totalAccountOverdue" : 0
           },
           "additionalReceivableTotalisations" : {
-            "totalAccountPostedInterest" : 46.02,
+            "totalAccountPostedInterest" : 8.2,
             "totalAccountAccruingInterest" : 0
           }
         }
