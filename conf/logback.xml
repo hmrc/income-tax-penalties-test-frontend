@@ -28,8 +28,11 @@
 
     <logger name="application" level="DEBUG"/>
 
+    <logger name="uk.gov.hmrc.play.bootstrap.audit.DisabledDatastreamMetricsProvider" level="ERROR"/>
+
     <logger name="connector" level="TRACE">
         <appender-ref ref="STDOUT"/>
+        <appender-ref ref="CONNECTOR_LOG_FILE"/>
     </logger>
 
     <root level="INFO">
