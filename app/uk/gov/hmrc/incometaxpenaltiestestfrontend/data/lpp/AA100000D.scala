@@ -25,7 +25,6 @@ object AA100000D extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      totalAccountOverdue = 60.00,
       totalAccountAccruingInterest = 0.81
     )
   )
@@ -45,11 +44,10 @@ object AA100000D extends UserDetailsData {
 
   val reportingPeriod1 = ReportingPeriod(2025, None)
 
-  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1Penalty(
+  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     reportingPeriod1,
     amount = 60.00,
-    isDay15 = true,
-    isTaxPaid = false
+    isDay15 = true
   ).withIncomeTaxPaid(reportingPeriod1, true).copy(penaltyChargeDueDate = Some("2026-03-19"))
   
   override val lpp = Some(LPP(
@@ -60,6 +58,6 @@ object AA100000D extends UserDetailsData {
   override val nino: String = "AA100000D"
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
-  override val description: String = "Breathing Space - 1 LPP - 15-30 days, tax unpaid - (1 LPP1 BS ESTIMATE)"
+  override val description: String = "Breathing Space - 1 LPP - 15-30 days, tax paid - (1 LPP1 BS Due)"
   override val timemachineDate: String = "21/02/2026"
 }
