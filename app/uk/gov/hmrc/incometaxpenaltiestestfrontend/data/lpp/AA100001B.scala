@@ -19,43 +19,49 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails, Totalisations}
 
 object AA100001B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 60.00
+      lppEstimatedTotal = 120
     )
   )
+
+  lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2Penalty(
+    ReportingPeriod(2024, None),
+    2.19,
+    latePaymentPenaltyDetails2.principalChargeReference
+  )
+
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+    ReportingPeriod(2024, None),
+    amount = 105.00
+  )
+
+  val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+    ReportingPeriod(2024, None),
+    amount = 15
+  ).withSupplementary(supplement = Some(true))
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(60.00)
+      totalAccountAccruingInterest = Some(2.19),
+      totalAccountPostedInterest = Some(120.00)
     )
   )
 
-  val reportingPeriod1 = ReportingPeriod(2025, None)
-
-  val latePaymentPenaltyDetails1 = {
-    LatePaymentPenaltyDetails.lpp1Penalty(
-      reportingPeriod1,
-      amount = 60.00,
-      isDay15 = true,
-      isTaxPaid = true
-    ).withIncomeTaxPaid(reportingPeriod1, true).withSupplementary(supplement = Some(true))
-  }
-  
-  override val lpp = Some(LPP(
+  override val lpp: Option[LPP] = Some(LPP(
     manualLPPIndicator = false,
-    lppDetails =  Some(Seq(latePaymentPenaltyDetails1))
+    lppDetails = Some(Seq(latePaymentPenaltyDetails1, latePaymentPenaltyDetails2, latePaymentPenaltyDetails3))
   ))
 
   override val nino: String = "AA100001B"
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
-  override val description: String = "1 LPP - 15-30 days, tax paid - (1 LPP1 DUE) with supplementary charge"
-  override val descriptionOverdue: Option[String] = Some("1 LPP - 31+ days, tax paid - (1 LPP1 OVERDUE) with supplementary charge")
-  override val timemachineDate: String = "25/02/2026"
-  override val timeMachineDateOverdue: Option[String] = Some("20/05/2026")
+  override val description: String = "3 LPPs - (1 LPP2 ESTIMATE, 1 LPP1 DUE, 1 LPP1 supplementary DUE) with supplementary charge"
+  override val descriptionOverdue: Option[String] = Some("3 LPPs - (1 LPP2 ESTIMATE, 1 LPP1 OVERDUE, 1 LPP1 supplementary OVERDUE) with supplementary charge")
+  override val timemachineDate: String = "05/03/2025"
+  override val timeMachineDateOverdue: Option[String] = Some("20/05/2025")
 }
