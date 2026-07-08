@@ -27,29 +27,40 @@ object AA100002B extends UserDetailsData {
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(60.00)
+      totalAccountAccruingInterest = Some(120.00)
     )
   )
 
-  val reportingPeriod1 = ReportingPeriod(2025, None)
+  val reportingPeriod1 = ReportingPeriod(2024, None)
 
-  val latePaymentPenaltyDetails1: LPPDetails = {
-    LatePaymentPenaltyDetails.lpp1Paid(
-      reportingPeriod1,
-      amount = 60.00,
-      isDay15 = true
-    ).withSupplementary(supplement = Some(true))
-  }
+  val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
+    reportingPeriod1,
+    amount = 115.00,
+    optChargeRef = Some("XJ002616061044")
+  )
+
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
+    reportingPeriod1,
+    amount = 8.21,
+    principalChargeRef = latePaymentPenaltyDetails1.principalChargeReference
+  )
+
+  val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
+    reportingPeriod1,
+    amount = 15.00,
+    isDay15 = true,
+    optChargeRef = Some("XJ002616061044")
+  ).withSupplementary(supplement = Some(true))
 
   override val lpp = Some(LPP(
     manualLPPIndicator = false,
-    lppDetails = Some(Seq(latePaymentPenaltyDetails1))
+    lppDetails = Some(Seq(latePaymentPenaltyDetails1, latePaymentPenaltyDetails2, latePaymentPenaltyDetails3))
   ))
 
   override val nino: String = "AA100002B"
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
-  override val description: String = "1 LPP - 15-30 days, tax paid, penalty paid - (1 LPP1 PAID) with supplementary charge"
-  override val timemachineDate: String = "25/02/2026"
+  override val description: String = "3 LPPs - (1 LPP1 PAID, 1 LPP2 PAID, 1 LPP1 supplementary PAID) with supplementary charge"
+  override val timemachineDate: String = "25/03/2025"
 }
 
