@@ -21,8 +21,8 @@ import play.api.libs.json.{Format, Json}
 import java.time.LocalDate
 
 case class TimeToPay(
-                     proposalDate: Option[LocalDate],
-                     agreementDate: Option[LocalDate]
+                     TTPProposalDate: Option[LocalDate],
+                     TTPAgreementDate: Option[LocalDate]
                     )
 
 object TimeToPay {
