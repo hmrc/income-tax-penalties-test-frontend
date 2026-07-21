@@ -25,29 +25,47 @@ object AA233331B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 46.00
+      lppEstimatedTotal = 320.81
     )
   )
 
-  lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
-    ReportingPeriod(2027, None),
-    46.02,
-    latePaymentPenaltyDetails2.principalChargeReference
-  ).withSupplementary(supplement = Some(true))
+  private val principalChargeReference = "XJ002616061022"
 
+  // LPP2, paid, 19.17
+  val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
+    ReportingPeriod(2025, None),
+    19.17,
+    principalChargeReference
+  ).copy(
+    penaltyChargeDueDate = Some("2026-04-17"),
+    principalChargeLatestClearing = Some("2026-03-16")
+  )
+
+  // LPP1, paid, 300
   val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
-    ReportingPeriod(2027, None),
-    amount = 120.00
+    ReportingPeriod(2025, None),
+    amount = 300,
+    optChargeRef = Some(principalChargeReference)
+  ).copy(
+    penaltyChargeDueDate = Some("2026-04-04"),
+    principalChargeLatestClearing = Some("2026-03-16")
   )
 
-  val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
-    ReportingPeriod(2026, None),
-    amount = 60.00
-  )
+  // LPP2, supplement=true, paid, 1.64
+  val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
+    ReportingPeriod(2025, None),
+    1.64,
+    principalChargeReference
+  ).copy(
+    penaltyChargeCreationDate = Some("2026-03-20"),
+    penaltyChargeDueDate = Some("2026-04-26"),
+    principalChargeLatestClearing = Some("2026-03-25")
+  ).withSupplementary(supplement = Some(true))
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountPostedInterest = Some(46.02)
+      totalAccountOverdue = Some(0.00),
+      totalAccountPostedInterest = Some(320.81)
     )
   )
 
@@ -59,8 +77,8 @@ object AA233331B extends UserDetailsData {
   override val nino: String = "AA233331B"
   override val mtdItId: String = "23333"
   override val utr: String = "1000023333"
-  override val description: String = "3 LPPs - (1 LPP2 PAID, 2 LPP1s PAID) with supplementary charge"
-  override val timemachineDate: String = "09/04/2028"
+  override val description: String = "3 LPPs - (1 LPP2 PAID, 1 LPP1 PAID, 1 supplementary LPP2 PAID) with supplementary charge"
+  override val timemachineDate: String = "26/03/2026"
 
 }
 
