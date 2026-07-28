@@ -29,11 +29,11 @@ object AA200002D extends UserDetailsData {
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
+  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     ReportingPeriod(2027, None),
     2.19,
     latePaymentPenaltyDetails2.principalChargeReference
-  ).withIncomeTaxPaid(ReportingPeriod(2027, None), true).copy(penaltyChargeDueDate = Some("2028-04-03"))
+  ).withIncomeTaxPaid(ReportingPeriod(2027, None), false).copy(penaltyChargeDueDate = Some("2028-04-01"))
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
@@ -50,8 +50,8 @@ object AA200002D extends UserDetailsData {
 
   override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
     BreathingSpace(
-      bsStartDate = "2028-03-15",
-      bsEndDate = "2028-06-25"
+      bsStartDate = "2028-03-05",
+      bsEndDate = "2028-05-15"
     )
   ))
 
@@ -65,6 +65,6 @@ object AA200002D extends UserDetailsData {
   override val utr: String = "1000020000"
   override val description: String = "Breathing Space Overdue - 2 LPPs - (1 LPP2 BS Overdue, 1 LPP1 BS DUE)"
   override val descriptionOverdue: Option[String] = Some("Breathing Space - 2 LPPs - (1 LPP2 BS ESTIMATE, 1 LPP1 BS OVERDUE)")
-  override val timemachineDate: String = "15/06/2028"
+  override val timemachineDate: String = "27/07/2028"
   override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
 }
