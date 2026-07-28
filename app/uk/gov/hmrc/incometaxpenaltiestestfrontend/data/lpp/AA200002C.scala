@@ -29,7 +29,7 @@ object AA200002C extends UserDetailsData {
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
+  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
     2.19,
     latePaymentPenaltyDetails2.principalChargeReference
