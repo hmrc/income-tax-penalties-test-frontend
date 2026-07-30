@@ -26,7 +26,7 @@ import java.time.LocalDate
 object AC100001A extends UserDetailsData {
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 60.00
+      lppPostedTotal = 60.00
     )
   )
 
@@ -38,13 +38,11 @@ object AC100001A extends UserDetailsData {
 
   val reportingPeriod1 = ReportingPeriod(2025, None)
 
-  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1Penalty(
+  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     reportingPeriod1,
     amount = 60.00,
-    isDay15 = true,
-    isTaxPaid = true,
-    ttp = Some(TimeToPay(None, Some(LocalDate.of(2026, 2, 17))))
-  )
+    isDay15 = true
+  ).withTimeToPay(Some(TimeToPay(TTPProposalDate = None, TTPAgreementDate = Some(LocalDate.of(2026, 2, 20)))))
 
   override val lpp = Some(LPP(
     manualLPPIndicator = false,
@@ -54,8 +52,8 @@ object AC100001A extends UserDetailsData {
   override val nino: String = "AC100001A"
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
-  override val description: String = "TTP - 1 LPP - 15-30 days (1 LPP1 DUE - TTP AGREED)"
-  override val descriptionOverdue: Option[String] = Some("TTP - 1 LPP - 15-30 days (1 LPP1 OVERDUE - TTP AGREED)")
+  override val description: String = "TTP - 1 LPP 15-30 days, tax unpaid,(1 LPP1 DUE - TTP AGREED)"
+  override val descriptionOverdue: Option[String] = Some("TTP - 1 LPP 15-30 days, tax unpaid,(1 LPP1 OVERDUE - TTP AGREED)")
   override val timemachineDate: String = "25/02/2026"
   override val timeMachineDateOverdue: Option[String] = Some("20/05/2026")
 }
