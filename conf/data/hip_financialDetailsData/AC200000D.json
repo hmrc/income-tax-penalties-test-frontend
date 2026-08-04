@@ -1,6 +1,6 @@
 {
   "idType" : "NINO",
-  "idNumber" : "AC200000B",
+  "idNumber" : "AC200000D",
   "payload" : {
     "success" : {
       "processingDate" : "2025-04-05T10:15:10Z",
@@ -10,11 +10,12 @@
             "totalAccountOverdue" : 0
           },
           "additionalReceivableTotalisations" : {
-            "totalAccountPostedInterest" : 120,
-            "totalAccountAccruingInterest" : 10.41
+            "totalAccountPostedInterest" : 130.41,
+            "totalAccountAccruingInterest" : 0
           }
         }
       }
     }
   }
 }
+
