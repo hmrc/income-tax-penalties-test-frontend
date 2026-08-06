@@ -64,5 +64,7 @@ object AC100002B extends UserDetailsData {
   override val mtdItId: String = "10000"
   override val utr: String = "1000010000"
   override val description: String = "3 LPPs - TTP Proposed LPP1 (1 LPP2 ESTIMATE, 1 LPP1 DUE, 1 LPP1 DUE) with supplementary charge"
+  override val descriptionOverdue: Option[String] = Some("TTP - 1 LPP 15-30 days, tax unpaid,(1 LPP1 OVERDUE - TTP PROPOSED)")
   override val timemachineDate: String = "05/03/2025"
+  override val timeMachineDateOverdue: Option[String] = Some("20/05/2026")
 }
