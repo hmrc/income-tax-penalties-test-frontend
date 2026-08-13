@@ -35,7 +35,7 @@ object AC210000D extends UserDetailsData {
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
       totalAccountAccruingInterest = None,
-      totalAccountPostedInterest = Some(130.41)
+      totalAccountPostedInterest = Some(126.02)
     )
   )
 
@@ -50,7 +50,7 @@ object AC210000D extends UserDetailsData {
     lpp1HRCalculationAmt = Some(2000),
     penaltyChargeCreationDate = Some("2028-03-02"),
     penaltyChargeDueDate = Some("2028-04-03"),
-    principalChargeLatestClearing = Some("2025-03-20")
+    principalChargeLatestClearing = Some("2028-03-20")
   ).withTimeToPay(Some(TimeToPay(
     TTPProposalDate = Some(LocalDate.of(2028, 3, 12)),
     TTPAgreementDate = Some(LocalDate.of(2028, 3, 15))
@@ -65,7 +65,7 @@ object AC210000D extends UserDetailsData {
     lpp1HRCalculationAmt = Some(2000),
     penaltyChargeCreationDate = Some("2028-03-02"),
     penaltyChargeDueDate = Some("2028-04-03"),
-    principalChargeLatestClearing = Some("2025-03-20")
+    principalChargeLatestClearing = Some("2028-03-20")
   ).withTimeToPay(Some(TimeToPay(
     TTPProposalDate = Some(LocalDate.of(2028, 3, 12)),
     TTPAgreementDate = Some(LocalDate.of(2028, 3, 15))
