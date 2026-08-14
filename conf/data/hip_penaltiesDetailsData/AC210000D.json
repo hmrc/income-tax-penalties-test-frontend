@@ -3,7 +3,7 @@
   "idNumber": "AC210000D",
   "payload": {
     "success": {
-      "processingDate": "2025-04-05T10:15:10Z",
+      "processingDate": "2028-03-05T10:15:10Z",
       "penaltyData": {
         "totalisations": {
           "lspTotalValue": 0,
@@ -41,7 +41,7 @@
               "penaltyChargeCreationDate": "2028-03-02",
               "penaltyChargeReference": "XJ002616061096",
               "penaltyChargeDueDate": "2028-04-03",
-              "principalChargeLatestClearing": "2025-03-20",
+              "principalChargeLatestClearing": "2028-03-20",
               "timeToPay": [
                 {
                   "TTPProposalDate": "2028-03-12",
@@ -75,7 +75,7 @@
               "penaltyChargeCreationDate": "2028-03-02",
               "penaltyChargeReference": "XJ002616061096",
               "penaltyChargeDueDate": "2028-04-03",
-              "principalChargeLatestClearing": "2025-03-20",
+              "principalChargeLatestClearing": "2028-03-20",
               "timeToPay": [
                 {
                   "TTPProposalDate": "2028-03-12",
