@@ -19,15 +19,13 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, TimeToPay, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
 
-import java.time.LocalDate
-
-object AC200000A extends UserDetailsData {
+object AC200000C extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppPostedTotal = 130.41
+      lppPostedTotal = 180.00
     )
   )
 
@@ -36,17 +34,16 @@ object AC200000A extends UserDetailsData {
     amount = 120.00
   )
 
-  private val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2Penalty(
+  private val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     ReportingPeriod(2027, None),
-    10.41,
+    60.00,
     latePaymentPenaltyDetails1.principalChargeReference
-  ).withTimeToPay(Some(TimeToPay(None, Some(LocalDate.of(2026, 2, 16)))))
-
+  )
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(10.41),
-      totalAccountPostedInterest = Some(120.00)
+      totalAccountAccruingInterest = None,
+      totalAccountPostedInterest = Some(180.00)
     )
   )
 
@@ -55,9 +52,13 @@ object AC200000A extends UserDetailsData {
     lppDetails = Some(Seq(latePaymentPenaltyDetails1, latePaymentPenaltyDetails2))
   ))
 
-  override val nino: String = "AC200000A"
+  override val nino: String = "AC200000C"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "TTP - 2 LPPs - (1 LPP2 ESTIMATE - TTP Agreed, 1 LPP1 DUE)"
-  override val timemachineDate: String = "27/03/2028"
+  override val description: String = "TTP - 2 LPPs - (1 LPP2 DUE - TTP Agreed, 1 LPP1 DUE - WIP PDD+726)"
+  override val descriptionOverdue: Option[String] = Some("TTP - 2 LPPs - (1 LPP2 OVERDUE - TTP Agreed, 1 LPP1 OVERDUE - WIP PDD+726)")
+  override val timemachineDate: String = "30/03/2028"
+  override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
 }
+
+

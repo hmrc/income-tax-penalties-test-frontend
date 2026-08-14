@@ -19,36 +19,61 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails, Totalisations}
 
 object AA233333B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 8.21
+      lppPostedTotal = 320.81
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
-    ReportingPeriod(2027, None),
-    8.21,
-    5.21,
-    latePaymentPenaltyDetails2.principalChargeReference
+  private val principalChargeRef = "XJ002616061081"
+
+  // LPP2, paid, 19.17
+  val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
+    ReportingPeriod(2025, None),
+    19.17,
+    principalChargeRef
+  ).copy(
+    lpp1LRCalculationAmt = Some(5000),
+    lpp1HRCalculationAmt = Some(5000),
+    penaltyChargeDueDate = Some("2026-04-17"),
+    principalChargeLatestClearing = Some("2026-03-16")
+  )
+
+  // LPP1, paid, 300
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
+    ReportingPeriod(2025, None),
+    amount = 300,
+    optChargeRef = Some(principalChargeRef)
+  ).copy(
+    penaltyChargeReference = Some(principalChargeRef),
+    lpp1LRCalculationAmt = Some(5000),
+    lpp1HRCalculationAmt = Some(5000),
+    penaltyChargeDueDate = Some("2026-04-04"),
+    principalChargeLatestClearing = Some("2026-03-16")
+  )
+
+  // LPP2, supplementary, partially paid, 1.64 (1.00 paid, 0.64 outstanding)
+  val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
+    ReportingPeriod(2025, None),
+    1.64,
+    1.00,
+    principalChargeRef
+  ).copy(
+    lpp1LRCalculationAmt = Some(5000),
+    lpp1HRCalculationAmt = Some(5000),
+    penaltyChargeCreationDate = Some("2026-03-20"),
+    communicationsDate = Some("2026-03-22"),
+    penaltyChargeDueDate = Some("2026-04-26"),
+    principalChargeLatestClearing = Some("2026-03-25")
   ).withSupplementary(supplement = Some(true))
-
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1Paid(
-    ReportingPeriod(2027, None),
-    amount = 120.00
-  )
-
-  val latePaymentPenaltyDetails3 = LatePaymentPenaltyDetails.lpp1Paid(
-    ReportingPeriod(2026, None),
-    amount = 120.00
-  )
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountPostedInterest = Some(8.21)
+      totalAccountPostedInterest = Some(320.81)
     )
   )
 
@@ -60,7 +85,7 @@ object AA233333B extends UserDetailsData {
   override val nino: String = "AA233333B"
   override val mtdItId: String = "23333"
   override val utr: String = "1000023333"
-  override val description: String = "3 LPPs - (1 LPP2 DUE, 2 LPP1s Partly PAID) with supplementary charge"
-  override val timemachineDate: String = "09/04/2028"
+  override val description: String = "3 LPPs - (1 LPP2 PAID, 1 LPP1 PAID, 1 supplementary LPP2 PARTIALLY PAID) with supplementary charge"
+  override val timemachineDate: String = "26/03/2026"
 
 }

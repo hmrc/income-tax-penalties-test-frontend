@@ -27,7 +27,7 @@ object AC200000B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 82.19
+      lppEstimatedTotal = 130.41
     )
   )
 
@@ -38,14 +38,14 @@ object AC200000B extends UserDetailsData {
 
   private val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
-    2.19,
+    10.41,
     latePaymentPenaltyDetails1.principalChargeReference
   ).withTimeToPay(Some(TimeToPay(Some(LocalDate.of(2026, 2, 16)), None)))
 
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(2.19),
+      totalAccountAccruingInterest = Some(10.41),
       totalAccountPostedInterest = Some(120.00)
     )
   )
@@ -59,5 +59,5 @@ object AC200000B extends UserDetailsData {
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
   override val description: String = "TTP - 2 LPPs - (1 LPP2 ESTIMATE - TTP Proposed, 1 LPP1 DUE)"
-  override val timemachineDate: String = "04/03/2028"
+  override val timemachineDate: String = "27/03/2028"
 }
