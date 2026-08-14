@@ -63,8 +63,6 @@ object AA200002C extends UserDetailsData {
   override val nino: String = "AA200002C"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "Breathing Space Due - 2 LPPs - (1 LPP2 BS Due, 1 LPP1 BS DUE)"
-  override val descriptionOverdue: Option[String] = Some("Breathing Space - 2 LPPs - (1 LPP2 BS Due, 1 LPP1 BS OVERDUE)")
+  override val description: String = "Breathing Space Estimate and Due - 2 LPPs - (1 LPP2 BS ESTIMATE, 1 LPP1 BS DUE)"
   override val timemachineDate: String = "01/07/2028"
-  override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
 }
