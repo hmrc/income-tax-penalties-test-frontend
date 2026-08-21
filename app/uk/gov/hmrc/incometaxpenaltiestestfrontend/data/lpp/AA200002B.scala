@@ -31,7 +31,7 @@ object AA200002B extends UserDetailsData {
 
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
-    2.19,
+    31.23,
     latePaymentPenaltyDetails2.principalChargeReference
   )
 
@@ -43,7 +43,7 @@ object AA200002B extends UserDetailsData {
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(2.19),
+      totalAccountAccruingInterest = Some(31.23),
       totalAccountPostedInterest = Some(120.00)
     )
   )
@@ -63,6 +63,6 @@ object AA200002B extends UserDetailsData {
   override val nino: String = "AA200002B"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "Breathing Space Estimate and Due - 2 LPPs - (1 LPP2 BS ESTIMATE, 1 LPP1 BS DUE)"
-  override val timemachineDate: String = "12/04/2028"
+  override val description: String = "Breathing Space (Charge after BS) - 2 LPPs (1 LPP2 BS ESTIMATE, 1 LPP1 BS OVERDUE)"
+  override val timemachineDate: String = "27/07/2028"
 }
