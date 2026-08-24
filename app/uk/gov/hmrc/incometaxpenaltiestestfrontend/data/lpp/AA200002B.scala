@@ -25,25 +25,26 @@ object AA200002B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 82
+      lppEstimatedTotal = 16.98,
+      lppPostedTotal = 120
     )
   )
 
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
-    31.23,
+    16.98,
     latePaymentPenaltyDetails2.principalChargeReference
-  )
+  ).copy(penaltyChargeDueDate = Some("2028-05-03"), penaltyChargeCreationDate = Some("2028-04-02"), lpp1HRCalculationAmt = Some(2000.00), lpp1LRCalculationAmt = Some(2000.00))
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
     amount = 120.00
-  )
+  ).copy(penaltyChargeDueDate = Some("2028-05-03"), penaltyChargeCreationDate = Some("2028-04-02"))
   
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(31.23),
+      totalAccountAccruingInterest = Some(16.98),
       totalAccountPostedInterest = Some(120.00)
     )
   )
@@ -51,7 +52,7 @@ object AA200002B extends UserDetailsData {
   override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
     BreathingSpace(
       bsStartDate = "2028-02-01",
-      bsEndDate = "2028-05-31"
+      bsEndDate = "2028-04-01"
     )
   ))
 
@@ -63,6 +64,6 @@ object AA200002B extends UserDetailsData {
   override val nino: String = "AA200002B"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "Breathing Space (Charge after BS) - 2 LPPs (1 LPP2 BS ESTIMATE, 1 LPP1 BS OVERDUE)"
-  override val timemachineDate: String = "27/07/2028"
+  override val description: String = "Breathing Space (Charge after BS) - 2 LPPs (1 LPP2 BS ESTIMATE, 1 LPP1 BS DUE)"
+  override val timemachineDate: String = "02/05/2028"
 }
