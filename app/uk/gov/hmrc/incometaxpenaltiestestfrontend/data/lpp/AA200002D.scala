@@ -25,33 +25,34 @@ object AA200002D extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 82
+      lppEstimatedTotal = 9.86,
+      lppPostedTotal = 120
     )
   )
 
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     ReportingPeriod(2027, None),
-    2.19,
+    9.86,
     latePaymentPenaltyDetails2.principalChargeReference
-  ).withIncomeTaxPaid(ReportingPeriod(2027, None), false).copy(penaltyChargeDueDate = Some("2028-04-01"))
+  ).withIncomeTaxPaid(ReportingPeriod(2027, None), false).copy(lpp1HRCalculationAmt = Some(2000.00), lpp1LRCalculationAmt = Some(2000.00), penaltyChargeDueDate = Some("2028-04-03"), principalChargeLatestClearing = Some("2028-03-25"))
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
     amount = 120.00
-  )
+  ).copy(penaltyChargeDueDate = Some("2028-04-03"), principalChargeLatestClearing = Some("2028-03-25"))
   
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(2.19),
+      totalAccountAccruingInterest = Some(9.86),
       totalAccountPostedInterest = Some(120.00)
     )
   )
 
   override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
     BreathingSpace(
-      bsStartDate = "2028-03-05",
-      bsEndDate = "2028-05-15"
+      bsStartDate = "2028-03-20",
+      bsEndDate = "2028-05-19"
     )
   ))
 
@@ -63,6 +64,6 @@ object AA200002D extends UserDetailsData {
   override val nino: String = "AA200002D"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "Breathing Space Due - 2 LPPs - (1 LPP2 BS Due, 1 LPP1 BS Due)"
-  override val timemachineDate: String = "27/07/2028"
+  override val description: String = "Breathing Space (Charge before BS) - 2 LPPs (1 LPP2 OVERDUE, 1 LPP1 OVERDUE"
+  override val timemachineDate: String = "1/07/2028"
 }
