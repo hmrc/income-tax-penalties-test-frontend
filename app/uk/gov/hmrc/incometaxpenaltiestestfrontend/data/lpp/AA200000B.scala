@@ -25,33 +25,34 @@ object AA200000B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 82
+      lppEstimatedTotal = 15.89,
+      lppPostedTotal = 120
     )
   )
 
   lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
-    2.19,
+    15.89,
     latePaymentPenaltyDetails2.principalChargeReference
-  ).withIncomeTaxPaid(ReportingPeriod(2027, None), true).copy(penaltyChargeDueDate = Some("2028-04-03"))
+  ).copy(penaltyChargeDueDate = Some("2028-05-03"), penaltyChargeCreationDate = Some("2028-04-02"), lpp1HRCalculationAmt = Some(2000.00), lpp1LRCalculationAmt = Some(2000.00))
 
   val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
     amount = 120.00
-  )
+  ).copy(penaltyChargeDueDate = Some("2028-05-03"), penaltyChargeCreationDate = Some("2028-04-02"))
   
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(2.19),
+      totalAccountAccruingInterest = Some(15.89),
       totalAccountPostedInterest = Some(120.00)
     )
   )
 
   override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
     BreathingSpace(
-      bsStartDate = "2028-02-20",
-      bsEndDate = "2029-02-20"
+      bsStartDate = "2028-02-01",
+      bsEndDate = "2028-04-01"
     )
   ))
 
@@ -65,6 +66,6 @@ object AA200000B extends UserDetailsData {
   override val utr: String = "1000020000"
   override val description: String = "Breathing Space - 2 LPPs - (1 LPP2 BS ESTIMATE, 1 LPP1 BS DUE)"
   override val descriptionOverdue: Option[String] = Some("Breathing Space - 2 LPPs - (1 LPP2 BS ESTIMATE, 1 LPP1 BS OVERDUE)")
-  override val timemachineDate: String = "10/03/2028"
-  override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
+  override val timemachineDate: String = "30/04/2028"
+  override val timeMachineDateOverdue: Option[String] = Some("30/05/2028")
 }
