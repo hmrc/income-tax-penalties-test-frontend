@@ -40,11 +40,9 @@
             "penaltyChargeCreationDate" : "2028-03-02",
             "penaltyChargeReference" : "XJ002616061019",
             "penaltyChargeDueDate" : "2028-04-03",
-            "timeToPay": [
-              {
-                "TTPAgreementDate": "2028-03-20"
-              }
-            ]
+            "timeToPay" : [ {
+              "TTPAgreementDate" : "2028-03-20"
+            } ]
           }, {
             "principalChargeReference" : "XJ002616061019",
             "supplement" : false,
@@ -69,11 +67,9 @@
             "penaltyChargeCreationDate" : "2028-03-02",
             "penaltyChargeReference" : "XJ002616061019",
             "penaltyChargeDueDate" : "2028-04-03",
-            "timeToPay": [
-              {
-                "TTPAgreementDate": "2028-03-20"
-              }
-            ]
+            "timeToPay" : [ {
+              "TTPAgreementDate" : "2028-03-20"
+            } ]
           } ]
         }
       }
