@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, TimeToPay, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails, TimeToPay, Totalisations}
 
 import java.time.LocalDate
 
@@ -27,20 +27,36 @@ object AC200000A extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppPostedTotal = 130.41
+      penalisedPrincipalTotal = 2000,
+      lppPostedTotal = 120,
+      lppEstimatedTotal = 10.41
     )
   )
 
-  private val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
-    ReportingPeriod(2027, None),
-    amount = 120.00
-  )
+  private val principalChargeReference = "XJ002616061019"
+  private val timeToPay = Some(TimeToPay(None, Some(LocalDate.of(2028, 3, 20))))
 
-  private val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2Penalty(
+  private val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+    ReportingPeriod(2027, None),
+    amount = 120.00,
+    optChargeRef = Some(principalChargeReference)
+  ).copy(
+    lpp1LRCalculationAmt = Some(2000),
+    lpp1HRCalculationAmt = Some(2000),
+    penaltyChargeCreationDate = Some("2028-03-02"),
+    penaltyChargeDueDate = Some("2028-04-03")
+  ).withTimeToPay(timeToPay)
+
+  private val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
     10.41,
-    latePaymentPenaltyDetails1.principalChargeReference
-  ).withTimeToPay(Some(TimeToPay(None, Some(LocalDate.of(2026, 2, 16)))))
+    principalChargeReference
+  ).copy(
+    lpp1LRCalculationAmt = Some(2000),
+    lpp1HRCalculationAmt = Some(2000),
+    penaltyChargeCreationDate = Some("2028-03-02"),
+    penaltyChargeDueDate = Some("2028-04-03")
+  ).withTimeToPay(timeToPay)
 
 
   override def optFinancialData(): Option[FinancialData] = Some(
@@ -58,6 +74,6 @@ object AC200000A extends UserDetailsData {
   override val nino: String = "AC200000A"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
-  override val description: String = "TTP - 2 LPPs - (1 LPP2 ESTIMATE - TTP Agreed, 1 LPP1 DUE)"
+  override val description: String = "TTP Agreed - 2 LPPs - (1 LPP2 ESTIMATE, 1 LPP1 DUE)"
   override val timemachineDate: String = "27/03/2028"
 }
