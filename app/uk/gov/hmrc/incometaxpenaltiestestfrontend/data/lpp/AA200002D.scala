@@ -21,7 +21,7 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{BreathingSpace, LPP, Totalisations}
 
-object AA200003A extends UserDetailsData {
+object AA200002D extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
@@ -61,7 +61,7 @@ object AA200003A extends UserDetailsData {
     lppDetails = Some(Seq(latePaymentPenaltyDetails1, latePaymentPenaltyDetails2))
   ))
 
-  override val nino: String = "AA200003A"
+  override val nino: String = "AA200002D"
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
   override val description: String = "Breathing Space (Charge before BS) - 2 LPPs (1 LPP2 OVERDUE, 1 LPP1 OVERDUE"
