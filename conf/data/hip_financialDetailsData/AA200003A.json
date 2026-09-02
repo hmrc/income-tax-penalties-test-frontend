@@ -10,7 +10,8 @@
             "totalAccountOverdue" : 0
           },
           "additionalReceivableTotalisations" : {
-            "totalAccountPostedInterest" : 120
+            "totalAccountPostedInterest" : 120,
+            "totalAccountAccruingInterest" : 0
           }
         }
       }
