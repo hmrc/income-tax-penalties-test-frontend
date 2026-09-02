@@ -25,6 +25,8 @@ object AA100002B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = None
 
+  private val principalChargeReference = "XJ002616061044"
+
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
       totalAccountAccruingInterest = Some(120.00)
@@ -35,22 +37,20 @@ object AA100002B extends UserDetailsData {
 
   val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
     reportingPeriod1,
-    amount = 115.00,
-    optChargeRef = Some("XJ002616061044")
-  )
+    amount = 115.00
+  ).withChargeReference(principalChargeReference)
 
   val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
     reportingPeriod1,
     amount = 8.21,
-    principalChargeRef = latePaymentPenaltyDetails1.principalChargeReference
-  )
+    principalChargeRef = principalChargeReference
+  ).withChargeReference(principalChargeReference)
 
   val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
     reportingPeriod1,
     amount = 15.00,
-    isDay15 = true,
-    optChargeRef = Some("XJ002616061044")
-  ).withSupplementary(supplement = Some(true))
+    isDay15 = true
+  ).withChargeReference(principalChargeReference).withSupplementary(supplement = Some(true))
 
   override val lpp = Some(LPP(
     manualLPPIndicator = false,

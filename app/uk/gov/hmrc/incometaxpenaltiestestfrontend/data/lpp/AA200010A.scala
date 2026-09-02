@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LPP, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LPP, LPPDetails, Totalisations}
 
 object AA200010A extends UserDetailsData {
 
@@ -29,17 +29,18 @@ object AA200010A extends UserDetailsData {
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
+  private val principalChargeReference = "XJ002616061085"
+
+  lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
     2.19,
-    latePaymentPenaltyDetails2.principalChargeReference
-  )
+    principalChargeReference
+  ).withChargeReference(principalChargeReference)
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+  private val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
-    amount = 120.00,
-    optChargeRef = Some("XJ002616061085")
-  ).withAppealInformation(
+    amount = 120.00
+  ).withChargeReference("XJ002616061085").withAppealInformation(
     AppealInformation.create("Rejected", "First")
   )
 

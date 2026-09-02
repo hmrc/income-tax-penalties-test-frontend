@@ -19,9 +19,11 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPP
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails}
 
 object AA100000C extends UserDetailsData {
+
+  private val principalChargeReference = "XJ002616061063"
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
@@ -31,12 +33,12 @@ object AA100000C extends UserDetailsData {
 
   val reportingPeriod1 = ReportingPeriod(2025, None)
 
-  val latePaymentPenaltyDetails1 = {
+  val latePaymentPenaltyDetails1: LPPDetails = {
     LatePaymentPenaltyDetails.lpp1Paid(
       reportingPeriod1,
       amount = 60.00,
       isDay15 = true
-    )
+    ).withChargeReference(principalChargeReference)
   }
   
   override val lpp = Some(LPP(

@@ -36,7 +36,7 @@ object AA233330B extends UserDetailsData {
     ReportingPeriod(2025, None),
     19.17,
     principalChargeReference
-  ).copy(
+  ).withChargeReference(principalChargeReference).copy(
     lpp1LRCalculationAmt = Some(5000),
     lpp1HRCalculationAmt = Some(5000),
     penaltyChargeDueDate = Some("2026-04-17"),
@@ -46,9 +46,8 @@ object AA233330B extends UserDetailsData {
   // LPP1, no supplement, 300
   val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2025, None),
-    amount = 300,
-    optChargeRef = Some(principalChargeReference)
-  ).copy(
+    amount = 300
+  ).withChargeReference(principalChargeReference).copy(
     lpp1LRCalculationAmt = Some(5000),
     lpp1HRCalculationAmt = Some(5000),
     principalChargeLatestClearing = Some("2026-03-16")
@@ -59,13 +58,14 @@ object AA233330B extends UserDetailsData {
     ReportingPeriod(2025, None),
     1.64,
     principalChargeReference
-  ).copy(
+  ).withChargeReference(principalChargeReference).copy(
     lpp1LRCalculationAmt = Some(5000),
     lpp1HRCalculationAmt = Some(5000),
     penaltyChargeCreationDate = Some("2026-03-20"),
     penaltyChargeDueDate = Some("2026-04-26"),
     principalChargeLatestClearing = Some("2026-03-25")
   ).withSupplementary(supplement = Some(true))
+
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(

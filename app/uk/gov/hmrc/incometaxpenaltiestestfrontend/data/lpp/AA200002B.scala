@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{BreathingSpace, LPP, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{BreathingSpace, LPP, LPPDetails, Totalisations}
 
 object AA200002B extends UserDetailsData {
 
@@ -30,17 +30,19 @@ object AA200002B extends UserDetailsData {
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
+  private val principalChargeReference = "XJ002616061076"
+
+  lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
     16.98,
-    latePaymentPenaltyDetails2.principalChargeReference
-  ).copy(penaltyChargeDueDate = Some("2028-05-03"), penaltyChargeCreationDate = Some("2028-04-02"), lpp1HRCalculationAmt = Some(2000.00), lpp1LRCalculationAmt = Some(2000.00))
+    principalChargeReference
+  ).withChargeReference(principalChargeReference).copy(penaltyChargeDueDate = Some("2028-05-03"), penaltyChargeCreationDate = Some("2028-04-02"), lpp1HRCalculationAmt = Some(2000.00), lpp1LRCalculationAmt = Some(2000.00))
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
     amount = 120.00
-  ).copy(penaltyChargeDueDate = Some("2028-05-03"), penaltyChargeCreationDate = Some("2028-04-02"))
-  
+  ).withChargeReference(principalChargeReference).copy(penaltyChargeDueDate = Some("2028-05-03"), penaltyChargeCreationDate = Some("2028-04-02"))
+
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(

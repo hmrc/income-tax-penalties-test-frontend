@@ -18,7 +18,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails, Totalisations}
 
 object AA210002C extends UserDetailsData {
 
@@ -28,17 +28,19 @@ object AA210002C extends UserDetailsData {
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2Penalty(
+  private val principalChargeReference = "XJ002616061045"
+
+  lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
     1.09,
-    latePaymentPenaltyDetails2.principalChargeReference
-  )
+    principalChargeReference
+  ).withChargeReference(principalChargeReference)
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1PartiallyPaid(
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1PartiallyPaid(
     ReportingPeriod(2027, None),
     amount = 60.00,
     amountPaid = 20.00
-  ).copy(principalChargeLatestClearing = None)
+  ).withChargeReference(principalChargeReference).copy(principalChargeLatestClearing = None)
 
 
 

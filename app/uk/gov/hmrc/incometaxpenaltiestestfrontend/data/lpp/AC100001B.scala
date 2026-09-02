@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, TimeToPay, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails, TimeToPay, Totalisations}
 
 import java.time.LocalDate
 
@@ -27,10 +27,11 @@ object AC100001B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppPostedTotal = 60.00,
-
+      lppPostedTotal = 60.00
     )
   )
+
+  private val principalChargeReference = "XJ002616061063"
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
@@ -40,11 +41,11 @@ object AC100001B extends UserDetailsData {
 
   val reportingPeriod1 = ReportingPeriod(2025, None)
 
-  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+  val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     reportingPeriod1,
     amount = 60.00,
     isDay15 = true
-  ).withTimeToPay(Some(TimeToPay(TTPProposalDate = Some(LocalDate.of(2026, 2, 17)), TTPAgreementDate = None)))
+  ).withChargeReference(principalChargeReference).withTimeToPay(Some(TimeToPay(TTPProposalDate = Some(LocalDate.of(2026, 2, 17)), TTPAgreementDate = None)))
 
   override val lpp = Some(LPP(
     manualLPPIndicator = false,

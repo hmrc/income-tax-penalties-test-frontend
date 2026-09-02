@@ -30,16 +30,19 @@ object AA200000D extends UserDetailsData {
     )
   )
 
+  private val principalChargeReference = "XJ002616061062"
+  private val principalChargeReference2 = "XJ002616061014"
+
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
       totalAccountPostedInterest = Some(8.20)
     )
   )
 
-  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+  val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2025, None),
-      amount = 2580.00,
-  ).copy(
+      amount = 2580.00
+  ).withChargeReference(principalChargeReference).copy(
     principalChargeDueDate = "2026-05-16",
     penaltyChargeDueDate = Some("2026-07-09"),
     lpp1LRCalculationAmt = Some(129000),
@@ -55,10 +58,10 @@ object AA200000D extends UserDetailsData {
 
   )
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2025, None),
-      amount = 2580.00,
-  ).copy(
+      amount = 2580.00
+  ).withChargeReference(principalChargeReference2).copy(
     principalChargeDueDate = "2026-05-16",
     penaltyChargeDueDate = Some("2026-07-09"),
     lpp1LRCalculationAmt = Some(129000),

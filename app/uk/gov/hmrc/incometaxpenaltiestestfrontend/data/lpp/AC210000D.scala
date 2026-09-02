@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, TimeToPay, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails, TimeToPay, Totalisations}
 
 import java.time.LocalDate
 
@@ -32,20 +32,18 @@ object AC210000D extends UserDetailsData {
     )
   )
 
+  private val principalChargeReference = "XJ002616061096"
+
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
       totalAccountAccruingInterest = None,
       totalAccountPostedInterest = Some(126.02)
     )
   )
-
-  private val principalChargeReference = "XJ002616061096"
-
-  private val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+  private val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
-    amount = 120.00,
-    optChargeRef = Some(principalChargeReference)
-  ).copy(
+    amount = 120.00
+  ).withChargeReference(principalChargeReference).copy(
     lpp1LRCalculationAmt = Some(2000),
     lpp1HRCalculationAmt = Some(2000),
     penaltyChargeCreationDate = Some("2028-03-02"),
@@ -56,11 +54,11 @@ object AC210000D extends UserDetailsData {
     TTPAgreementDate = Some(LocalDate.of(2028, 3, 15))
   )))
 
-  private val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
+  private val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     ReportingPeriod(2027, None),
     6.02,
     principalChargeReference
-  ).copy(
+  ).withChargeReference(principalChargeReference).copy(
     lpp1LRCalculationAmt = Some(2000),
     lpp1HRCalculationAmt = Some(2000),
     penaltyChargeCreationDate = Some("2028-03-02"),

@@ -32,15 +32,13 @@ object AC200000B extends UserDetailsData {
       lppEstimatedTotal = 10.41
     )
   )
-
   private val principalChargeReference = "XJ002616061094"
   private val timeToPay = Some(TimeToPay(Some(LocalDate.of(2028, 3, 20)), None))
 
   private val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
-    amount = 120.00,
-    optChargeRef = Some(principalChargeReference)
-  ).copy(
+    amount = 120.00
+  ).withChargeReference(principalChargeReference).copy(
     lpp1LRCalculationAmt = Some(2000),
     lpp1HRCalculationAmt = Some(2000),
     penaltyChargeCreationDate = Some("2028-03-02"),
@@ -51,7 +49,7 @@ object AC200000B extends UserDetailsData {
     ReportingPeriod(2027, None),
     10.41,
     principalChargeReference
-  ).copy(
+  ).withChargeReference(principalChargeReference).copy(
     lpp1LRCalculationAmt = Some(2000),
     lpp1HRCalculationAmt = Some(2000),
     penaltyChargeCreationDate = Some("2028-03-02"),
