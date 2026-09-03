@@ -29,7 +29,7 @@ object AA100001A extends UserDetailsData {
     )
   )
 
-  private val principalChargeReference = "XJ002616061035"
+  private val principalChargeReference = "XJ002616061000"
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
