@@ -19,21 +19,22 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.LPP
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails}
 
 object AA123450A extends UserDetailsData {
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1Paid(
-    ReportingPeriod(2024, None),
-    amount = 120.00,
-    optChargeRef = Some("XJ002616061044")
-  )
+  private val principalChargeReference = "XJ002616061044"
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2Paid(
+  lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
+    ReportingPeriod(2024, None),
+    amount = 120.00
+  ).withChargeReference(principalChargeReference)
+
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
     ReportingPeriod(2024, None),
     amount = 120.00,
-    latePaymentPenaltyDetails1.principalChargeReference
-  )
+    principalChargeReference
+  ).withChargeReference(principalChargeReference)
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(

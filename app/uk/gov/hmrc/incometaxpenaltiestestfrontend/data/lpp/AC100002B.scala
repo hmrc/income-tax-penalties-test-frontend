@@ -32,21 +32,25 @@ object AC100002B extends UserDetailsData {
     )
   )
 
+  private val principalChargeReference = "XJ002616061056"
+  private val principalChargeReference2 = "XJ002616061052"
+
   lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2024, None),
     1.64,
-    latePaymentPenaltyDetails2.principalChargeReference
-  ).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1500), penaltyChargeCreationDate = Some("2025-03-02"), penaltyChargeDueDate = Some("2025-04-03")).withTimeToPay(Some(TimeToPay(TTPProposalDate = Some(LocalDate.of(2025, 3, 3)), TTPAgreementDate = None)))
+    principalChargeReference
+  ).withChargeReference(principalChargeReference).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1500), penaltyChargeCreationDate = Some("2025-03-02"), penaltyChargeDueDate = Some("2025-04-03")).withTimeToPay(Some(TimeToPay(TTPProposalDate = Some(LocalDate.of(2025, 3, 3)), TTPAgreementDate = None)))
 
   val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2024, None),
     amount = 105.00
-  ).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1500), penaltyChargeCreationDate = Some("2025-03-02"), penaltyChargeDueDate = Some("2025-04-03")).withTimeToPay(Some(TimeToPay(TTPProposalDate = Some(LocalDate.of(2025, 3, 3)), TTPAgreementDate = None)))
+  ).withChargeReference(principalChargeReference).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1500), penaltyChargeCreationDate = Some("2025-03-02"), penaltyChargeDueDate = Some("2025-04-03")).withTimeToPay(Some(TimeToPay(TTPProposalDate = Some(LocalDate.of(2025, 3, 3)), TTPAgreementDate = None)))
 
   val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2024, None),
     amount = 15
-  ).copy(lpp1LRCalculationAmt = Some(500), lpp1HRCalculationAmt = Some(500), penaltyChargeCreationDate = Some("2025-05-02"), penaltyChargeDueDate = Some("2025-04-06")).withSupplementary(supplement = Some(true)).withTimeToPay(Some(TimeToPay(TTPProposalDate = Some(LocalDate.of(2025, 3, 3)), TTPAgreementDate = None)))
+  ).withChargeReference(principalChargeReference2).copy(lpp1LRCalculationAmt = Some(500), lpp1HRCalculationAmt = Some(500), penaltyChargeCreationDate = Some("2025-05-02"), penaltyChargeDueDate = Some("2025-04-06")).withSupplementary(supplement = Some(true)).withTimeToPay(Some(TimeToPay(TTPProposalDate = Some(LocalDate.of(2025, 3, 3)), TTPAgreementDate = None)))
+
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(

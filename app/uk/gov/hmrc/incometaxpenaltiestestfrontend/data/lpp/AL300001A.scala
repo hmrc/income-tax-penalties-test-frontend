@@ -19,9 +19,13 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LPP}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LPP, LPPDetails}
 
 object AL300001A extends UserDetailsData {
+
+  private val principalChargeReference = "XJ002616061056"
+  private val principalChargeReference2 = "XJ002616061096"
+  private val principalChargeReference3 = "XJ002616061006"
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
@@ -34,40 +38,43 @@ object AL300001A extends UserDetailsData {
   val reportingPeriod3 = ReportingPeriod(2025, None)
 
 
-  val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp1Penalty(
+  val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1Penalty(
     reportingPeriod3,
     amount = 60.00,
     isTaxPaid = false
-  ).withAppealInformation(AppealInformation.create("Upheld", "First"))
+  ).withChargeReference(principalChargeReference).withAppealInformation(AppealInformation.create("Upheld", "First"))
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
       reportingPeriod3,
       amount = 60.00,
-      latePaymentPenaltyDetails1.principalChargeReference)
+      principalChargeReference
+  ).withChargeReference(principalChargeReference)
     .withIncomeTaxPaid(reportingPeriod1, false)
     .withAppealInformation(AppealInformation.create("Upheld", "First"))
 
-  val latePaymentPenaltyDetails3 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+  val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     reportingPeriod2,
     amount = 60.00
-  ).withAppealInformation(AppealInformation.create("Upheld", "Second"))
+  ).withChargeReference(principalChargeReference2).withAppealInformation(AppealInformation.create("Upheld", "Second"))
 
-  val latePaymentPenaltyDetails4 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
+  val latePaymentPenaltyDetails4: LPPDetails = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
       reportingPeriod2,
       amount = 60.00,
-      latePaymentPenaltyDetails3.principalChargeReference)
+      principalChargeReference2
+  ).withChargeReference(principalChargeReference2)
     .withIncomeTaxPaid(reportingPeriod1, false)
     .withAppealInformation(AppealInformation.create("Upheld", "Second"))
 
-  val latePaymentPenaltyDetails5 = LatePaymentPenaltyDetails.lpp1Paid(
+  val latePaymentPenaltyDetails5: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
     reportingPeriod1,
     amount = 60.00
-  ).withAppealInformation(AppealInformation.create("Upheld", "Tribunal"))
+  ).withChargeReference(principalChargeReference3).withAppealInformation(AppealInformation.create("Upheld", "Tribunal"))
 
-  val latePaymentPenaltyDetails6 = LatePaymentPenaltyDetails.lpp2Paid(
+  val latePaymentPenaltyDetails6: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
       reportingPeriod1,
       amount = 60.00,
-      latePaymentPenaltyDetails5.principalChargeReference)
+      principalChargeReference3
+  ).withChargeReference(principalChargeReference3)
     .withIncomeTaxPaid(reportingPeriod1, false)
     .withAppealInformation(AppealInformation.create("Upheld", "Tribunal", hasSkipped = true))
 

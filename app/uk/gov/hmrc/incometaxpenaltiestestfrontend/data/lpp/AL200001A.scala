@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails, Totalisations}
 
 object AL200001A extends UserDetailsData {
 
@@ -29,6 +29,8 @@ object AL200001A extends UserDetailsData {
     )
   )
 
+  private val principalChargeReference = "XJ002616061051"
+
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
       totalAccountAccruingInterest = Some(120.00)
@@ -37,15 +39,16 @@ object AL200001A extends UserDetailsData {
 
   val reportingPeriod1 = ReportingPeriod(2025, None)
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
+  lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     reportingPeriod1,
     amount = 120.00,
-    latePaymentPenaltyDetails2.principalChargeReference
-  ).withIncomeTaxPaid(reportingPeriod1, false)
+    principalChargeReference
+  ).withChargeReference(principalChargeReference).withIncomeTaxPaid(reportingPeriod1, false)
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     reportingPeriod1,
-    amount = 60.00)
+    amount = 60.00
+  ).withChargeReference(principalChargeReference)
     .withIncomeTaxPaid(reportingPeriod1, false)
   
   override val lpp = Some(LPP(

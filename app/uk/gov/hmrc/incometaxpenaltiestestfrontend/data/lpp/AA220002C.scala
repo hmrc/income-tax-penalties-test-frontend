@@ -18,7 +18,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails, Totalisations}
 
 object AA220002C extends UserDetailsData {
 
@@ -28,18 +28,20 @@ object AA220002C extends UserDetailsData {
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
+  private val principalChargeReference = "XJ002616061043"
+
+  lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
     ReportingPeriod(2027, None),
     7.94,
     5.94,
-    latePaymentPenaltyDetails2.principalChargeReference
-  ).copy(penaltyChargeDueDate = Some("2028-05-01"), principalChargeLatestClearing = Some("2028-03-30"))
+    principalChargeReference
+  ).withChargeReference(principalChargeReference).copy(penaltyChargeDueDate = Some("2028-05-01"), principalChargeLatestClearing = Some("2028-03-30"))
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1PartiallyPaid(
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1PartiallyPaid(
     ReportingPeriod(2027, None),
     amount = 90.00,
     amountPaid = 20.00
-  ).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1000), penaltyAmountPosted = 90, penaltyAmountOutstanding = Some(70), principalChargeLatestClearing = Some("2028-03-30"))
+  ).withChargeReference(principalChargeReference).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1000), penaltyAmountPosted = 90, penaltyAmountOutstanding = Some(70), principalChargeLatestClearing = Some("2028-03-30"))
 
 
 

@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lpp
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LPPDetails, Totalisations}
 
 object AA244440A extends UserDetailsData {
 
@@ -29,23 +29,26 @@ object AA244440A extends UserDetailsData {
     )
   )
 
-  lazy val latePaymentPenaltyDetails1 = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
+  private val principalChargeReference = "XJ002616061007"
+  private val principalChargeReference2 = "XJ002616061063"
+
+  lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
     ReportingPeriod(2027, None),
     46.02,
     22.02,
-    latePaymentPenaltyDetails2.principalChargeReference
-  ).copy(communicationsDate = Some("2024-03-21"))
+    principalChargeReference
+  ).withChargeReference(principalChargeReference).copy(communicationsDate = Some("2024-03-21"))
 
-  val latePaymentPenaltyDetails2 = LatePaymentPenaltyDetails.lpp1Paid(
+  val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
     ReportingPeriod(2027, None),
-    amount = 120.00,
-    optChargeRef = Some("XJ002616061007")
-  ).copy(communicationsDate = Some("2024-03-21"))
+    amount = 120.00
+  ).withChargeReference(principalChargeReference).copy(communicationsDate = Some("2024-03-21"))
 
-  val latePaymentPenaltyDetails3 = LatePaymentPenaltyDetails.lpp1Paid(
+  val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
     ReportingPeriod(2026, None),
     amount = 60.00
-  )
+  ).withChargeReference(principalChargeReference2)
+
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(totalAccountOverdue = Some(0.00))
