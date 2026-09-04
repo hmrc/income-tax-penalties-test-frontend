@@ -24,7 +24,6 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP
 object AA000000B extends UserDetailsData {
 
   private val penaltyNumber: String = "005000001038"
-
   val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.removedFollowingAdjusted(
     ReportingPeriod(2027, None)).withPenaltyNumber(penaltyNumber)
 
