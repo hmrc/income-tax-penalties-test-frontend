@@ -25,8 +25,7 @@ object AA100000D extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      totalAccountOverdue = 60.00,
-      totalAccountAccruingInterest = 0.81
+      lppEstimatedTotal = 60.00
     )
   )
 
@@ -41,7 +40,7 @@ object AA100000D extends UserDetailsData {
   override val breathingSpace: Option[Seq[BreathingSpace]] = Some(Seq(
     BreathingSpace(
       bsStartDate = "2026-02-02",
-      bsEndDate = "2027-02-02"
+      bsEndDate = "2026-04-03"
     )
   ))
 
@@ -52,7 +51,7 @@ object AA100000D extends UserDetailsData {
     amount = 60.00,
     isDay15 = true,
     isTaxPaid = false
-  ).withChargeReference(principalChargeReference).withIncomeTaxPaid(reportingPeriod1, true).copy(penaltyChargeDueDate = Some("2026-03-19"))
+  ).withChargeReference(principalChargeReference).copy(penaltyChargeDueDate = Some("2026-03-19"))
   
   override val lpp = Some(LPP(
     manualLPPIndicator = false,
