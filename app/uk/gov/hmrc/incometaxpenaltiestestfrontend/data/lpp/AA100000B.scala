@@ -25,7 +25,7 @@ object AA100000B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 60.00
+      lppPostedTotal = 60.00
     )
   )
 
@@ -33,7 +33,7 @@ object AA100000B extends UserDetailsData {
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(60.00)
+      totalAccountPostedInterest = Some(60.00)
     )
   )
 

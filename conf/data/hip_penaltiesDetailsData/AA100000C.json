@@ -5,10 +5,20 @@
     "success" : {
       "processingDate" : "2025-04-05T10:15:10Z",
       "penaltyData" : {
+        "totalisations" : {
+          "lspTotalValue" : 0,
+          "penalisedPrincipalTotal" : 0,
+          "lppPostedTotal" : 60,
+          "lppEstimatedTotal" : 0,
+          "totalAccountOverdue" : 0,
+          "totalAccountPostedInterest" : 0,
+          "totalAccountAccruingInterest" : 0
+        },
         "lpp" : {
           "manualLPPIndicator" : false,
           "lppDetails" : [ {
             "principalChargeReference" : "XJ002616061063",
+            "supplement" : false,
             "penaltyStatus" : "P",
             "penaltyAmountAccruing" : 0,
             "penaltyAmountPosted" : 60,
