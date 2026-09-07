@@ -22,13 +22,13 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.Complian
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
 
 object AA000042A extends UserDetailsData {
-
+  
+  private val penaltyNumber: String = "005000001064"
   val lspSummary = LSPSummary()
-
   val lspPenalty1 = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
     ReportingPeriod(2027, Some(1)),
     addAdditionalIncomeSource = true,
-    appealLevel = "Tribunal")
+    appealLevel = "Tribunal").withPenaltyNumber(penaltyNumber)
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
