@@ -41,6 +41,7 @@ object AA111130A extends UserDetailsData {
   ))
 
   override def optComplianceData: Option[CompliancePayload] = None
+
   override val nino: String = "AA111130A"
   override val mtdItId: String = "11130"
   override val utr: String = "1000011130"
