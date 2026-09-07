@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp3
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPDetails, LSPSummary}
 
 object AA300000A extends UserDetailsData {
 
@@ -27,18 +27,20 @@ object AA300000A extends UserDetailsData {
     activePenaltyPoints = 3
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(2)),
     penaltyOrder = "3",
     returnSubmitted = true
   ).withAppealInformation(
     AppealInformation.create("Rejected", "First")
-  )
-  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
+  ).withPenaltyNumber("005000001018")
+
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(1)),
     penaltyOrder = "2"
-  )
-  val lspPenalty3 = LateSubmissionPenaltyDetails.active(
+  ).withPenaltyNumber("005000001053")
+
+  val lspPenalty3: LSPDetails = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(0))
   ).withAppealInformation(
     AppealInformation.create("Rejected", "Second")
