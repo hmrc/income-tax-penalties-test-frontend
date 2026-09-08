@@ -18,7 +18,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp2
 
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPDetails, LSPSummary}
 
 object PE000000A extends UserDetailsData {
 
@@ -26,15 +26,18 @@ object PE000000A extends UserDetailsData {
     activePenaltyPoints = 2
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(1)),
-    returnSubmitted = true)
-  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(2)),
-    penaltyOrder = "2"
-  ).copy(
-    communicationsDate = Some("2023-11-07"),
-  )
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(1)),
+      returnSubmitted = true)
+    .withPenaltyNumber("005000001041")
+
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(2)),
+      penaltyOrder = "2"
+    ).copy(
+      communicationsDate = Some("2023-11-07"),
+    )
+    .withPenaltyNumber("005000001016")
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
