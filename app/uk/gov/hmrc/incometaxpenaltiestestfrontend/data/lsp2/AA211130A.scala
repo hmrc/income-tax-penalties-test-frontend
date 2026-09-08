@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp2
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPDetails, LSPSummary}
 
 object AA211130A extends UserDetailsData {
 
@@ -30,24 +30,26 @@ object AA211130A extends UserDetailsData {
 
   val appealInformation = AppealInformation.create("Rejected", "First")
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(2)),
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(2)),
       penaltyOrder = "3",
       returnSubmitted = true,
       addAdditionalIncomeSource = true)
     .withAppealInformation(appealInformation)
+    .withPenaltyNumber("005000001037")
 
-  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(1)),
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(1)),
       penaltyOrder = "2",
       returnSubmitted = true,
       addAdditionalIncomeSource = true)
     .withAppealInformation(appealInformation)
+    .withPenaltyNumber("005000001033")
 
-
-  val lspPenalty3 = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
+  val lspPenalty3: LSPDetails = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
       ReportingPeriod(2027, Some(0)),
       addAdditionalIncomeSource = true)
+    .withPenaltyNumber("005000001045")
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
@@ -55,6 +57,7 @@ object AA211130A extends UserDetailsData {
   ))
 
   override def optComplianceData: Option[CompliancePayload] = None
+
   override val nino: String = "AA211130A"
   override val mtdItId: String = "211130"
   override val utr: String = "0000211130"
