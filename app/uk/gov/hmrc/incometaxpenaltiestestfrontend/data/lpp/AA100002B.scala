@@ -23,13 +23,17 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP
 
 object AA100002B extends UserDetailsData {
 
-  override val totalisations: Option[Totalisations] = None
+  override val totalisations: Option[Totalisations] = Some(
+    Totalisations(
+      lppPostedTotal = 138.21
+    )
+  )
 
   private val principalChargeReference = "XJ002616061044"
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(120.00)
+      totalAccountPostedInterest= Some(138.21)
     )
   )
 
@@ -38,19 +42,19 @@ object AA100002B extends UserDetailsData {
   val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
     reportingPeriod1,
     amount = 115.00
-  ).withChargeReference(principalChargeReference)
+  ).withChargeReference(principalChargeReference).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1500), penaltyChargeCreationDate = Some("2025-03-03"), penaltyChargeDueDate = Some("2025-04-04"))
 
   val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
     reportingPeriod1,
     amount = 8.21,
     principalChargeRef = principalChargeReference
-  ).withChargeReference(principalChargeReference)
+  ).withChargeReference(principalChargeReference).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1500), penaltyChargeCreationDate = Some("2025-03-03"), penaltyChargeDueDate = Some("2025-04-04"))
 
   val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
     reportingPeriod1,
     amount = 15.00,
     isDay15 = true
-  ).withChargeReference(principalChargeReference).withSupplementary(supplement = Some(true))
+  ).withChargeReference(principalChargeReference).withSupplementary(supplement = Some(true)).copy(lpp1LRCalculationAmt = Some(500), penaltyChargeCreationDate = Some("2025-03-15"), penaltyChargeDueDate = Some("2025-04-16"), communicationsDate = Some("2025-03-22"), principalChargeLatestClearing = Some("2025-03-17"))
 
   override val lpp = Some(LPP(
     manualLPPIndicator = false,
