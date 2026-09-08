@@ -47,6 +47,7 @@ object AA400000A extends UserDetailsData {
     ReportingPeriod(2027, Some(1)),
     penaltyOrder = "2"
   ).withPenaltyNumber("005000001095")
+
   val lspPenalty4: LSPDetails = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(0))
   ).withPenaltyNumber("005000001086")
