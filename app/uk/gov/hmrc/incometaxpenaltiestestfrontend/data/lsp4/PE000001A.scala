@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp4
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPDetails, LSPSummary}
 
 object PE000001A extends UserDetailsData {
 
@@ -28,25 +28,31 @@ object PE000001A extends UserDetailsData {
     pocAchievementDate = Some("2028-08-07")
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.dueOrOverdue(
-    ReportingPeriod(2027, Some(1)),
-    penaltyOrder = "4",
-    returnSubmitted = true
-  ).withPenaltyCategory("T")
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.dueOrOverdue(
+      ReportingPeriod(2027, Some(1)),
+      penaltyOrder = "4",
+      returnSubmitted = true
+    ).withPenaltyCategory("T")
+    .withPenaltyNumber("005000001072")
 
-  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(0)),
-    penaltyOrder = "3",
-    returnSubmitted = true
-  )
-  val lspPenalty3 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2026, Some(3)),
-    penaltyOrder = "2"
-  )
-  val lspPenalty4 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2026, None),
-    returnSubmitted = true
-  )
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(0)),
+      penaltyOrder = "3",
+      returnSubmitted = true
+    )
+    .withPenaltyNumber("005000001092")
+
+  val lspPenalty3: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2026, Some(3)),
+      penaltyOrder = "2"
+    )
+    .withPenaltyNumber("005000001040")
+
+  val lspPenalty4: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2026, None),
+      returnSubmitted = true
+    )
+    .withPenaltyNumber("005000001095")
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
@@ -66,6 +72,7 @@ object PE000001A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2026, Some(3)), false)
       .withObligationDetail(ReportingPeriod(2026, None), true)
   )
+
   override val nino: String = "PE000001A"
   override val mtdItId: String = "XTIT12345678913"
   override val utr: String = "1000078913"
