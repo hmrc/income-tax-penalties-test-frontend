@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp2
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPDetails, LSPSummary}
 
 object AB211110A extends UserDetailsData {
 
@@ -29,17 +29,19 @@ object AB211110A extends UserDetailsData {
     pocAchievementDate = Some("2029-02-28")
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.dueOrOverdue(
-    ReportingPeriod(2027, None),
-    penaltyOrder = "2",
-    addAdditionalIncomeSource = true
-  ).withPenaltyCategory("T")
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.dueOrOverdue(
+      ReportingPeriod(2027, None),
+      penaltyOrder = "2",
+      addAdditionalIncomeSource = true
+    )
+    .withPenaltyCategory("T")
+    .withPenaltyNumber("005000001073")
 
-  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2026, None),
-    returnSubmitted = true,
-    addAdditionalIncomeSource = true)
-
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2026, None),
+      returnSubmitted = true,
+      addAdditionalIncomeSource = true)
+    .withPenaltyNumber("005000001096")
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
     lspDetails = Seq(lspPenalty1, lspPenalty2)
@@ -51,6 +53,7 @@ object AB211110A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2027, None), false)
       .withObligationDetail(ReportingPeriod(2026, None), true)
   )
+
   override val nino: String = "AB211110A"
   override val description: String = "LSP2 Return - threshold reached and due"
   override val descriptionOverdue: Option[String] = Some("LSP2 Return - threshold reached and overdue")
