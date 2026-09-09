@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp5
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, BreathingSpace, LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, BreathingSpace, LSP, LSPDetails, LSPSummary}
 
 object AB522240A extends UserDetailsData {
 
@@ -28,13 +28,14 @@ object AB522240A extends UserDetailsData {
     pocAchievementDate = Some("2029-11-07")
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.dueOrOverdue(
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.dueOrOverdue(
       ReportingPeriod(2027, None),
       penaltyOrder = "5",
       addAdditionalIncomeSource = true)
     .withPenaltyCategory("T")
+    .withPenaltyNumber("005000001039")
 
-  val lspPenalty2 = LateSubmissionPenaltyDetails.paid(
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.paid(
       ReportingPeriod(2027, Some(2)),
       penaltyOrder = "4",
       addAdditionalIncomeSource = true)
@@ -42,30 +43,34 @@ object AB522240A extends UserDetailsData {
     .withAppealInformation(
       AppealInformation.create("UnderAppeal", "First")
     )
+    .withPenaltyNumber("005000001015")
 
-  val lspPenalty3 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty3: LSPDetails = LateSubmissionPenaltyDetails.active(
       ReportingPeriod(2027, Some(1)),
       penaltyOrder = "3",
       addAdditionalIncomeSource = true)
     .withAppealInformation(
       AppealInformation.create("Rejected", "Tribunal")
     )
+    .withPenaltyNumber("005000001084")
 
-  val lspPenalty4 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(0)),
-    penaltyOrder = "2",
-    returnSubmitted = true,
-    addAdditionalIncomeSource = true)
+  val lspPenalty4: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(0)),
+      penaltyOrder = "2",
+      returnSubmitted = true,
+      addAdditionalIncomeSource = true)
+    .withPenaltyNumber("005000001025")
 
+  val lspPenalty5: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2026, Some(3)),
+      returnSubmitted = true,
+      addAdditionalIncomeSource = true)
+    .withPenaltyNumber("005000001084")
 
-  val lspPenalty5 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2026, Some(3)),
-    returnSubmitted = true,
-    addAdditionalIncomeSource = true)
-
-  val lspPenalty6 = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
-    ReportingPeriod(2026, None),
-    addAdditionalIncomeSource = true)
+  val lspPenalty6: LSPDetails = LateSubmissionPenaltyDetails.cancelledLateSubmissionPenalty(
+      ReportingPeriod(2026, None),
+      addAdditionalIncomeSource = true)
+    .withPenaltyNumber("005000001090")
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
@@ -79,6 +84,7 @@ object AB522240A extends UserDetailsData {
       bsEndDate = "2028-08-30"
     )
   ))
+
   override def optComplianceData: Option[CompliancePayload] = Some(
     CompliancePayload.apply(nino)
       .withObligationDetail(ReportingPeriod(2028, Some(2)), false)
@@ -92,6 +98,7 @@ object AB522240A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2026, Some(3)), false)
       .withObligationDetail(ReportingPeriod(2026, None), true)
   )
+
   override val nino: String = "AB522240A"
   override val description: String = "Breathing Space - LSP5 - 5 points, 2 penalties in breathing space"
   override val timemachineDate: String = "03/03/2028"

@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp5
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPDetails, LSPSummary}
 
 object AA500000A extends UserDetailsData {
 
@@ -27,43 +27,48 @@ object AA500000A extends UserDetailsData {
     activePenaltyPoints = 5,
     pocAchievementDate = Some("2029-02-07")
   )
-  val lspPenalty1 = LateSubmissionPenaltyDetails.dueOrOverdue(
-    ReportingPeriod(2027, Some(3)),
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.dueOrOverdue(
+      ReportingPeriod(2027, Some(3)),
       penaltyOrder = "5"
-  ).withPenaltyCategory("T")
+    ).withPenaltyCategory("T")
     .withAppealInformation(
       AppealInformation.create("UnderAppeal", "First")
     )
+    .withPenaltyNumber("005000001088")
 
-  val lspPenalty2 = LateSubmissionPenaltyDetails.dueOrOverdue(
-    ReportingPeriod(2027, None),
-    penaltyOrder = "4",
-    returnSubmitted = true
-  ).withPenaltyCategory("T").withAppealInformation(
-    AppealInformation.create("Rejected", "First")
-  )
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.dueOrOverdue(
+      ReportingPeriod(2027, None),
+      penaltyOrder = "4",
+      returnSubmitted = true
+    ).withPenaltyCategory("T").withAppealInformation(
+      AppealInformation.create("Rejected", "First")
+    )
+    .withPenaltyNumber("005000001036")
 
-  val lspPenalty3 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(2)),
-    penaltyOrder = "3"
-  ).withAppealInformation(
-    AppealInformation.create("UnderAppeal", "Tribunal")
-  )
+  val lspPenalty3: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(2)),
+      penaltyOrder = "3"
+    ).withAppealInformation(
+      AppealInformation.create("UnderAppeal", "Tribunal")
+    )
+    .withPenaltyNumber("005000001043")
 
-  val lspPenalty4 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(1)),
-    penaltyOrder = "2",
-    returnSubmitted = true
-  ).withAppealInformation(
-    AppealInformation.create("UnderAppeal", "Second")
-  )
+  val lspPenalty4: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(1)),
+      penaltyOrder = "2",
+      returnSubmitted = true
+    ).withAppealInformation(
+      AppealInformation.create("UnderAppeal", "Second")
+    )
+    .withPenaltyNumber("005000001043")
 
-  val lspPenalty5 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(0)),
-    returnSubmitted = true
-  ).withAppealInformation(
-    AppealInformation.create("UnderAppeal", "First")
-  )
+  val lspPenalty5: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(0)),
+      returnSubmitted = true
+    ).withAppealInformation(
+      AppealInformation.create("UnderAppeal", "First")
+    )
+    .withPenaltyNumber("005000001076")
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,

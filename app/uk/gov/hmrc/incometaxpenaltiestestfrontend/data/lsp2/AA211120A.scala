@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp2
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPDetails, LSPSummary}
 
 object AA211120A extends UserDetailsData {
 
@@ -29,8 +29,8 @@ object AA211120A extends UserDetailsData {
 
   val appealInformation = AppealInformation.create("Rejected", "First")
 
-  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(2)),
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(2)),
       penaltyOrder = "2",
       returnSubmitted = true,
       addAdditionalIncomeSource = true)
@@ -39,12 +39,13 @@ object AA211120A extends UserDetailsData {
       communicationsDate = Some("2023-11-07"),
       penaltyNumber = "005000001061"
     )
-
-  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(1)),
+  private val penaltyNumber: String = "005000001013"
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(1)),
       returnSubmitted = true,
       addAdditionalIncomeSource = true)
     .withAppealInformation(appealInformation)
+    .withPenaltyNumber(penaltyNumber)
 
 
   override val lsp: Option[LSP] = Some(LSP(
@@ -53,6 +54,7 @@ object AA211120A extends UserDetailsData {
   ))
 
   override def optComplianceData: Option[CompliancePayload] = None
+
   override val nino: String = "AA211120A"
   override val mtdItId: String = "211120"
   override val utr: String = "0000211120"

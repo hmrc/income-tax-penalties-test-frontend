@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp3
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPDetails, LSPSummary}
 
 object AB311130A extends UserDetailsData {
 
@@ -29,26 +29,26 @@ object AB311130A extends UserDetailsData {
     pocAchievementDate = Some("2029-02-28")
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.dueOrOverdue(
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.dueOrOverdue(
     ReportingPeriod(2027, None),
     penaltyOrder = "3",
     addAdditionalIncomeSource = true).withAppealInformation(
     AppealInformation.create("Rejected", "First")
-  ).withPenaltyCategory("C")
+  ).withPenaltyCategory("C").withPenaltyNumber("005000001026")
 
-  val lspPenalty2 = LateSubmissionPenaltyDetails.paid(
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.paid(
     ReportingPeriod(2026, None),
-      penaltyOrder = "2",
+    penaltyOrder = "2",
     addAdditionalIncomeSource = true
-  ).withPenaltyCategory("T")
+  ).withPenaltyCategory("T").withPenaltyNumber("005000001017")
 
-  val lspPenalty3 = LateSubmissionPenaltyDetails.active(
+  val lspPenalty3: LSPDetails = LateSubmissionPenaltyDetails.active(
       ReportingPeriod(2025, None),
       returnSubmitted = true,
       addAdditionalIncomeSource = true)
     .withAppealInformation(
       AppealInformation.create("UnderAppeal", "First")
-    )
+    ).withPenaltyNumber("005000001019")
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
@@ -62,6 +62,7 @@ object AB311130A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2026, None), true)
       .withObligationDetail(ReportingPeriod(2025, None), true)
   )
+
   override val nino: String = "AB311130A"
   override val description: String = "LSP2 Return - threshold reached, first stage rejected, under first stage appeal"
   override val timemachineDate: String = "28/02/2028"

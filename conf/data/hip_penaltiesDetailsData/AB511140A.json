@@ -79,7 +79,7 @@
             "penaltyExpiryDate" : "2029-09-07",
             "triggeringProcess" : "ICRU",
             "penaltyOrder" : "3",
-            "penaltyCategory" : "P",
+            "penaltyCategory" : "T",
             "penaltyStatus" : "Active",
             "communicationsDate" : "2027-08-07",
             "lateSubmissions" : [ {

@@ -19,18 +19,18 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp1
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPDetails, LSPSummary}
 
 object AA111110A extends UserDetailsData {
 
   val lspSummary = LSPSummary(
     activePenaltyPoints = 1
   )
-
-  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
+  private val penaltyNumber: String = "005000001052"
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.active(
     ReportingPeriod(2027, Some(1)),
     returnSubmitted = true,
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true).withPenaltyNumber(penaltyNumber)
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
@@ -38,6 +38,7 @@ object AA111110A extends UserDetailsData {
   ))
 
   override def optComplianceData: Option[CompliancePayload] = None
+
   override val nino: String = "AA111110A"
   override val mtdItId: String = "11111"
   override val utr: String = "1000011111"

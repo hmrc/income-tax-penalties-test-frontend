@@ -18,7 +18,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp0
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPDetails, LSPSummary}
 
 object AA000050A extends UserDetailsData {
 
@@ -27,25 +27,25 @@ object AA000050A extends UserDetailsData {
     pocAchievementDate = Some("2027-11-07")
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.expired(
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.expired(
     ReportingPeriod(2026, Some(2)),
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true).withPenaltyNumber("005000001085")
 
-  val lspPenalty2 = LateSubmissionPenaltyDetails.expired(
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.expired(
     ReportingPeriod(2026, Some(1)),
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true).withPenaltyNumber("005000001072")
 
-  val lspPenalty3 = LateSubmissionPenaltyDetails.expired(
+  val lspPenalty3: LSPDetails = LateSubmissionPenaltyDetails.expired(
     ReportingPeriod(2026, Some(0)),
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true).withPenaltyNumber("005000001096")
 
-  val lspPenalty4 = LateSubmissionPenaltyDetails.expired(
+  val lspPenalty4: LSPDetails = LateSubmissionPenaltyDetails.expired(
     ReportingPeriod(2025, Some(3)),
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true).withPenaltyNumber("005000001058")
 
-  val lspPenalty5 = LateSubmissionPenaltyDetails.expired(
+  val lspPenalty5: LSPDetails = LateSubmissionPenaltyDetails.expired(
     ReportingPeriod(2025, None),
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true).withPenaltyNumber("005000001004")
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,

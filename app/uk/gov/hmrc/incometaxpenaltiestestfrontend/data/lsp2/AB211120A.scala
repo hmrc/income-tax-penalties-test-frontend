@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp2
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{AppealInformation, LSP, LSPDetails, LSPSummary}
 
 object AB211120A extends UserDetailsData {
 
@@ -29,20 +29,23 @@ object AB211120A extends UserDetailsData {
     pocAchievementDate = Some("2029-02-28")
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.dueOrOverdue(
-    ReportingPeriod(2027, None),
-    penaltyOrder = "2",
-    addAdditionalIncomeSource = true).withAppealInformation(
-    AppealInformation.create("UnderAppeal", "Tribunal")
-  ).withPenaltyCategory("T")
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.dueOrOverdue(
+      ReportingPeriod(2027, None),
+      penaltyOrder = "2",
+      addAdditionalIncomeSource = true).withAppealInformation(
+      AppealInformation.create("UnderAppeal", "Tribunal")
+    )
+    .withPenaltyCategory("T")
+    .withPenaltyNumber("005000001087")
 
-  val lspPenalty2 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2026, None),
-    returnSubmitted = true,
-    addAdditionalIncomeSource = true)
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2026, None),
+      returnSubmitted = true,
+      addAdditionalIncomeSource = true)
     .withAppealInformation(
       AppealInformation.create("UnderAppeal", "First")
     )
+    .withPenaltyNumber("005000001039")
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
@@ -55,6 +58,7 @@ object AB211120A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2027, None), false)
       .withObligationDetail(ReportingPeriod(2026, None), true)
   )
+
   override val nino: String = "AB211120A"
   override val description: String = "LSP2 Return - threshold reached, appeal at tribunal"
   override val timemachineDate: String = "28/02/2028"

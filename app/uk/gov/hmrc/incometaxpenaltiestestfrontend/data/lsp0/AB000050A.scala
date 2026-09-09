@@ -19,7 +19,7 @@ package uk.gov.hmrc.incometaxpenaltiestestfrontend.data.lsp0
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LateSubmissionPenaltyDetails, UserDetailsData}
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPSummary}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LSP, LSPDetails, LSPSummary}
 
 object AB000050A extends UserDetailsData {
 
@@ -29,17 +29,17 @@ object AB000050A extends UserDetailsData {
     pocAchievementDate = Some("2029-01-31")
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.expired(
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.expired(
     ReportingPeriod(2027, None),
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true).withPenaltyNumber("005000001073")
 
-  val lspPenalty2 = LateSubmissionPenaltyDetails.expired(
+  val lspPenalty2: LSPDetails = LateSubmissionPenaltyDetails.expired(
     ReportingPeriod(2026, None),
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true).withPenaltyNumber("005000001039")
 
-  val lspPenalty3 = LateSubmissionPenaltyDetails.expired(
+  val lspPenalty3: LSPDetails = LateSubmissionPenaltyDetails.expired(
     ReportingPeriod(2025, None),
-    addAdditionalIncomeSource = true)
+    addAdditionalIncomeSource = true).withPenaltyNumber("005000001049")
 
   override val lsp: Option[LSP] = Some(LSP(
     lspSummary = lspSummary,
@@ -53,6 +53,7 @@ object AB000050A extends UserDetailsData {
       .withObligationDetail(ReportingPeriod(2026, None), true)
       .withObligationDetail(ReportingPeriod(2025, None), true)
   )
+
   override val nino: String = "AB000050A"
   override val mtdItId: String = "000050"
   override val utr: String = "1234000050"

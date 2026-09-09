@@ -37,6 +37,9 @@ case class LSPDetails(penaltyNumber: String,
                       chargeOutstandingAmount: Option[BigDecimal] = None,
                       chargeDueDate: Option[String] = None
                      ) {
+  def withPenaltyNumber(number: String): LSPDetails =
+    copy(penaltyNumber = number) 
+    
   def withLateSubmission(submissions: Seq[LateSubmission]): LSPDetails =
     copy(lateSubmissions = Some(submissions))
 
