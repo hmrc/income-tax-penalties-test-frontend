@@ -20,7 +20,7 @@ import uk.gov.hmrc.incometaxpenaltiestestfrontend.data.{LatePaymentPenaltyDetail
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.ReportingPeriod
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.complianceData.CompliancePayload
 import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.financialData.FinancialData
-import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LSP, LSPSummary, Totalisations}
+import uk.gov.hmrc.incometaxpenaltiestestfrontend.models.hip.penaltyDetails.{LPP, LSP, LSPSummary, LSPDetails, Totalisations}
 
 object PE000002A extends UserDetailsData {
 
@@ -42,10 +42,11 @@ object PE000002A extends UserDetailsData {
     activePenaltyPoints = 1
   )
 
-  val lspPenalty1 = LateSubmissionPenaltyDetails.active(
-    ReportingPeriod(2027, Some(3)),
-    returnSubmitted = true
-  )
+  val lspPenalty1: LSPDetails = LateSubmissionPenaltyDetails.active(
+      ReportingPeriod(2027, Some(3)),
+      returnSubmitted = true
+    )
+    .withPenaltyNumber("005000001089")
   
   val lppPenalty1 = LatePaymentPenaltyDetails.lpp1Penalty(
     reportingPeriod1,
