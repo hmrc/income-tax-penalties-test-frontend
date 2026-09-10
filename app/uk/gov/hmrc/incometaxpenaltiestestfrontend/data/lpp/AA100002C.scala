@@ -45,7 +45,7 @@ object AA100002C extends UserDetailsData {
       amount = 60.00,
       amountPaid = 20.00,
       isDay15 = true
-    ).withChargeReference(principalChargeReference).copy(penaltyChargeDueDate = Some("2026-03-19"))
+    ).withChargeReference(principalChargeReference)
   }
   
   override val lpp = Some(LPP(
