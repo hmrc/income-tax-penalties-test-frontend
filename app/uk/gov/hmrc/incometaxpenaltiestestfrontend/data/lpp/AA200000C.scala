@@ -25,7 +25,8 @@ object AA200000C extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 20
+      lppEstimatedTotal = 9.31,
+      lppPostedTotal = 120.00
     )
   )
 
@@ -33,9 +34,9 @@ object AA200000C extends UserDetailsData {
 
   lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2Penalty(
     ReportingPeriod(2027, None),
-    2.19,
+    9.31,
     principalChargeReference
-  ).withChargeReference(principalChargeReference).withPFA()
+  ).withChargeReference(principalChargeReference).withPFA().copy(lpp1LRCalculationAmt = Some(2000.00), lpp1HRCalculationAmt = Some(2000.00), penaltyChargeDueDate = Some("2028-05-19"), penaltyChargeCreationDate = Some("2028-03-02"))
 
   val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
@@ -45,7 +46,7 @@ object AA200000C extends UserDetailsData {
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountAccruingInterest = Some(2.19),
+      totalAccountAccruingInterest = Some(9.31),
       totalAccountPostedInterest = Some(120.00)
     )
   )
