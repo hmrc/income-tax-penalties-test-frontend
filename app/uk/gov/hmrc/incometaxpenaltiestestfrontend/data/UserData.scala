@@ -41,7 +41,9 @@ object UserData {
     AB000040A,
     AB000041A,
     AB000042A,
-    AB000050A
+    AB000050A,
+    AB611160A,
+    AB611160B
   )
 
   val lsp1UserData: Seq[UserDetailsData] = List(
@@ -62,7 +64,9 @@ object UserData {
     AB111130A,
     AB111131A,
     AB111132A,
-    AB121110A
+    AB121110A,
+    AA611160A,
+    AA611160B
   )
 
   val lsp2UserData: Seq[UserDetailsData] = List(
