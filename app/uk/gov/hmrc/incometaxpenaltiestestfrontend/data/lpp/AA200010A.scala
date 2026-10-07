@@ -36,7 +36,7 @@ object AA200010A extends UserDetailsData {
     ReportingPeriod(2027, None),
     2.19,
     principalChargeReference
-  ).withChargeReference(principalChargeReference)
+  ).withChargeReference(principalChargeReference).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(2000))
 
   private val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2027, None),
