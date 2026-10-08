@@ -47,6 +47,7 @@ object UserData {
   val lsp1UserData: Seq[UserDetailsData] = List(
     AA111110A,
     AA111110B,
+    AA111111A,
     AA111120A,
     AA111121A,
     AA111122A,
