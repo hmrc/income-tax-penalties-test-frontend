@@ -24,7 +24,8 @@ object AA233440A extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      totalAccountOverdue = 92.04
+      totalAccountOverdue = 92.04,
+      lppPostedTotal = 120.00
     )
   )
 
@@ -32,17 +33,29 @@ object AA233440A extends UserDetailsData {
   private val principalChargeReference2 = "XJ002616061069"
 
   lazy val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
-    ReportingPeriod(2026, None),
+    ReportingPeriod(2027, None),
     46.02,
     principalChargeRef = principalChargeReference
-  ).withChargeReference(principalChargeReference)
+  ).copy(penaltyChargeDueDate = Some("2028-04-03")).withChargeReference(principalChargeReference)
 
-  lazy val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp2Penalty(
-    ReportingPeriod(2027, None),
+  lazy val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
+    ReportingPeriod(2026, None),
       amount = 46.02,
       principalChargeRef = principalChargeReference2
   ).withChargeReference(principalChargeReference2)
-  
+
+  lazy val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
+    ReportingPeriod(2027, None),
+    60.00,
+    optChargeRef = Some(principalChargeReference)
+  ).withChargeReference(principalChargeReference)
+
+  lazy val latePaymentPenaltyDetails4: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
+    ReportingPeriod(2026, None),
+    60.00,
+    optChargeRef = Some(principalChargeReference2)
+  ).withChargeReference(principalChargeReference2)
+
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
       totalAccountPostedInterest = Some(46.02),
@@ -52,7 +65,7 @@ object AA233440A extends UserDetailsData {
 
   override val lpp: Option[LPP] = Some(LPP(
     manualLPPIndicator = false,
-    lppDetails = Some(Seq(latePaymentPenaltyDetails1, latePaymentPenaltyDetails2))
+    lppDetails = Some(Seq(latePaymentPenaltyDetails1, latePaymentPenaltyDetails2, latePaymentPenaltyDetails3, latePaymentPenaltyDetails4))
   ))
 
   override val nino: String = "AA233440A"

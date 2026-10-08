@@ -30,31 +30,34 @@ object AA233331B extends UserDetailsData {
   )
   private val principalChargeReference = "XJ002616061022"
 
-  // LPP2, paid, 19.17
   val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
     ReportingPeriod(2025, None),
     19.17,
     principalChargeReference
   ).withChargeReference(principalChargeReference).copy(
+    lpp1LRCalculationAmt = Some(5000),
+    lpp1HRCalculationAmt = Some(5000),
     penaltyChargeDueDate = Some("2026-04-17"),
     principalChargeLatestClearing = Some("2026-03-16")
   )
 
-  // LPP1, paid, 300
   val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1Paid(
     ReportingPeriod(2025, None),
     amount = 300
   ).withChargeReference(principalChargeReference).copy(
+    lpp1LRCalculationAmt = Some(5000),
+    lpp1HRCalculationAmt = Some(5000),
     penaltyChargeDueDate = Some("2026-04-04"),
     principalChargeLatestClearing = Some("2026-03-16")
   )
 
-  // LPP2, supplement=true, paid, 1.64
   val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp2Paid(
     ReportingPeriod(2025, None),
     1.64,
     principalChargeReference
   ).withChargeReference(principalChargeReference).copy(
+    lpp1LRCalculationAmt = Some(5000),
+    lpp1HRCalculationAmt = Some(5000),
     penaltyChargeCreationDate = Some("2026-03-20"),
     penaltyChargeDueDate = Some("2026-04-26"),
     principalChargeLatestClearing = Some("2026-03-25")

@@ -25,13 +25,12 @@ object AA233330B extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 320.81
+      lppPostedTotal = 320.81
     )
   )
 
   private val principalChargeReference = "XJ002616061062"
 
-  // LPP2, no supplement, 19.17
   val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     ReportingPeriod(2025, None),
     19.17,
@@ -43,7 +42,6 @@ object AA233330B extends UserDetailsData {
     principalChargeLatestClearing = Some("2026-03-16")
   )
 
-  // LPP1, no supplement, 300
   val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1DueOrOverdue(
     ReportingPeriod(2025, None),
     amount = 300
@@ -53,7 +51,6 @@ object AA233330B extends UserDetailsData {
     principalChargeLatestClearing = Some("2026-03-16")
   )
 
-  // LPP2, supplement=true, 1.64
   val latePaymentPenaltyDetails3: LPPDetails = LatePaymentPenaltyDetails.lpp2DueOrOverdue(
     ReportingPeriod(2025, None),
     1.64,
