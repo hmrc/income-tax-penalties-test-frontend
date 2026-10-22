@@ -55,7 +55,7 @@ object AA220002C extends UserDetailsData {
   override val mtdItId: String = "20000"
   override val utr: String = "1000020000"
   override val description: String = "31+ days,income tax partly paid and penalty partly paid (1LPP1(£90.00) £70.00 due, 1LPP2(£7.94) £2.00 due)"
-  override val descriptionOverdue: Option[String] = Some("31+ days,income tax partly paid and penalty partly paid (1LPP1(£90.00) £70.00 due, 1LPP2(£7.94) £2.00 due)")
+  override val descriptionOverdue: Option[String] = Some("31+ days,income tax partly paid and penalty partly paid (1LPP1(£90.00) £70.00 overdue, 1LPP2(£7.94) £2.00 overdue)")
   override val timemachineDate: String = "05/03/2028"
   override val timeMachineDateOverdue: Option[String] = Some("20/05/2028")
 }
