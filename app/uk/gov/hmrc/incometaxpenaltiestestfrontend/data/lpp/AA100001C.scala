@@ -25,8 +25,7 @@ object AA100001C extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppEstimatedTotal = 0.00,
-      lppPostedTotal = 121.64
+      lppPostedTotal = 128.21
     )
   )
 
@@ -35,10 +34,10 @@ object AA100001C extends UserDetailsData {
 
   val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp2PartiallyPaid(
     ReportingPeriod(2024, None),
-    1.64,
-    0.64,
+    8.21,
+    2.21,
     principalChargeReference
-  ).withChargeReference(principalChargeReference).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(1500), penaltyChargeCreationDate = Some("2025-03-02"), penaltyChargeDueDate = Some("2025-04-03"))
+  ).withChargeReference(principalChargeReference).copy(lpp1LRCalculationAmt = Some(2000), lpp1HRCalculationAmt = Some(2000), penaltyChargeCreationDate = Some("2025-03-02"), penaltyChargeDueDate = Some("2025-04-03"))
 
   val latePaymentPenaltyDetails2: LPPDetails = LatePaymentPenaltyDetails.lpp1PartiallyPaid(
     ReportingPeriod(2024, None),
@@ -56,7 +55,7 @@ object AA100001C extends UserDetailsData {
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
       totalAccountAccruingInterest = Some(0),
-      totalAccountPostedInterest = Some(121.65)
+      totalAccountPostedInterest = Some(128.21)
     )
   )
 
@@ -70,6 +69,6 @@ object AA100001C extends UserDetailsData {
   override val utr: String = "1000010000"
   override val description: String = "3 LPPs - ALL PARTIALLY PAID (1 LPP2 DUE, 1 LPP1 DUE, 1 LPP1 supplementary DUE) with supplementary charge"
   override val descriptionOverdue: Option[String] = Some("3 LPPs - ALL PARTIALLY PAID (1 LPP2 OVERDUE, 1 LPP1 OVERDUE, 1 LPP1 supplementary OVERDUE) with supplementary charge")
-  override val timemachineDate: String = "05/03/2025"
+  override val timemachineDate: String = "18/03/2025"
   override val timeMachineDateOverdue: Option[String] = Some("20/05/2025")
 }
