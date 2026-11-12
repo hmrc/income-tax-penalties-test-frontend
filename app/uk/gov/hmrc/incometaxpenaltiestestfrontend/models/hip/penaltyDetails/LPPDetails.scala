@@ -50,6 +50,7 @@ case class LPPDetails(principalChargeReference: String,
                       penaltyChargeDueDate: Option[String] = None,
                       appealInformation: Option[Seq[AppealInformation]] = None,
                       principalChargeLatestClearing: Option[String] = None,
+                      chargeClassificationValue: Option[String] = None,
                       timeToPay: Option[TimeToPay] = None
                      ) {
 

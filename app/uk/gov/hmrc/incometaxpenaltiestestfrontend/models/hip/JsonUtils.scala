@@ -54,6 +54,7 @@ trait JsonUtils {
         penaltyChargeDueDate <- (json \ "penaltyChargeDueDate").validateOpt[String]
         appealInformation <- (json \ "appealInformation").validateOpt[Seq[AppealInformation]]
         principalChargeLatestClearing <- (json \ "principalChargeLatestClearing").validateOpt[String]
+        chargeClassificationValue <- (json \ "chargeClassificationValue").validateOpt[String]
         timeToPay <- (json \ "timeToPay").validateOpt[Seq[TimeToPay]].map(_.flatMap(_.headOption))
       }
       yield {
@@ -61,7 +62,7 @@ trait JsonUtils {
           principalChargeBillingTo, principalChargeDueDate, principalChargeDocNumber, principalChargeMainTr, principalChargeSubTr, penaltyCategory, penaltyAmountPaid,
           penaltyAmountOutstanding, lpp1LRCalculationAmt, lpp1LRDays, lpp1LRPercentage, lpp1HRCalculationAmt, lpp1HRDays, lpp1HRPercentage,
           lpp2Days, lpp2Percentage, penaltyChargeCreationDate, communicationsDate,
-          penaltyChargeReference, penaltyChargeDueDate, appealInformation, principalChargeLatestClearing, timeToPay)
+          penaltyChargeReference, penaltyChargeDueDate, appealInformation, principalChargeLatestClearing, chargeClassificationValue, timeToPay)
       }
     }
 
@@ -95,6 +96,7 @@ trait JsonUtils {
         "penaltyChargeDueDate" -> o.penaltyChargeDueDate,
         "appealInformation" -> o.appealInformation,
         "principalChargeLatestClearing" -> o.principalChargeLatestClearing,
+        "chargeClassificationValue" -> o.chargeClassificationValue,
         "timeToPay" -> o.timeToPay.map(ttp => Json.arr(Json.toJson(ttp)))
       )
     }
