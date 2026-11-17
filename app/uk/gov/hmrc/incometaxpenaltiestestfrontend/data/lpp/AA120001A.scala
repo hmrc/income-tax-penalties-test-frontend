@@ -25,19 +25,20 @@ object AA120001A extends UserDetailsData {
 
   override val totalisations: Option[Totalisations] = Some(
     Totalisations(
-      lppPostedTotal = 60.00
+      lppEstimatedTotal = 60.00
     )
   )
 
-  private val principalChargeReference = "XJ002616061013"
+  private val principalChargeReference = "XJ002616061015"
+
 
   override def optFinancialData(): Option[FinancialData] = Some(
     FinancialData.create(
-      totalAccountPostedInterest = Some(60.00)
+      totalAccountAccruingInterest = Some(60.00)
     )
   )
 
-  val reportingPeriod1 = ReportingPeriod(2025, None)
+  val reportingPeriod1 = ReportingPeriod(2026, None)
 
   val latePaymentPenaltyDetails1: LPPDetails = LatePaymentPenaltyDetails.lpp1Penalty(
     reportingPeriod1,
