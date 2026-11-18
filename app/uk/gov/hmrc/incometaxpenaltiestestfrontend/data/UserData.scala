@@ -159,7 +159,6 @@ object UserData {
     AA200002D,
     AA200003A,
     AA120001A,
-    AA120001B,
     AA120001C,
     AA120001D
   )
